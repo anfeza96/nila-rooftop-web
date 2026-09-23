@@ -1,0 +1,11 @@
+CARPETA DE EVENTOS
+==================
+Aquí van los flyers de cada evento que se muestran en eventos.html
+
+El nombre del archivo se indica en los datos del evento, dentro de
+eventos.html, en el bloque <script id="eventos-datos">.
+
+Ejemplo de un evento con su flyer:
+  "imagen": "img/eventos/tommax.jpg"
+
+Formato: .jpg  ·  Proporción recomendada: vertical 4:5 (como en Instagram)

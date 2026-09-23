@@ -1,0 +1,12 @@
+CARPETA DE LA GALERÍA
+=====================
+Aquí van las fotos que se muestran en galeria.html
+
+Para AÑADIR fotos nuevas sin tocar código, nómbralas así:
+  01.jpg, 02.jpg, 03.jpg ... hasta 12.jpg
+
+La página busca esos doce nombres y muestra solo los que existan.
+Si falta uno, simplemente no aparece: no deja hueco ni da error.
+
+Formatos aceptados: .jpg
+Tamaño recomendado: 1200 px de ancho como mínimo.

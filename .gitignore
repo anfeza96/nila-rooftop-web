@@ -1,0 +1,24 @@
+# Sobrante de un intento anterior con React/Vite que no se usó — el sitio
+# real es HTML/CSS/JS puro (index.html, eventos.html, galeria.html).
+node_modules/
+dist/
+public/
+src/
+sitio-estatico/
+.vite/
+package-lock.json
+tsconfig.app.tsbuildinfo
+tsconfig.node.tsbuildinfo
+vercel.json
+
+# Carpetas de trabajo local — no forman parte del sitio publicado.
+Videos portada NILA/
+_respaldo previo/
+fotos nuevas/
+
+# Configuración local de Claude Code — no es parte del sitio.
+.claude/
+
+# Basura habitual del sistema
+.DS_Store
+Thumbs.db
