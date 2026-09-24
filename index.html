@@ -621,8 +621,13 @@ a.card:hover{ background:var(--ground-3); }
 /* ── Videos de la portada ──
    Dos piezas verticales, una al lado de la otra, detrás del logotipo.
    Son telón de fondo: sin sonido, sin controles y fuera del alcance del
-   ratón. Debajo queda el degradado de .hero-bg, que es lo que se ve
-   mientras cargan o si el navegador bloquea la reproducción automática. */
+   ratón. Cada <video> lleva su propio poster (fotograma real, en webp
+   liviano): un <video> sin poster se pinta negro sólido mientras carga
+   o decodifica su primer fotograma, y como esta capa va encima del
+   degradado de .hero-bg, ese negro lo tapaba por completo — se veía
+   como una pantalla negra congelada al abrir la página. Con el poster,
+   se ve la foto al instante y el video la reemplaza en cuanto puede
+   reproducir, sin salto visible. */
 .hero-video{
   position:absolute; inset:0; z-index:-3;
   display:grid; grid-template-columns:1fr 1fr;
@@ -748,10 +753,10 @@ a.card:hover{ background:var(--ground-3); }
 <header class="hero" id="inicio">
   <div class="hero-bg" aria-hidden="true"><i></i></div>
   <div class="hero-video" aria-hidden="true">
-    <video autoplay muted loop playsinline preload="auto" disablepictureinpicture tabindex="-1">
+    <video autoplay muted loop playsinline preload="auto" poster="video/hero-terraza-poster.webp" disablepictureinpicture tabindex="-1">
       <source src="video/hero-terraza.mp4" type="video/mp4">
     </video>
-    <video autoplay muted loop playsinline preload="auto" disablepictureinpicture tabindex="-1">
+    <video autoplay muted loop playsinline preload="auto" poster="video/hero-comida-poster.webp" disablepictureinpicture tabindex="-1">
       <source src="video/hero-comida.mp4" type="video/mp4">
     </video>
   </div>
