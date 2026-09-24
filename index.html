@@ -187,7 +187,7 @@ h1,h2,h3,h4{ font-family:var(--f-brand); font-weight:300; margin:0; line-height:
 .nav-logo{ display:flex; align-items:center; gap:11px; text-decoration:none; color:var(--text); }
 .nav-logo svg{ width:26px; height:26px; color:var(--sand); flex:none; }
 .nav-logo b{ font-family:var(--f-brand); font-weight:300; font-size:16px; letter-spacing:.34em; padding-left:.34em; }
-.nav-links{ display:flex; gap:clamp(15px,1.7vw,26px); margin-left:auto; }
+.nav-links{ display:flex; align-items:center; gap:clamp(15px,1.7vw,26px); margin-left:auto; }
 .nav-links a{
   font-family:var(--f-brand); font-size:11.5px; letter-spacing:.2em; text-transform:uppercase;
   color:var(--muted); text-decoration:none; padding:8px 0; position:relative; transition:color .25s;
@@ -732,7 +732,7 @@ a.card:hover{ background:var(--ground-3); }
     </a>
     <div class="nav-links">
       <a href="#lugar">El lugar</a>
-      <a href="#carta">Carta</a>
+      <a href="carta.html">Carta</a>
       <a href="#corporativos">Corporativos</a>
       <a class="aparte" href="eventos.html">Eventos</a>
       <a class="aparte" href="galeria.html">Galería</a>
@@ -777,7 +777,7 @@ a.card:hover{ background:var(--ground-3); }
 
     <div class="hero-actions">
       <a class="btn btn-solid" href="#reserva">Reservar mesa</a>
-      <a class="btn btn-line" href="#carta">Ver la carta</a>
+      <a class="btn btn-line" href="carta.html">Ver la carta</a>
       <a class="btn btn-line" href="https://www.instagram.com/nila.rooftop/" target="_blank" rel="noopener">@nila.rooftop</a>
     </div>
 
@@ -833,7 +833,7 @@ a.card:hover{ background:var(--ground-3); }
       <div class="amb">
         <p class="n">Ambiente 01</p>
         <h3>Terraza</h3>
-        <p>Cielo abierto y la ciudad de fondo. Es la zona que primero se llena, y las mesas del borde son las primeras en irse. Si vienes por el atardecer, reserva: a esa hora no queda sitio por casualidad.</p>
+        <p>Espacio cerrado, no a cielo abierto — la ciudad se ve completa a través de ventanales de piso a techo. Aquí aparece la magia: show de luces profesional, una barra grande, mesas en lounge y la consola del DJ. Es la zona que primero se llena; si vienes por el atardecer, reserva.</p>
       </div>
       <div class="amb">
         <p class="n">Ambiente 02</p>
@@ -867,10 +867,9 @@ a.card:hover{ background:var(--ground-3); }
     </div>
 
     <div class="hero-actions rise" style="margin-top:38px">
-      <a class="btn btn-terra" id="menu-btn" href="#" target="_blank" rel="noopener">Ver carta completa</a>
+      <a class="btn btn-terra" href="carta.html">Ver la carta completa</a>
       <a class="btn btn-line" href="#reserva">Reservar mesa</a>
     </div>
-    <p class="note rise" id="menu-note" style="color:#7A6250"></p>
   </div>
 </section>
 
@@ -1170,7 +1169,6 @@ const CONFIG = {
   calle:      "3XJR+7RX, Carr. Panamericana",
   ciudad:     "Cuenca 010204, Ecuador",
   mapsUrl:    "https://maps.app.goo.gl/pejtRUZ2eF2BZgEW6",
-  menuUrl:    "https://drive.google.com/file/d/1SZI059OuIx2Alylm4EnqC4LV4mo30W9_/view",
   reserva:    { desde: 17, hasta: 23.5, maxPersonas: 12 }
 };
 
@@ -1596,21 +1594,11 @@ addEventListener('resize', revisaRise, { passive:true });
       'style="color:inherit;text-decoration:none">' + CONFIG.telefono + '</a>';
   }
 
-  const apagar = el => { el.setAttribute('aria-disabled','true'); el.style.opacity = '.45'; el.href = '#';
-                         el.addEventListener('click', e => e.preventDefault()); };
-
   // Google Maps
   const destino = ['Cardeca Business Center', CONFIG.calle, CONFIG.ciudad].filter(Boolean).join(', ');
   const maps = $('#maps');
   if (!falta(CONFIG.mapsUrl)) maps.href = CONFIG.mapsUrl;
   else maps.href = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(destino);
-
-  // Carta
-  const menu = $('#menu-btn');
-  if (!falta(CONFIG.menuUrl)){
-    menu.href = CONFIG.menuUrl;
-    $('#menu-note').textContent = 'La carta se abre en Google Drive. Asegúrate de que el archivo esté compartido como "Cualquier persona con el enlace"; si no, tus clientes verán una pantalla de permiso denegado.';
-  } else apagar(menu);
 
   const ico = {
     wa:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M21 11.5a8.4 8.4 0 0 1-12.6 7.3L3 20.5l1.8-5.2A8.5 8.5 0 1 1 21 11.5z"/><path d="M8.6 9.2c.2 2.6 2.2 4.6 4.8 4.8.5 0 1-.3 1.2-.8l.2-.5-1.9-1-.7.8a4.6 4.6 0 0 1-2-2l.8-.7-1-1.9-.5.2c-.5.2-.8.6-.9 1.1z"/></svg>',

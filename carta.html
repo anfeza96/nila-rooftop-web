@@ -1,0 +1,2973 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Carta — NILA ROOFTOP</title>
+<meta name="description" content="Carta digital de NILA ROOFTOP: entradas, platos fuertes, sushi, coctelería de autor, vinos y licores. Cuenca, Ecuador.">
+<link rel="icon" href="img/logo.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500;600&family=Karla:wght@300;400;500;600&family=Sacramento&display=swap">
+
+<style>
+/* ══════════════════════════════════════════════════════════
+   NILA ROOFTOP · Carta
+   Misma paleta y patrones que el resto del sitio.
+   ══════════════════════════════════════════════════════════ */
+:root{
+  --ground:#150F0B; --ground-2:#1F1710; --ground-3:#2B1F16;
+  --terra:#A0492E; --terra-dk:#7C3521; --ember:#C9663C;
+  --sand:#D9A46A; --cream:#F4E9DA; --gold:#E8C24B;
+  --paper:#F4E9DA; --ink:#2A1D14;
+  --text:#F4E9DA; --muted:#B9A794; --faint:#857463;
+  --line:rgba(244,233,218,.16); --line-soft:rgba(244,233,218,.08);
+  --ok:#79B58A;
+  --gutter:clamp(20px,5vw,60px); --maxw:1200px;
+  --f-brand:"Jost","Futura","Century Gothic",system-ui,sans-serif;
+  --f-body:"Karla","Helvetica Neue",Arial,sans-serif;
+  --f-script:"Sacramento","Segoe Script",cursive;
+  color-scheme:dark;
+}
+*,*::before,*::after{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto; }
+  *{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; }
+}
+body{
+  margin:0; background:var(--ground); color:var(--text);
+  font-family:var(--f-body); font-weight:300;
+  font-size:clamp(15px,.35vw + 14px,16.5px); line-height:1.7;
+  -webkit-font-smoothing:antialiased; overflow-x:hidden;
+}
+img{ max-width:100%; display:block; }
+h1,h2,h3,h4{ font-family:var(--f-brand); font-weight:300; margin:0; line-height:1.1; text-wrap:balance; }
+.wrap{ width:100%; max-width:var(--maxw); margin-inline:auto; padding-inline:var(--gutter); }
+.mark{ background:var(--gold); color:#1B1408; padding:1px 8px 2px; font-weight:500; }
+
+/* ── fondo vivo (igual que el resto del sitio) ── */
+#bg{ position:fixed; inset:-45vh -45vw; z-index:0; pointer-events:none; overflow:hidden; }
+#bg b{ position:absolute; display:block; border-radius:50%; filter:blur(72px); will-change:transform; }
+#bg .b1{ width:80vw; height:80vw; left:4%;  top:10%; background:radial-gradient(circle, rgba(160,73,46,.85), transparent 66%); }
+#bg .b2{ width:64vw; height:64vw; left:60%; top:18%; background:radial-gradient(circle, rgba(217,164,106,.58), transparent 66%); }
+#bg .b3{ width:72vw; height:72vw; left:56%; top:30%; background:radial-gradient(circle, rgba(201,102,60,.68), transparent 66%); }
+#bg .b4{ width:54vw; height:54vw; left:10%; top:36%; background:radial-gradient(circle, rgba(232,194,75,.32), transparent 66%); }
+#bg .b5{ width:76vw; height:76vw; left:50%; top:42%; background:radial-gradient(circle, rgba(124,53,33,.82), transparent 66%); }
+#bg .b6{ width:58vw; height:58vw; left:8%;  top:48%; background:radial-gradient(circle, rgba(217,164,106,.48), transparent 66%); }
+#bg::after{ content:""; position:absolute; inset:0; background:rgba(21,15,11,.32); }
+@media (max-width:700px){ #bg b{ filter:blur(58px); } #bg .b4, #bg .b6{ display:none; } }
+@media (prefers-reduced-motion: reduce){ #bg b{ transform:none !important; } }
+
+/* ── NAV ── */
+.nav{
+  position:sticky; top:env(safe-area-inset-top,0px); z-index:70;
+  background:rgba(21,15,11,.72); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid transparent; transition:background .3s, border-color .3s;
+}
+.nav.stuck{ background:rgba(21,15,11,.95); border-bottom-color:var(--line-soft); }
+.nav-in{ display:flex; align-items:center; gap:20px; height:70px; }
+.nav-logo{ display:flex; align-items:center; gap:11px; text-decoration:none; color:var(--text); }
+.nav-logo svg{ width:26px; height:26px; color:var(--sand); flex:none; }
+.nav-logo b{ font-family:var(--f-brand); font-weight:300; font-size:16px; letter-spacing:.34em; padding-left:.34em; }
+.nav-links{ display:flex; align-items:center; gap:clamp(15px,1.7vw,26px); margin-left:auto; }
+.nav-links a{
+  font-family:var(--f-brand); font-size:11.5px; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--muted); text-decoration:none; padding:8px 0; transition:color .25s;
+}
+.nav-links a:hover, .nav-links a[aria-current]{ color:var(--text); }
+.nav-cta{
+  margin-left:auto; font-family:var(--f-brand); font-size:11.5px; letter-spacing:.18em; text-transform:uppercase;
+  text-decoration:none; padding:11px 22px; border:1px solid var(--line); border-radius:999px;
+  color:var(--text); transition:background .25s, border-color .25s; white-space:nowrap;
+}
+.nav-cta:hover{ background:var(--terra); border-color:var(--terra); }
+.nav-links + .nav-cta{ margin-left:0; }
+@media (max-width:900px){
+  .nav-in{ height:auto; flex-wrap:wrap; padding-block:11px; gap:8px 14px; }
+  .nav-logo{ order:1; }
+  .nav-cta{ order:2; margin-left:auto; padding:9px 18px; }
+  .nav-links{
+    order:3; width:100%; margin-left:0; gap:19px;
+    overflow-x:auto; scrollbar-width:none; padding-bottom:1px;
+    -webkit-mask-image:linear-gradient(90deg,#000 86%,transparent);
+            mask-image:linear-gradient(90deg,#000 86%,transparent);
+  }
+  .nav-links::-webkit-scrollbar{ display:none; }
+  .nav-links a{ white-space:nowrap; flex:none; font-size:11px; padding:3px 0; }
+}
+.nav-links a.aparte{
+  color:var(--gold); border:1px solid rgba(232,194,75,.45); border-radius:999px;
+  padding:6px 15px; margin:-6px 0; background:rgba(232,194,75,.08);
+  transition:background .25s, border-color .25s, color .25s;
+}
+.nav-links a.aparte:hover, .nav-links a.aparte:focus-visible{ background:var(--gold); border-color:var(--gold); color:#1B1408; }
+.nav-links a.aparte[aria-current]{ background:var(--gold); border-color:var(--gold); color:#1B1408; }
+@media (max-width:900px){ .nav-links a.aparte{ padding:5px 13px; margin:0; } }
+
+/* ── botones ── */
+.btn{
+  display:inline-flex; align-items:center; gap:10px; cursor:pointer;
+  font-family:var(--f-brand); font-size:12px; letter-spacing:.16em; text-transform:uppercase; font-weight:500;
+  padding:14px 26px; border-radius:999px; text-decoration:none; border:1px solid transparent;
+  transition:transform .18s, background .25s, border-color .25s, color .25s; background:none;
+}
+.btn:active{ transform:translateY(1px); }
+.btn-solid{ background:var(--cream); color:var(--ink); }
+.btn-solid:hover{ background:#fff; }
+.btn-terra{ background:var(--terra); color:var(--cream); }
+.btn-terra:hover{ background:var(--ember); }
+.btn-line{ border-color:var(--line); color:var(--text); background:rgba(21,15,11,.35); }
+.btn-line:hover{ border-color:var(--cream); }
+a:focus-visible, button:focus-visible{ outline:2px solid var(--gold); outline-offset:3px; }
+
+/* ── CABECERA ── */
+.carta-cab{
+  position:relative; z-index:1; max-width:var(--maxw); margin-inline:auto; padding:clamp(56px,8vw,96px) var(--gutter) clamp(34px,5vw,52px);
+  display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:28px;
+}
+.carta-cab .izq{ max-width:640px; }
+.carta-cab .eyebrow{
+  font-family:var(--f-brand); font-size:11px; letter-spacing:.34em; text-transform:uppercase;
+  color:var(--sand); font-weight:500; margin:0 0 20px;
+}
+.carta-cab h1{ font-weight:200; font-size:clamp(52px,10vw,112px); line-height:.92; letter-spacing:.1em; color:var(--text); }
+.carta-cab .tag{ font-family:var(--f-script); font-size:clamp(28px,4.4vw,44px); line-height:1.1; color:var(--gold); margin:30px 0 0; }
+.carta-cab .lede{ color:var(--muted); font-size:clamp(15.5px,.4vw + 14.5px,18px); max-width:52ch; margin:18px 0 0; text-wrap:pretty; }
+.carta-cab .der{ display:flex; flex-direction:column; align-items:flex-start; gap:14px; }
+.idioma{ display:flex; padding:4px; border:1px solid var(--line); border-radius:999px; background:rgba(21,15,11,.5); }
+.idioma button{
+  font-family:var(--f-brand); font-size:11.5px; letter-spacing:.18em; font-weight:500;
+  border:0; cursor:pointer; padding:9px 18px; border-radius:999px; background:transparent; color:var(--muted);
+  transition:background .25s, color .25s;
+}
+.idioma button[aria-pressed="true"]{ background:var(--cream); color:var(--ink); }
+.alergia{ font-size:13px; color:var(--faint); max-width:34ch; margin:0; }
+
+/* ── BARRA DE PESTAÑAS ── */
+.carta-tabs-bar{
+  position:sticky; top:70px; z-index:60;
+  background:rgba(21,15,11,.9); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+  border-block:1px solid var(--line-soft);
+}
+@media (max-width:900px){ .carta-tabs-bar{ top:112px; } }
+.carta-tabs{ display:flex; gap:6px; overflow-x:auto; scrollbar-width:none; }
+.carta-tabs::-webkit-scrollbar{ display:none; }
+.carta-tabs button{
+  flex:none; font-family:var(--f-brand); font-size:11.5px; letter-spacing:.2em; text-transform:uppercase;
+  background:transparent; border:0; cursor:pointer; padding:18px 12px 16px; color:var(--muted); font-weight:400;
+  border-bottom:2px solid transparent; white-space:nowrap; transition:color .25s, border-color .25s;
+}
+.carta-tabs button:hover{ color:var(--text); }
+.carta-tabs button[aria-selected="true"]{ color:var(--text); font-weight:500; border-bottom-color:var(--gold); }
+
+/* ── CONTENIDO ── */
+.carta-main{ position:relative; z-index:1; max-width:var(--maxw); margin-inline:auto; padding:0 var(--gutter) clamp(60px,8vw,110px); }
+#carta-contenido{ transition:opacity .28s ease, transform .38s cubic-bezier(.2,.7,.3,1); }
+#carta-contenido.fading{ opacity:0; transform:translateY(10px); }
+.carta-cat{ padding-top:clamp(44px,6vw,72px); }
+.carta-cat-head{
+  display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:10px 24px;
+  padding-bottom:22px; border-bottom:1px solid var(--line);
+}
+.carta-cat-head .num{ font-family:var(--f-brand); font-size:10.5px; letter-spacing:.32em; text-transform:uppercase; color:var(--gold); font-weight:500; margin:0 0 12px; }
+.carta-cat-head h2{ font-size:clamp(32px,5vw,54px); line-height:1.05; letter-spacing:.01em; }
+.carta-cat-head .iva{ font-family:var(--f-brand); font-size:10.5px; letter-spacing:.24em; text-transform:uppercase; color:var(--faint); margin:0; }
+
+.carta-cuerpo{ display:flex; flex-wrap:wrap; gap:clamp(28px,4vw,56px); align-items:flex-start; margin-top:8px; }
+.carta-lista{ flex:1 1 520px; min-width:0; }
+.carta-grupo{ margin-top:28px; }
+.carta-grupo-tit{ display:flex; align-items:center; gap:14px; margin-bottom:6px; }
+.carta-grupo-tit h3{ font-family:var(--f-brand); font-size:12px; letter-spacing:.3em; text-transform:uppercase; color:var(--sand); font-weight:500; }
+.carta-grupo-tit span{ flex:1; height:1px; background:linear-gradient(90deg,var(--line),transparent); }
+.carta-grupo-nota{ margin-top:16px; font-size:13.5px; color:var(--sand); }
+.carta-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr)); column-gap:clamp(28px,4vw,52px); }
+.plato{ padding:18px 0 20px; border-bottom:1px solid var(--line-soft); }
+.plato .fila{ display:flex; align-items:baseline; gap:12px; }
+.plato h4{ font-weight:400; font-size:16px; letter-spacing:.1em; text-transform:uppercase; line-height:1.35; color:var(--text); text-wrap:balance; }
+.plato .leader{ flex:1; min-width:18px; border-bottom:1px dotted rgba(244,233,218,.22); transform:translateY(-4px); }
+.plato .precios{ display:flex; gap:14px; flex:none; align-items:baseline; }
+.plato .precio{ display:flex; align-items:baseline; gap:6px; }
+.plato .precio small{ font-family:var(--f-brand); font-size:9.5px; letter-spacing:.2em; text-transform:uppercase; color:var(--faint); }
+.plato .precio .valor{ font-family:var(--f-brand); font-size:16px; font-weight:400; color:var(--gold); white-space:nowrap; }
+.plato .insignia{
+  display:inline-block; margin-top:8px; background:var(--gold); color:#1B1408;
+  font-family:var(--f-brand); font-size:10px; letter-spacing:.22em; text-transform:uppercase; font-weight:500; padding:3px 9px;
+}
+.plato .desc{ margin-top:7px; color:var(--muted); font-size:14.5px; line-height:1.6; text-wrap:pretty; }
+
+/* ── FOTO DE CATEGORÍA (revelado + parallax, igual que en el resto del sitio) ── */
+.carta-foto{ flex:0 1 320px; min-width:240px; margin-top:28px; }
+@media (min-width:901px){ .carta-foto{ position:sticky; top:140px; } }
+.carta-foto .flyer{ position:relative; overflow:hidden; border-radius:3px; background:var(--ground-3); aspect-ratio:4/5; }
+.carta-foto .flyer img{
+  position:absolute; left:0; top:-9%; width:100%; height:118%;
+  object-fit:cover; will-change:transform;
+  transform:translate3d(0, var(--py,0px), 0);
+  transition:scale .7s cubic-bezier(.2,.7,.3,1), filter .7s ease;
+}
+.carta-foto .flyer::after{ content:""; position:absolute; inset:0; box-shadow:inset 0 0 0 1px var(--line-soft); pointer-events:none; z-index:3; }
+.carta-foto .flyer::before{
+  content:""; position:absolute; inset:0; z-index:2; pointer-events:none;
+  background:linear-gradient(104deg, transparent 36%, rgba(244,233,218,.26) 47%, rgba(232,194,75,.16) 52%, transparent 62%);
+  transform:translateX(-130%); transition:transform 1s cubic-bezier(.3,.7,.3,1);
+}
+@media (prefers-reduced-motion: no-preference){
+  .js .carta-foto .flyer{ clip-path:inset(0 0 100% 0); transition:clip-path 1.05s cubic-bezier(.16,.84,.26,1); }
+  .js .carta-foto .flyer.visto{ clip-path:inset(0 0 0 0); }
+  .js .carta-foto .flyer img{ scale:1.12; transition:scale 1.4s cubic-bezier(.16,.84,.26,1), filter .7s ease; }
+  .js .carta-foto .flyer.visto img{ scale:1; }
+}
+.carta-foto .cap{ font-family:var(--f-script); font-size:28px; color:var(--gold); line-height:1; margin:14px 0 0; }
+
+/* ── PAGINADOR ── */
+.carta-pag{ display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; margin-top:48px; }
+
+/* ── BANDA RESERVAS ── */
+.carta-banda{
+  margin-top:clamp(56px,7vw,88px); padding:clamp(26px,3.6vw,40px);
+  background:rgba(31,23,16,.66); border:1px solid var(--line-soft);
+  display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:20px;
+}
+.carta-banda .izq{ max-width:560px; }
+.carta-banda .eyebrow{ font-family:var(--f-brand); font-size:10.5px; letter-spacing:.3em; text-transform:uppercase; color:var(--gold); margin:0 0 10px; }
+.carta-banda .texto{ font-family:var(--f-brand); font-weight:300; font-size:clamp(20px,2.6vw,27px); line-height:1.3; margin:0; }
+.carta-banda .btns{ display:flex; flex-wrap:wrap; gap:12px; }
+
+/* ── PIE ── */
+.foot{ border-top:1px solid var(--line-soft); padding-block:34px; background:rgba(21,15,11,.74); position:relative; z-index:1; }
+.foot-in{ display:flex; flex-wrap:wrap; gap:16px 26px; align-items:center; justify-content:space-between; }
+.foot-logo{ display:flex; align-items:center; gap:10px; }
+.foot-logo svg{ width:24px; height:24px; color:var(--sand); }
+.foot-logo b{ font-family:var(--f-brand); font-weight:300; font-size:14px; letter-spacing:.32em; padding-left:.32em; }
+.foot p{ margin:0; font-size:12px; color:var(--faint); }
+</style>
+</head>
+<body>
+
+<div id="bg" aria-hidden="true"><b class="b1"></b><b class="b2"></b><b class="b3"></b><b class="b4"></b><b class="b5"></b><b class="b6"></b></div>
+
+<nav class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a class="nav-logo" href="index.html">
+      <svg viewBox="0 0 64 56" fill="none" stroke="currentColor" stroke-width="2.8" aria-hidden="true">
+        <path d="M32 28c-6-9-11-13-17-11-6 2-7 9-3 13 4 4 12 3 20-2z" stroke-linejoin="round"/>
+        <path d="M32 28c6-9 11-13 17-11 6 2 7 9 3 13-4 4-12 3-20-2z" stroke-linejoin="round"/>
+        <path d="M32 28c-5 8-5 15 0 18 5-3 5-10 0-18z" stroke-linejoin="round"/>
+      </svg>
+      <b>NILA</b>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Portada</a>
+      <a href="carta.html" aria-current="page">Carta</a>
+      <a href="index.html#corporativos">Corporativos</a>
+      <a class="aparte" href="eventos.html">Eventos</a>
+      <a class="aparte" href="galeria.html">Galería</a>
+      <a href="index.html#visita">Horarios</a>
+      <a href="index.html#contacto">Contacto</a>
+    </div>
+    <a class="nav-cta" href="index.html#reserva">Reservar</a>
+  </div>
+</nav>
+
+<header class="carta-cab">
+  <div class="izq">
+    <p class="eyebrow" id="t-eyebrow"></p>
+    <h1 id="t-title"></h1>
+    <p class="tag" id="t-tag"></p>
+    <p class="lede" id="t-lede"></p>
+  </div>
+  <div class="der">
+    <div class="idioma" role="group" aria-label="Idioma">
+      <button type="button" id="btn-es">ES</button>
+      <button type="button" id="btn-en">EN</button>
+    </div>
+    <p class="alergia" id="t-allergy"></p>
+  </div>
+</header>
+
+<div class="carta-tabs-bar">
+  <div class="wrap carta-tabs" id="carta-tabs"></div>
+</div>
+
+<main class="carta-main">
+  <div id="carta-contenido"></div>
+  <div class="carta-pag" id="carta-pag"></div>
+
+  <div class="carta-banda">
+    <div class="izq">
+      <p class="eyebrow" id="t-evEyebrow"></p>
+      <p class="texto" id="t-evText"></p>
+    </div>
+    <div class="btns">
+      <a class="btn btn-solid" href="index.html#reserva" id="t-reservar"></a>
+      <a class="btn btn-line" href="https://wa.me/593984958228" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <span class="foot-logo">
+      <svg viewBox="0 0 64 56" fill="none" stroke="currentColor" stroke-width="2.8" aria-hidden="true">
+        <path d="M32 28c-6-9-11-13-17-11-6 2-7 9-3 13 4 4 12 3 20-2z" stroke-linejoin="round"/>
+        <path d="M32 28c6-9 11-13 17-11 6 2 7 9 3 13-4 4-12 3-20-2z" stroke-linejoin="round"/>
+        <path d="M32 28c-5 8-5 15 0 18 5-3 5-10 0-18z" stroke-linejoin="round"/>
+      </svg><b>NILA</b>
+    </span>
+    <p>© <span id="anio"></span> NILA ROOFTOP · Cardeca Business Center, Cuenca</p>
+    <p>Aquí todo late distinto</p>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════════════════════
+     DATOS DE LA CARTA
+     14 categorías, transcritas del PDF "MENU NILA NEW 2026".
+     Editar precios aquí no requiere tocar el resto del archivo.
+     ═══════════════════════════════════════════════════════════ -->
+<script id="carta-datos" type="application/json">{
+  "ui": {
+    "es": {
+      "eyebrow": "Carta · 2026",
+      "title": "La carta",
+      "tag": "Para disfrutar sin prisa",
+      "lede": "Ven a disfrutar de una experiencia donde cada detalle cuenta. Gastronomía, coctelería de autor en el rooftop que redefine las noches en Cuenca.",
+      "allergy": "Por favor déjanos saber si posees alguna restricción alimenticia, intolerancia o alergia.",
+      "iva": "Nuestros precios incluyen IVA",
+      "c": "Copa",
+      "b": "Botella",
+      "badge": "Plato insignia",
+      "evEyebrow": "Reservas & eventos",
+      "evText": "Contamos con espacios ideales para cualquier evento social y corporativo con los mejores servicios.",
+      "reservar": "Reservar mesa"
+    },
+    "en": {
+      "eyebrow": "Menu · 2026",
+      "title": "The menu",
+      "tag": "Made to be savored",
+      "lede": "Come and enjoy an experience where every detail counts. Food and signature cocktails on the rooftop redefining nights in Cuenca.",
+      "allergy": "Please let us know about any dietary restriction, intolerance or allergy.",
+      "iva": "Prices include VAT",
+      "c": "Glass",
+      "b": "Bottle",
+      "badge": "Signature dish",
+      "evEyebrow": "Bookings & events",
+      "evText": "We have ideal spaces for any social or corporate event, with the best services.",
+      "reservar": "Book a table"
+    }
+  },
+  "categories": [
+    {
+      "id": "entradas",
+      "es": "Entradas",
+      "en": "Starters",
+      "img": "img/galeria/ensalada.webp",
+      "caption": "Para empezar",
+      "groups": [
+        {
+          "title": null,
+          "note": null,
+          "items": [
+            {
+              "name": "Tartar de salmón",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$10.99"
+                }
+              ],
+              "desc": {
+                "es": "Salmón curado, marinado en cítricos y chimichurri oriental, acompañado de aguacate, un toque de aceite de ajonjolí, surimi y manzana deshidratada.",
+                "en": "Citrus-cured salmon with an oriental chimichurri marinade, served with avocado, a hint of sesame oil, surimi, and dehydrated apple."
+              },
+              "signature": false
+            },
+            {
+              "name": "Ceviche nikkei de camarón",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$9.50"
+                }
+              ],
+              "desc": {
+                "es": "Camarones acevichados con chimichurri oriental, salsa de soya, granos de ajonjolí y cebolla curtida. Acompañado con chips de camote, chifles, chulpi y pico de gallo.",
+                "en": "Fresh shrimp ceviche with oriental chimichurri, soy sauce, sesame seeds, and pickled onions. Served with sweet potato chips, plantain chips, toasted corn, and pico de gallo."
+              },
+              "signature": false
+            },
+            {
+              "name": "Tiradito del mar",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$10.99"
+                }
+              ],
+              "desc": {
+                "es": "Delicadas láminas de pulpo al grill en salsa anticuchera, con salsa tiradito de la casa. Acompañados de chips de camote, chulpi, pico de gallo y una corona de cebolla curtida.",
+                "en": "Thinly sliced grilled octopus in anticucho sauce, paired with house tiradito sauce. Served with sweet potato chips, toasted corn, pico de gallo, and pickled onion."
+              },
+              "signature": false
+            },
+            {
+              "name": "Ensalada Sahara de pollo",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$8.50"
+                }
+              ],
+              "desc": {
+                "es": "Pollo a la parrilla, bañado en salsa anticuchera, sobre mix de lechugas frescas, uvilla, praliné y tomate cherry, con salsa maple mustard y ranch.",
+                "en": "Grilled chicken glazed with anticucho sauce, over fresh greens, golden berries, praline, and cherry tomatoes, finished with maple mustard and ranch dressing."
+              },
+              "signature": false
+            },
+            {
+              "name": "Tacos de lechón",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$12.50"
+                }
+              ],
+              "desc": {
+                "es": "Crujientes tortillas de maíz rellenas de cerdo mechado, guacamole, pico de gallo, cebolla curtida, togarashi, jalapeños y reducción de balsámico.",
+                "en": "Crispy corn tortillas filled with slow-cooked pulled pork, guacamole, pico de gallo, pickled onions, togarashi, jalapeños, and balsamic reduction."
+              },
+              "signature": false
+            },
+            {
+              "name": "Quesadilla Nila",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$12.50"
+                }
+              ],
+              "desc": {
+                "es": "Tortilla de trigo con salsa blanca y pomodoro, carne a elección salteado (pollo o lomo), con mix de queso, salsa ranch y guacamole.",
+                "en": "Flour tortilla with white and pomodoro sauce, sautéed protein of choice (chicken or beef), melted cheese blend, ranch, and guacamole."
+              },
+              "signature": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "platos-fuertes",
+      "es": "Platos fuertes",
+      "en": "Main dishes",
+      "img": "img/promos/01-tomahawk.webp",
+      "caption": "Savage Tomahawk",
+      "groups": [
+        {
+          "title": null,
+          "note": null,
+          "items": [
+            {
+              "name": "Ribeye Black Grill",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$24.00"
+                }
+              ],
+              "desc": {
+                "es": "Corte de 500 gr al grill flameado en piedra volcánica, con chimichurri, papas chauchas y ensalada fresca.",
+                "en": "500g grilled ribeye, flame-finished on volcanic stone with chimichurri. Served with rustic potatoes and fresh salad."
+              },
+              "signature": false
+            },
+            {
+              "name": "Savage Tomahawk",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$27.00"
+                }
+              ],
+              "desc": {
+                "es": "Corte de 800 gr al grill, flameado en piedra volcánica, bañado en chimichurri de la casa, acompañado de papas chauchas y ensalada fresca.",
+                "en": "800g grilled tomahawk steak, flame-finished on volcanic stone, topped with house chimichurri. Served with rustic potatoes and fresh salad."
+              },
+              "signature": false
+            },
+            {
+              "name": "Tribal Feast 3 px",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$34.50"
+                }
+              ],
+              "desc": {
+                "es": "Selección de lomo fino al grill, suprema de pollo, chorizo parrillero, chicharrón, mix de charcutería, choclo al grill, servido en piedra volcánica, acompañado de papa chaucha y ensalada fresca.",
+                "en": "Grilled selection of beef tenderloin, chicken breast, sausage, pork crackling, charcuterie mix, and grilled corn. Served on volcanic stone with rustic potatoes and fresh salad."
+              },
+              "signature": false
+            },
+            {
+              "name": "Suprema de pollo al pesto",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$14.90"
+                }
+              ],
+              "desc": {
+                "es": "Suprema de pollo al grill con salsa pesto y vino blanco, servida con cremoso de trigo, queso parmesano y ensalada fresca.",
+                "en": "Grilled chicken breast in pesto and white wine sauce, served with creamy wheat risotto, parmesan cheese, and fresh salad."
+              },
+              "signature": false
+            },
+            {
+              "name": "Pepper Steak Nila",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$19.00"
+                }
+              ],
+              "desc": {
+                "es": "Corte de lomo fino de 300 gr al grill en salsa cremosa de pimienta y portobello, acompañado de pastel de papa gratinada y ensalada fresca.",
+                "en": "300g beef tenderloin in creamy pepper and portobello sauce, served with potato gratin and fresh salad."
+              },
+              "signature": false
+            },
+            {
+              "name": "Lemon Sunset Salmón",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$19.50"
+                }
+              ],
+              "desc": {
+                "es": "Salmón curado de 300 gramos sellado al grill y reposado en salsa de limón, acompañado de molido de verde con queso, piel crocante de salmón y ensalada fresca.",
+                "en": "300g grilled cured salmon finished in lemon sauce, served with mashed green plantain and cheese, crispy salmon skin, and fresh salad."
+              },
+              "signature": false
+            },
+            {
+              "name": "Encocado de mariscos",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$16.90"
+                }
+              ],
+              "desc": {
+                "es": "Mariscos flameados en vino blanco, bañado en salsa de coco, queso parmesano, patacones, servidos en una canasta de maíz con sal prieta y pico de gallo.",
+                "en": "Seafood flambéed in white wine, simmered in coconut sauce with parmesan, served with fried plantains, corn basket, peanut seasoning, and pico de gallo."
+              },
+              "signature": false
+            },
+            {
+              "name": "Tribal BBQ Ribs",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$25.00"
+                }
+              ],
+              "desc": {
+                "es": "Rack de costillas de cerdo al grill, glaseado en salsa BBQ, acompañado de choclo grillado, salsa ranch, queso parmesano, papas fritas y salsas de la casa.",
+                "en": "Grilled pork ribs glazed in BBQ sauce, served with grilled corn, ranch dressing, parmesan cheese, fries, and house sauces."
+              },
+              "signature": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "risotto",
+      "es": "Risotto",
+      "en": "Risotto",
+      "img": "img/galeria/risotto.webp",
+      "caption": "Cremoso, siempre",
+      "groups": [
+        {
+          "title": null,
+          "note": null,
+          "items": [
+            {
+              "name": "Four Cheese Velvet",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$13.50"
+                }
+              ],
+              "desc": {
+                "es": "Cremoso risotto en salsa de 4 quesos, portobello salteado, chips de camote, tomate cherry confitado y albahaca.",
+                "en": "Creamy risotto in a four-cheese sauce with sautéed portobello, sweet potato chips, confit cherry tomatoes, and fresh basil."
+              },
+              "signature": false
+            },
+            {
+              "name": "Risotto Andino",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$17.00"
+                }
+              ],
+              "desc": {
+                "es": "Cremoso risotto en salsa huancaína con lomo salteado estilo peruano, papas chips y queso parmesano.",
+                "en": "Creamy huancaína-style risotto topped with Peruvian-style sautéed beef, crispy potatoes, and parmesan."
+              },
+              "signature": false
+            },
+            {
+              "name": "Risotto Mar Mediterráneo",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$16.00"
+                }
+              ],
+              "desc": {
+                "es": "Cremoso risotto con mariscos flameados en vino y salsa madre marina, granos tiernos, cebolla.",
+                "en": "Creamy seafood risotto with white wine reduction, delicate grains, and sautéed onions."
+              },
+              "signature": false
+            },
+            {
+              "name": "Risotto Anticucho",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$19.00"
+                }
+              ],
+              "desc": {
+                "es": "Cremoso risotto con granos tiernos y salsa pesto estilo peruano, acompañado de lomo a la parrilla en salsa anticuchera y aros de cebolla.",
+                "en": "Creamy risotto with grains and Peruvian-style pesto, served with grilled beef in anticucho sauce and onion rings."
+              },
+              "signature": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pasta",
+      "es": "Pasta y ñoquis",
+      "en": "Pasta & gnocchi",
+      "img": "img/promos/07-langostino.webp",
+      "caption": "Gnocchi Mare Nila",
+      "groups": [
+        {
+          "title": null,
+          "note": null,
+          "items": [
+            {
+              "name": "Gnocchi Mare Nila",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$16.50"
+                }
+              ],
+              "desc": {
+                "es": "Ñoquis artesanales en salsa madre marina con frutos del mar y pan al ajo, elaborados con técnicas italianas.",
+                "en": "Handcrafted gnocchi in seafood sauce with mixed shellfish and garlic bread, prepared with traditional Italian techniques."
+              },
+              "signature": false
+            },
+            {
+              "name": "Ñoquis Bella Italia Nila",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$17.50"
+                }
+              ],
+              "desc": {
+                "es": "Ñoquis artesanales en salsa de pomodoro y chili carne con base de salsa de pimienta y portobello. Mix de quesos, tomate confitado, albahaca y jamón serrano.",
+                "en": "Handcrafted gnocchi in pomodoro and chili meat sauce, with pepper-portobello base, cheese blend, confit tomatoes, basil and prosciutto."
+              },
+              "signature": false
+            },
+            {
+              "name": "Fettuccine Carbonara",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$13.00"
+                }
+              ],
+              "desc": {
+                "es": "Pasta al dente con salsa cremosa, con bacon crispy y pan al ajo.",
+                "en": "Al dente fettuccine in a creamy sauce with crispy bacon, served with garlic bread."
+              },
+              "signature": false
+            },
+            {
+              "name": "Golden Chicken",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$16.50"
+                }
+              ],
+              "desc": {
+                "es": "Medallón de pollo estilo cordón bleu tempurizado con técnicas japonesas en salsa de vino oporto tocino, pastel de papa gratinada y ensalada de yogurt.",
+                "en": "Chicken medallion cordon bleu style, tempura-battered with Japanese techniques, served in a port wine sauce with bacon, potato gratin, and yogurt salad."
+              },
+              "signature": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sushi",
+      "es": "Sushi",
+      "en": "Sushi",
+      "img": "img/carta/sushi.webp",
+      "caption": "Para compartir",
+      "groups": [
+        {
+          "title": null,
+          "note": null,
+          "items": [
+            {
+              "name": "Hattory Hanzo",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$13.99"
+                }
+              ],
+              "desc": {
+                "es": "Roll en ajonjolí, relleno de salmón curado, aguacate, queso crema, kanikama, con topping de surimi, camarón, salsa spicy y togarashi.",
+                "en": "Sesame roll with cured salmon, avocado, cream cheese, and kani, topped with surimi, shrimp, spicy sauce, and togarashi."
+              },
+              "signature": false
+            },
+            {
+              "name": "California Sunset Roll",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$12.50"
+                }
+              ],
+              "desc": {
+                "es": "Roll con camarón tempura, aguacate y queso crema, con tobiko, surimi, salsa nipón y maracuyá.",
+                "en": "Roll filled with tempura shrimp, avocado and cream cheese, topped with tobiko, surimi, Japanese-style sauce, and passion fruit."
+              },
+              "signature": false
+            },
+            {
+              "name": "Nila Sushi Experience 3 px",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$33.00"
+                }
+              ],
+              "desc": {
+                "es": "Roll a elección, nigiris, brochetas de camarón, sashimi de salmón curado y pulpo al grill, con salsas de la casa.",
+                "en": "Chef’s selection including rolls, nigiri, shrimp skewers, salmon sashimi, and grilled octopus, served with house sauces."
+              },
+              "signature": false
+            },
+            {
+              "name": "Tiger Nila",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$11.50"
+                }
+              ],
+              "desc": {
+                "es": "Roll tempurizado relleno con camarón, aguacate y queso crema, con salsa mayo maní, maracuyá y tobiko.",
+                "en": "Tempura roll filled with shrimp, avocado, and cream cheese, served with peanut mayo, passion fruit sauce, and tobiko."
+              },
+              "signature": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hamburguesas",
+      "es": "Hamburguesas",
+      "en": "Burgers",
+      "img": "img/promos/02-burger-date.webp",
+      "caption": "Doble Nila",
+      "groups": [
+        {
+          "title": null,
+          "note": null,
+          "items": [
+            {
+              "name": "Doble Nila",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$15.00"
+                }
+              ],
+              "desc": {
+                "es": "Doble carne de res al grill, mix de quesos, bacon al grill, onion rings y salsa Jack Daniel’s. Acompañada de papas fritas y salsas de la casa.",
+                "en": "Double grilled beef patties with cheese blend, grilled bacon, onion rings, and Jack Daniel’s sauce. Served with fries and house sauces."
+              },
+              "signature": false
+            },
+            {
+              "name": "Mediterránea",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$13.00"
+                }
+              ],
+              "desc": {
+                "es": "Carne de res al grill, mix de quesos, salsa cuatro quesos, tomate caprese, jamón serrano, pesto y salsa italiana. Acompañado de papas fritas y salsas de la casa.",
+                "en": "Grilled beef patty with a four-cheese blend, serrano ham, pesto, and Italian sauce. Served with fries."
+              },
+              "signature": false
+            },
+            {
+              "name": "Jungle Tex Mex",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$13.00"
+                }
+              ],
+              "desc": {
+                "es": "Carne de res al grill, bañada en BBQ, mix de quesos, piña a la parrilla, cerdo mechado, jalapeños y togarashi. Acompañado de papas fritas y salsas de la casa.",
+                "en": "Grilled beef patty with BBQ sauce, cheese blend, grilled pineapple, pulled pork, jalapeños, and togarashi. Served with fries."
+              },
+              "signature": false
+            },
+            {
+              "name": "Tribal Classic",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$10.50"
+                }
+              ],
+              "desc": {
+                "es": "Carne de res al grill, mix de quesos, bacon al grill, cebolla caramelizada, vegetales frescos y pickles. Acompañada de papas fritas y salsas de la casa.",
+                "en": "Grilled beef patty with cheese blend, grilled bacon, caramelized onions, fresh vegetables, and pickles. Served with fries."
+              },
+              "signature": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sanduches",
+      "es": "Sánduches",
+      "en": "Sandwiches",
+      "img": "img/carta/sanduches.webp",
+      "caption": "Sánduche de lomo",
+      "groups": [
+        {
+          "title": null,
+          "note": null,
+          "items": [
+            {
+              "name": "Sánduche de lomo",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$13.50"
+                }
+              ],
+              "desc": {
+                "es": "Lomo fino salteado al estilo peruano con vegetales, mix de quesos, bacon al grill en pan artesanal. Acompañado de papas fritas.",
+                "en": "Peruvian-style sautéed beef tenderloin with vegetables, cheese blend, and grilled bacon on artisan-style bread. Served with fries."
+              },
+              "signature": false
+            },
+            {
+              "name": "Spicy Chicken Sandwich",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$9.99"
+                }
+              ],
+              "desc": {
+                "es": "Pechuga de pollo crocante, coleslaw fresco, pickles, salsa ranch, togarashi y pan artesanal. Acompañado de papas fritas y salsas de la casa.",
+                "en": "Crispy chicken breast with maple mustard, fresh coleslaw, pickles, ranch dressing and togarashi on artisan-style bread. Served with fries."
+              },
+              "signature": false
+            },
+            {
+              "name": "Soul Vegetariano Sandwich",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$9.00"
+                }
+              ],
+              "desc": {
+                "es": "Portobellos salteados, hummus de pimientos tatemados, pickles, coleslaw, aguacate y salsa ranch en pan artesanal. Acompañado de chips de camote, papas y chifle.",
+                "en": "Sautéed portobello mushrooms, roasted pepper hummus, pickles, coleslaw, avocado, and ranch dressing on artisan-style bread. Served with chips, fries, and plantain chips."
+              },
+              "signature": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "picadas",
+      "es": "Picadas",
+      "en": "Bites",
+      "img": "img/carta/picadas.webp",
+      "caption": "Papas Kilimanjaro",
+      "groups": [
+        {
+          "title": null,
+          "note": null,
+          "items": [
+            {
+              "name": "Nachos Nila Tribe",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$12.99"
+                }
+              ],
+              "desc": {
+                "es": "Totopos gratinados con mix de quesos, cubiertos con chile de carne, salsa ranch, guacamole, pico de gallo y jalapeños.",
+                "en": "Crispy tortilla chips topped with melted cheese blend, chili con carne, guacamole, pico de gallo, and jalapeños."
+              },
+              "signature": false
+            },
+            {
+              "name": "Papas Kilimanjaro",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$11.99"
+                }
+              ],
+              "desc": {
+                "es": "Papas fritas artesanales con mix de charcutería, queso cheddar fundido y mayonesa de la casa.",
+                "en": "Artisan-style fries loaded with a charcuterie mix, melted cheddar cheese, and house mayonnaise."
+              },
+              "signature": false
+            },
+            {
+              "name": "Alitas Nila",
+              "prices": [
+                {
+                  "label": "6 u.",
+                  "value": "$10.00"
+                },
+                {
+                  "label": "12 u.",
+                  "value": "$18.00"
+                },
+                {
+                  "label": "18 u.",
+                  "value": "$25.00"
+                }
+              ],
+              "desc": {
+                "es": "Alitas bañadas en tu salsa preferida: BBQ, Buffalo, Piña Spicy, Honey Mustard o Jack Daniel´s. Acompañadas de papas fritas y aderezo ranch.",
+                "en": "Chicken wings tossed in your choice of sauce: BBQ, Buffalo, Pineapple Spicy, Honey Mustard, or Jack Daniel’s. Served with fries and ranch dressing."
+              },
+              "signature": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "postres",
+      "es": "Postres",
+      "en": "Desserts",
+      "img": "img/carta/postres.webp",
+      "caption": "Velvet Rouge",
+      "groups": [
+        {
+          "title": null,
+          "note": null,
+          "items": [
+            {
+              "name": "Velvet Rouge",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$6.50"
+                }
+              ],
+              "desc": {
+                "es": "Torta rellena de frutos rojos recubierta con crema y arándanos frescos.",
+                "en": "Red berry cake topped with sweet cream and fresh blueberries."
+              },
+              "signature": false
+            },
+            {
+              "name": "Brownie Nila",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$6.90"
+                }
+              ],
+              "desc": {
+                "es": "Brownie de Nutella bañado en sirope de mandarina, fresas y helado de vainilla.",
+                "en": "Nutella brownie topped with mandarin syrup, fresh strawberries, and vanilla ice cream."
+              },
+              "signature": false
+            },
+            {
+              "name": "Fresh Lemon Pie",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$6.50"
+                }
+              ],
+              "desc": {
+                "es": "Base crujiente de galleta con crema cítrica y ralladura de limón.",
+                "en": "Crunchy cookie base with smooth citrus cream and natural lemon zest."
+              },
+              "signature": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cocteleria",
+      "es": "Coctelería",
+      "en": "Cocktails",
+      "img": "img/promos/04-mixology.webp",
+      "caption": "Coctelería de autor",
+      "groups": [
+        {
+          "title": {
+            "es": "De autor",
+            "en": "Signature cocktails"
+          },
+          "note": null,
+          "items": [
+            {
+              "name": "Afro Sunset",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$12.50"
+                }
+              ],
+              "desc": {
+                "es": "Cóctel refrescante a base de Tanqueray Sevilla, casis, agua miel y toronja.",
+                "en": "A refreshing cocktail made with Tanqueray Sevilla, cassis, honey water, and grapefruit."
+              },
+              "signature": false
+            },
+            {
+              "name": "Flor del Alba",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$12.00"
+                }
+              ],
+              "desc": {
+                "es": "Cóctel tropical a base de Ron 100 Fuegos, Campari, zumo de piña y limón.",
+                "en": "A tropical cocktail featuring Flor de Caña Rum, Campari, pineapple juice, and lemon."
+              },
+              "signature": false
+            },
+            {
+              "name": "Ébano Sour",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$12.00"
+                }
+              ],
+              "desc": {
+                "es": "Sour a base de Tanqueray Sevilla, Aperol y bítters.",
+                "en": "A sour-style cocktail with a base of Tanqueray Sevilla, Aperol, and bitters."
+              },
+              "signature": false
+            },
+            {
+              "name": "Mandará",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$12.00"
+                }
+              ],
+              "desc": {
+                "es": "Cóctel a base de tequila Karnal Silver, licor de naranja, un sirope de jalapeño y granada mezclado con zumo de mandarina.",
+                "en": "A tequila-based cocktail with silver tequila, orange liqueur, jalapeño and pomegranate syrup, mixed with tangerine juice."
+              },
+              "signature": false
+            },
+            {
+              "name": "Fuego Salvaje",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$12.00"
+                }
+              ],
+              "desc": {
+                "es": "Cóctel refrescante a base de Smirnoff, Licor 43, espumante y maracuyá.",
+                "en": "A refreshing blend of Licor 43, sparkling wine, and passion fruit."
+              },
+              "signature": false
+            },
+            {
+              "name": "Afro Smoke",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$14.00"
+                }
+              ],
+              "desc": {
+                "es": "Cóctel ahumado a base de whisky Johnnie Walker Black Label mezclado con licor de café y chocolate.",
+                "en": "A smoky, bold cocktail made with Johnnie Walker Black Label whisky, mixed with coffee liqueur and chocolate."
+              },
+              "signature": false
+            },
+            {
+              "name": "Shanghai Margarita",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$12.00"
+                }
+              ],
+              "desc": {
+                "es": "Cóctel refrescante a base de Tequila José Cuervo Gold mezclado con miel de agave y toque de jengibre.",
+                "en": "A refreshing cocktail with José Cuervo Gold Tequila, agave nectar, and a touch of ginger."
+              },
+              "signature": false
+            }
+          ]
+        },
+        {
+          "title": {
+            "es": "Clásica",
+            "en": "Classic cocktails"
+          },
+          "note": null,
+          "items": [
+            {
+              "name": "Black Sour",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$14.00"
+                }
+              ],
+              "desc": {
+                "es": "Johnnie Walker Black Label, azúcar, limón",
+                "en": "Johnnie Walker Black Label, azúcar, limón"
+              },
+              "signature": false
+            },
+            {
+              "name": "Piña Colada",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$12.00"
+                }
+              ],
+              "desc": {
+                "es": "Ron 100 Fuegos, piña, crema de coco",
+                "en": "Ron 100 Fuegos, piña, crema de coco"
+              },
+              "signature": false
+            },
+            {
+              "name": "Moscow Mule",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$12.00"
+                }
+              ],
+              "desc": {
+                "es": "Smirnoff 21, ginger beer",
+                "en": "Smirnoff 21, ginger beer"
+              },
+              "signature": false
+            },
+            {
+              "name": "Long Island Ice Tea",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$13.50"
+                }
+              ],
+              "desc": {
+                "es": "Tequila Karnal Silver, vodka, Ron 100 Fuegos, Gin Gordon’s, licor de naranja, Coca-Cola",
+                "en": "Tequila Karnal Silver, vodka, Ron 100 Fuegos, Gin Gordon’s, licor de naranja, Coca-Cola"
+              },
+              "signature": false
+            },
+            {
+              "name": "Negroni",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$10.50"
+                }
+              ],
+              "desc": {
+                "es": "Tanqueray London Dry, vermut rosso, Campari",
+                "en": "Tanqueray London Dry, vermut rosso, Campari"
+              },
+              "signature": false
+            },
+            {
+              "name": "Paloma Spicy",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$9.00"
+                }
+              ],
+              "desc": {
+                "es": "Smirnoff Tamarindo, toronja",
+                "en": "Smirnoff Tamarindo, toronja"
+              },
+              "signature": false
+            },
+            {
+              "name": "Cosmopolitan",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$9.00"
+                }
+              ],
+              "desc": {
+                "es": "Smirnoff 21, jugo de arándanos, licor de naranja",
+                "en": "Smirnoff 21, jugo de arándanos, licor de naranja"
+              },
+              "signature": false
+            },
+            {
+              "name": "Margarita",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$9.00"
+                }
+              ],
+              "desc": {
+                "es": "Tequila Karnal Silver, jugo de limón, triple sec",
+                "en": "Tequila Karnal Silver, jugo de limón, triple sec"
+              },
+              "signature": false
+            },
+            {
+              "name": "Espresso Martini",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$10.50"
+                }
+              ],
+              "desc": {
+                "es": "Smirnoff 21, espresso, licor de café",
+                "en": "Smirnoff 21, espresso, licor de café"
+              },
+              "signature": false
+            },
+            {
+              "name": "Paloma",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$9.00"
+                }
+              ],
+              "desc": {
+                "es": "Tequila Karnal Silver, toronja",
+                "en": "Tequila Karnal Silver, toronja"
+              },
+              "signature": false
+            },
+            {
+              "name": "Mexican Mule",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$10.00"
+                }
+              ],
+              "desc": {
+                "es": "Tequila Karnal Silver, ginger beer",
+                "en": "Tequila Karnal Silver, ginger beer"
+              },
+              "signature": false
+            },
+            {
+              "name": "Gin Tonic clásico",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$9.50"
+                }
+              ],
+              "desc": {
+                "es": "Gordon’s London Dry Gin, agua tónica, especias",
+                "en": "Gordon’s London Dry Gin, agua tónica, especias"
+              },
+              "signature": false
+            },
+            {
+              "name": "Daiquiri",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$9.00"
+                }
+              ],
+              "desc": {
+                "es": "Ron 100 Fuegos, limón, sirope (maracuyá, frutos rojos o simple)",
+                "en": "Ron 100 Fuegos, limón, sirope (maracuyá, frutos rojos o simple)"
+              },
+              "signature": false
+            },
+            {
+              "name": "Mojito",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$9.00"
+                }
+              ],
+              "desc": {
+                "es": "Ron 100 Fuegos, hierba buena, sirope (maracuyá, frutos rojos o simple)",
+                "en": "Ron 100 Fuegos, hierba buena, sirope (maracuyá, frutos rojos o simple)"
+              },
+              "signature": false
+            },
+            {
+              "name": "Old Fashioned",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$14.00"
+                }
+              ],
+              "desc": {
+                "es": "Jack Daniel’s Tennessee, bitters, azúcar",
+                "en": "Jack Daniel’s Tennessee, bitters, azúcar"
+              },
+              "signature": false
+            },
+            {
+              "name": "Clover Club",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$9.50"
+                }
+              ],
+              "desc": {
+                "es": "Jack Daniel’s Tennessee, bitters, azúcar",
+                "en": "Jack Daniel’s Tennessee, bitters, azúcar"
+              },
+              "signature": false
+            },
+            {
+              "name": "Aperol Spritz",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$9.50"
+                }
+              ],
+              "desc": {
+                "es": "Aperol, prosecco",
+                "en": "Aperol, prosecco"
+              },
+              "signature": false
+            },
+            {
+              "name": "Carajillo",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$10.00"
+                }
+              ],
+              "desc": {
+                "es": "Licor 43, espresso",
+                "en": "Licor 43, espresso"
+              },
+              "signature": false
+            },
+            {
+              "name": "Cuba Libre",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$9.00"
+                }
+              ],
+              "desc": {
+                "es": "Flor de Caña 4 años, Coca-Cola",
+                "en": "Flor de Caña 4 años, Coca-Cola"
+              },
+              "signature": false
+            },
+            {
+              "name": "Jäger Bomb",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$11.00"
+                }
+              ],
+              "desc": {
+                "es": "Jäger, Red Bull",
+                "en": "Jäger, Red Bull"
+              },
+              "signature": false
+            },
+            {
+              "name": "Jäger Mule",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$11.00"
+                }
+              ],
+              "desc": {
+                "es": "Jäger, ginger beer",
+                "en": "Jäger, ginger beer"
+              },
+              "signature": false
+            },
+            {
+              "name": "Canelazo tradicional",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$25.00"
+                }
+              ],
+              "desc": {
+                "es": "Aguardiente ecuatoriano, naranjilla, azúcar, especias",
+                "en": "Aguardiente ecuatoriano, naranjilla, azúcar, especias"
+              },
+              "signature": false
+            },
+            {
+              "name": "Vino hervido",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$30.00"
+                }
+              ],
+              "desc": {
+                "es": "Luigi Bosca Finca La Linda Malbec, ron, licor de naranja, jugo de naranja, especias",
+                "en": "Luigi Bosca Finca La Linda Malbec, ron, licor de naranja, jugo de naranja, especias"
+              },
+              "signature": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vinos",
+      "es": "Vinos y espumantes",
+      "en": "Wines & sparkling",
+      "img": null,
+      "caption": null,
+      "groups": [
+        {
+          "title": {
+            "es": "Vinos",
+            "en": "Wines"
+          },
+          "note": null,
+          "items": [
+            {
+              "name": "Silk & Spice",
+              "prices": [
+                {
+                  "label": "copa",
+                  "value": "$7.00"
+                },
+                {
+                  "label": "botella",
+                  "value": "$35.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Finca La Linda Torrontés",
+              "prices": [
+                {
+                  "label": "copa",
+                  "value": "$7.00"
+                },
+                {
+                  "label": "botella",
+                  "value": "$30.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Luigi Bosca Finca La Linda Malbec Rosado",
+              "prices": [
+                {
+                  "label": "copa",
+                  "value": "$7.00"
+                },
+                {
+                  "label": "botella",
+                  "value": "$30.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Luigi Bosca Finca La Linda Cabernet Sauvignon",
+              "prices": [
+                {
+                  "label": "copa",
+                  "value": "$7.00"
+                },
+                {
+                  "label": "botella",
+                  "value": "$30.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Luigi Bosca Finca La Linda Malbec",
+              "prices": [
+                {
+                  "label": "copa",
+                  "value": "$7.00"
+                },
+                {
+                  "label": "botella",
+                  "value": "$30.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Luigi Bosca De Sangre Cabernet Franc",
+              "prices": [
+                {
+                  "label": "botella",
+                  "value": "$70.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Luigi Bosca De Sangre Malbec",
+              "prices": [
+                {
+                  "label": "botella",
+                  "value": "$70.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            }
+          ]
+        },
+        {
+          "title": {
+            "es": "Espumantes",
+            "en": "Sparkling wines"
+          },
+          "note": null,
+          "items": [
+            {
+              "name": "Freixenet Ice Rosé",
+              "prices": [
+                {
+                  "label": "botella",
+                  "value": "$35.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Freixenet Cordon Negro",
+              "prices": [
+                {
+                  "label": "botella",
+                  "value": "$45.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Freixenet Carta Nevada",
+              "prices": [
+                {
+                  "label": "botella",
+                  "value": "$35.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Moët & Chandon Brut",
+              "prices": [
+                {
+                  "label": "botella",
+                  "value": "$200.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Moët & Chandon Rosé",
+              "prices": [
+                {
+                  "label": "botella",
+                  "value": "$220.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cervezas",
+      "es": "Cervezas",
+      "en": "Beers",
+      "img": "img/carta/cervezas.webp",
+      "caption": "Salud",
+      "groups": [
+        {
+          "title": {
+            "es": "Botella",
+            "en": "Bottled"
+          },
+          "note": null,
+          "items": [
+            {
+              "name": "Club",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$5.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Corona",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$6.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Stella Artois",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$6.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Modelo",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$6.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Paulaner Weissbier Dunkel",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$6.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Paulaner Weissbier Naturtrüb",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$6.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Paulaner Münchner Hell",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$6.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            }
+          ]
+        },
+        {
+          "title": {
+            "es": "Draft",
+            "en": "Draft"
+          },
+          "note": {
+            "es": "Más $2.00 convierte tu cerveza en michelada.",
+            "en": "Add $2.00 to make your beer a michelada."
+          },
+          "items": [
+            {
+              "name": "Draft Abeja",
+              "prices": [
+                {
+                  "label": "250 ml",
+                  "value": "$5.00"
+                },
+                {
+                  "label": "500 ml",
+                  "value": "$8.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Draft Torete",
+              "prices": [
+                {
+                  "label": "250 ml",
+                  "value": "$5.00"
+                },
+                {
+                  "label": "500 ml",
+                  "value": "$8.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Draft Apachita",
+              "prices": [
+                {
+                  "label": "250 ml",
+                  "value": "$4.50"
+                },
+                {
+                  "label": "500 ml",
+                  "value": "$7.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sin-alcohol",
+      "es": "Sin alcohol",
+      "en": "Non-alcoholic",
+      "img": null,
+      "caption": null,
+      "groups": [
+        {
+          "title": {
+            "es": "Virgin drinks",
+            "en": "Virgin drinks"
+          },
+          "note": null,
+          "items": [
+            {
+              "name": "Corona 0",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$5.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Paulaner 0",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$6.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Virgin Mule",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$5.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Sunset Bloom",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$5.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Pink Lemonade",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$5.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            }
+          ]
+        },
+        {
+          "title": {
+            "es": "Bebidas soft",
+            "en": "Soft drinks"
+          },
+          "note": null,
+          "items": [
+            {
+              "name": "Nila Pink Lemonade",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$5.00"
+                }
+              ],
+              "desc": {
+                "es": "Jugo de arándanos, agua tónica, sirope",
+                "en": "Cranberry juice, tonic water, syrup"
+              },
+              "signature": false
+            },
+            {
+              "name": "Ice Tea / Virgin Mule",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$5.00"
+                }
+              ],
+              "desc": {
+                "es": "Jengibre, limón, tónica",
+                "en": "Ginger, lemon, tonic water"
+              },
+              "signature": false
+            },
+            {
+              "name": "Coca-Cola (regular / zero)",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$3.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Agua Imperial",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$3.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Imperial Mandarina (lata)",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$3.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Imperial Toronja (lata)",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$3.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Red Bull",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$5.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            }
+          ]
+        },
+        {
+          "title": {
+            "es": "Cafetería",
+            "en": "Coffee selection"
+          },
+          "note": null,
+          "items": [
+            {
+              "name": "Café americano",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$2.50"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Espresso",
+              "prices": [
+                {
+                  "label": null,
+                  "value": "$2.50"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "licores",
+      "es": "Licores",
+      "en": "Spirits",
+      "img": "img/carta/licores.webp",
+      "caption": "Nuestra cava",
+      "groups": [
+        {
+          "title": {
+            "es": "Whisky",
+            "en": "Whisky"
+          },
+          "note": null,
+          "items": [
+            {
+              "name": "Johnnie Walker Blue Label",
+              "prices": [
+                {
+                  "label": "copa",
+                  "value": "$56.00"
+                },
+                {
+                  "label": "botella",
+                  "value": "$650.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Johnnie Walker Gold 18 años",
+              "prices": [
+                {
+                  "label": "botella",
+                  "value": "$235.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Johnnie Walker Gold",
+              "prices": [
+                {
+                  "label": "copa",
+                  "value": "$16.00"
+                },
+                {
+                  "label": "botella",
+                  "value": "$160.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Johnnie Walker Double Black",
+              "prices": [
+                {
+                  "label": "copa",
+                  "value": "$14.00"
+                },
+                {
+                  "label": "botella",
+                  "value": "$140.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Johnnie Walker Black",
+              "prices": [
+                {
+                  "label": "copa",
+                  "value": "$13.00"
+                },
+                {
+                  "label": "botella",
+                  "value": "$125.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Johnnie Walker Red",
+              "prices": [
+                {
+                  "label": "copa",
+                  "value": "$9.00"
+                },
+                {
+                  "label": "botella",
+                  "value": "$85.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Buchanan’s 18 años",
+              "prices": [
+                {
+                  "label": "botella",
+                  "value": "$200.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Buchanan’s Master",
+              "prices": [
+                {
+                  "label": "copa",
+                  "value": "$14.50"
+                },
+                {
+                  "label": "botella",
+                  "value": "$135.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Buchanan’s 12 años",
+              "prices": [
+                {
+                  "label": "copa",
+                  "value": "$12.00"
+                },
+                {
+                  "label": "botella",
+                  "value": "$110.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Grand Old Parr 12 años",
+              "prices": [
+                {
+                  "label": "copa",
+                  "value": "$12.00"
+                },
+                {
+                  "label": "botella",
+                  "value": "$110.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Glenmorangie Nectar d’Or",
+              "prices": [
+                {
+                  "label": "copa",
+                  "value": "$19.00"
+                },
+                {
+                  "label": "botella",
+                  "value": "$190.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Glenmorangie Lasanta 12 años",
+              "prices": [
+                {
+                  "label": "copa",
+                  "value": "$16.00"
+                },
+                {
+                  "label": "botella",
+                  "value": "$160.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Glenmorangie Original 10 años",
+              "prices": [
+                {
+                  "label": "copa",
+                  "value": "$12.50"
+                },
+                {
+                  "label": "botella",
+                  "value": "$125.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Jack Daniel’s Cinnamon",
+              "prices": [
+                {
+                  "label": "copa",
+                  "value": "$14.00"
+                },
+                {
+                  "label": "botella",
+                  "value": "$140.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Jack Daniel’s Honey",
+              "prices": [
+                {
+                  "label": "copa",
+                  "value": "$14.00"
+                },
+                {
+                  "label": "botella",
+                  "value": "$140.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Jack Daniel’s No. 7",
+              "prices": [
+                {
+                  "label": "copa",
+                  "value": "$14.00"
+                },
+                {
+                  "label": "botella",
+                  "value": "$140.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            }
+          ]
+        },
+        {
+          "title": {
+            "es": "Cava de rones",
+            "en": "Rum cellar"
+          },
+          "note": null,
+          "items": [
+            {
+              "name": "Flor de Caña 130 Aniversario",
+              "prices": [
+                {
+                  "label": "botella",
+                  "value": "$230.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Flor de Caña 25 años",
+              "prices": [
+                {
+                  "label": "botella",
+                  "value": "$350.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Flor de Caña 18 años",
+              "prices": [
+                {
+                  "label": "botella",
+                  "value": "$150.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Zacapa 23 años",
+              "prices": [
+                {
+                  "label": "copa",
+                  "value": "$16.00"
+                },
+                {
+                  "label": "botella",
+                  "value": "$160.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Flor de Caña 12 años",
+              "prices": [
+                {
+                  "label": "copa",
+                  "value": "$13.00"
+                },
+                {
+                  "label": "botella",
+                  "value": "$120.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Flor de Caña 7 años",
+              "prices": [
+                {
+                  "label": "copa",
+                  "value": "$12.00"
+                },
+                {
+                  "label": "botella",
+                  "value": "$100.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Flor de Caña 4 años",
+              "prices": [
+                {
+                  "label": "botella",
+                  "value": "$80.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            }
+          ]
+        },
+        {
+          "title": {
+            "es": "Tequila",
+            "en": "Tequila"
+          },
+          "note": null,
+          "items": [
+            {
+              "name": "Don Julio Reposado",
+              "prices": [
+                {
+                  "label": "copa",
+                  "value": "$16.50"
+                },
+                {
+                  "label": "botella",
+                  "value": "$170.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Don Julio Blanco",
+              "prices": [
+                {
+                  "label": "copa",
+                  "value": "$16.50"
+                },
+                {
+                  "label": "botella",
+                  "value": "$170.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "José Cuervo Gold",
+              "prices": [
+                {
+                  "label": "copa",
+                  "value": "$9.50"
+                },
+                {
+                  "label": "botella",
+                  "value": "$95.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "José Cuervo Silver",
+              "prices": [
+                {
+                  "label": "copa",
+                  "value": "$9.50"
+                },
+                {
+                  "label": "botella",
+                  "value": "$95.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "1800 Añejo",
+              "prices": [
+                {
+                  "label": "copa",
+                  "value": "$13.50"
+                },
+                {
+                  "label": "botella",
+                  "value": "$135.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Reserva 1800 Cristalino",
+              "prices": [
+                {
+                  "label": "copa",
+                  "value": "$13.50"
+                },
+                {
+                  "label": "botella",
+                  "value": "$135.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Karnal",
+              "prices": [
+                {
+                  "label": "copa",
+                  "value": "$9.00"
+                },
+                {
+                  "label": "botella",
+                  "value": "$85.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            }
+          ]
+        },
+        {
+          "title": {
+            "es": "Gin",
+            "en": "Gin"
+          },
+          "note": null,
+          "items": [
+            {
+              "name": "Tanqueray Ten",
+              "prices": [
+                {
+                  "label": "copa",
+                  "value": "$12.00"
+                },
+                {
+                  "label": "botella",
+                  "value": "$120.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Tanqueray London Dry",
+              "prices": [
+                {
+                  "label": "copa",
+                  "value": "$9.50"
+                },
+                {
+                  "label": "botella",
+                  "value": "$90.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Tanqueray Flor de Sevilla",
+              "prices": [
+                {
+                  "label": "copa",
+                  "value": "$10.00"
+                },
+                {
+                  "label": "botella",
+                  "value": "$95.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Gordon’s London Dry",
+              "prices": [
+                {
+                  "label": "botella",
+                  "value": "$85.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "London Dry N.º 3",
+              "prices": [
+                {
+                  "label": "copa",
+                  "value": "$14.00"
+                },
+                {
+                  "label": "botella",
+                  "value": "$140.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            }
+          ]
+        },
+        {
+          "title": {
+            "es": "Vodka",
+            "en": "Vodka"
+          },
+          "note": null,
+          "items": [
+            {
+              "name": "Belvedere Pure",
+              "prices": [
+                {
+                  "label": "copa",
+                  "value": "$12.00"
+                },
+                {
+                  "label": "botella",
+                  "value": "$120.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Smirnoff N.º 21",
+              "prices": [
+                {
+                  "label": "botella",
+                  "value": "$80.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Smirnoff Tamarindo",
+              "prices": [
+                {
+                  "label": "copa",
+                  "value": "$8.00"
+                },
+                {
+                  "label": "botella",
+                  "value": "$80.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            }
+          ]
+        },
+        {
+          "title": {
+            "es": "Varios / cremas",
+            "en": "Others / cream liqueurs"
+          },
+          "note": null,
+          "items": [
+            {
+              "name": "Fernet Branca",
+              "prices": [
+                {
+                  "label": "copa",
+                  "value": "$9.00"
+                },
+                {
+                  "label": "botella",
+                  "value": "$80.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Hennessy VS",
+              "prices": [
+                {
+                  "label": "botella",
+                  "value": "$135.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "St Remy VS",
+              "prices": [
+                {
+                  "label": "copa",
+                  "value": "$7.00"
+                },
+                {
+                  "label": "botella",
+                  "value": "$70.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Jäger",
+              "prices": [
+                {
+                  "label": "copa",
+                  "value": "$8.00"
+                },
+                {
+                  "label": "botella",
+                  "value": "$100.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Antioqueño Azul",
+              "prices": [
+                {
+                  "label": "copa",
+                  "value": "$9.00"
+                },
+                {
+                  "label": "botella",
+                  "value": "$80.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            },
+            {
+              "name": "Baileys Original",
+              "prices": [
+                {
+                  "label": "copa",
+                  "value": "$8.00"
+                }
+              ],
+              "desc": null,
+              "signature": false
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}</script>
+
+<script>
+document.documentElement.classList.add('js');
+
+const $  = (s,c=document) => c.querySelector(s);
+const $$ = (s,c=document) => [...c.querySelectorAll(s)];
+const escapa = s => String(s == null ? '' : s)
+  .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+  .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+
+$('#anio').textContent = new Date().getFullYear();
+
+/* ══════════════════════════════════════════════════════════
+   1) Datos
+   ══════════════════════════════════════════════════════════ */
+let CARTA;
+try { CARTA = JSON.parse($('#carta-datos').textContent); }
+catch (err){ console.error('No se pudo leer la carta:', err); CARTA = { ui:{es:{},en:{}}, categories:[] }; }
+
+const CATS = CARTA.categories;
+const quieto = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+let lang = 'es';
+try { lang = localStorage.getItem('nila-carta-lang') === 'en' ? 'en' : 'es'; } catch(err){}
+
+const hashInicial = (location.hash || '').slice(1);
+let activo = CATS.some(c => c.id === hashInicial) ? hashInicial : (CATS[0] ? CATS[0].id : '');
+let cambiando = false;
+let temporizador = null;
+
+/* ══════════════════════════════════════════════════════════
+   2) Cabecera + idioma
+   ══════════════════════════════════════════════════════════ */
+function pintarTextosUI(){
+  const t = CARTA.ui[lang] || {};
+  $('#t-eyebrow').textContent   = t.eyebrow || '';
+  $('#t-title').textContent     = t.title || '';
+  $('#t-tag').textContent       = t.tag || '';
+  $('#t-lede').textContent      = t.lede || '';
+  $('#t-allergy').textContent   = t.allergy || '';
+  $('#t-evEyebrow').textContent = t.evEyebrow || '';
+  $('#t-evText').textContent    = t.evText || '';
+  $('#t-reservar').textContent  = t.reservar || '';
+  $('#btn-es').setAttribute('aria-pressed', String(lang === 'es'));
+  $('#btn-en').setAttribute('aria-pressed', String(lang === 'en'));
+  document.title = (t.title || 'Carta') + ' — NILA ROOFTOP';
+}
+function fijarIdioma(nuevo){
+  if (nuevo === lang) return;
+  lang = nuevo;
+  try { localStorage.setItem('nila-carta-lang', lang); } catch(err){}
+  pintarTextosUI();
+  pintarTabs();
+  pintarCategoria();
+}
+$('#btn-es').addEventListener('click', () => fijarIdioma('es'));
+$('#btn-en').addEventListener('click', () => fijarIdioma('en'));
+
+/* ══════════════════════════════════════════════════════════
+   3) Pestañas
+   ══════════════════════════════════════════════════════════ */
+function pintarTabs(){
+  const caja = $('#carta-tabs');
+  caja.setAttribute('role','tablist');
+  caja.innerHTML = CATS.map(c =>
+    '<button type="button" role="tab" data-id="' + c.id + '" aria-selected="' + (c.id === activo) + '">' +
+      escapa(c[lang]) +
+    '</button>'
+  ).join('');
+  $$('button', caja).forEach(b => b.addEventListener('click', () => irA(b.dataset.id)));
+}
+function centrarTab(){
+  const caja = $('#carta-tabs');
+  const b = caja.querySelector('[data-id="' + activo + '"]');
+  if (!b) return;
+  caja.scrollTo({ left: b.offsetLeft - caja.clientWidth / 2 + b.offsetWidth / 2, behavior: quieto ? 'auto' : 'smooth' });
+}
+
+/* ══════════════════════════════════════════════════════════
+   4) Categoría activa
+   ══════════════════════════════════════════════════════════ */
+function precioHTML(pr){
+  const t = CARTA.ui[lang] || {};
+  const etq = pr.label === 'copa' ? t.c : pr.label === 'botella' ? t.b : pr.label;
+  return '<span class="precio">' +
+    (etq ? '<small>' + escapa(etq) + '</small>' : '') +
+    '<span class="valor">' + escapa(pr.value) + '</span>' +
+  '</span>';
+}
+function platoHTML(it){
+  const t = CARTA.ui[lang] || {};
+  const desc = it.desc ? (it.desc[lang] || it.desc.es) : '';
+  return '<article class="plato">' +
+    '<div class="fila">' +
+      '<h4>' + escapa(it.name) + '</h4>' +
+      '<span class="leader"></span>' +
+      '<div class="precios">' + it.prices.map(precioHTML).join('') + '</div>' +
+    '</div>' +
+    (it.signature ? '<span class="insignia">' + escapa(t.badge || '') + '</span>' : '') +
+    (desc ? '<p class="desc">' + escapa(desc) + '</p>' : '') +
+  '</article>';
+}
+function grupoHTML(g){
+  const titulo = g.title ? (g.title[lang] || g.title.es) : null;
+  const nota = g.note ? (g.note[lang] || g.note.es) : null;
+  return '<div class="carta-grupo">' +
+    (titulo ? '<div class="carta-grupo-tit"><h3>' + escapa(titulo) + '</h3><span></span></div>' : '') +
+    '<div class="carta-grid">' + g.items.map(platoHTML).join('') + '</div>' +
+    (nota ? '<p class="carta-grupo-nota">' + escapa(nota) + '</p>' : '') +
+  '</div>';
+}
+function categoriaHTML(cat, idx){
+  const t = CARTA.ui[lang] || {};
+  const otro = lang === 'es' ? cat.en : cat.es;
+  const num = String(idx + 1).padStart(2, '0');
+  const foto = cat.img
+    ? '<aside class="carta-foto">' +
+        '<div class="flyer" style="aspect-ratio:4/5">' +
+          '<img src="' + escapa(cat.img) + '" alt="' + escapa(cat[lang]) + '" loading="lazy">' +
+        '</div>' +
+        (cat.caption ? '<p class="cap">' + escapa(cat.caption) + '</p>' : '') +
+      '</aside>'
+    : '';
+  return '<section class="carta-cat" id="cat-' + cat.id + '">' +
+    '<div class="carta-cat-head">' +
+      '<div><p class="num">' + num + ' · ' + escapa(otro) + '</p><h2>' + escapa(cat[lang]) + '</h2></div>' +
+      '<p class="iva">' + escapa(t.iva || '') + '</p>' +
+    '</div>' +
+    '<div class="carta-cuerpo">' +
+      '<div class="carta-lista">' + cat.groups.map(grupoHTML).join('') + '</div>' +
+      foto +
+    '</div>' +
+  '</section>';
+}
+function paginadorHTML(idx){
+  const t = CARTA.ui[lang] || {};
+  const prev = CATS[idx - 1], next = CATS[idx + 1];
+  return (
+    (prev ? '<button type="button" class="btn btn-line" data-ir="' + prev.id + '">← ' + escapa(prev[lang]) + '</button>' : '<span></span>') +
+    (next ? '<button type="button" class="btn btn-terra" data-ir="' + next.id + '">' + escapa(next[lang]) + ' →</button>' : '<span></span>')
+  );
+}
+function pintarCategoria(){
+  const idx = Math.max(0, CATS.findIndex(c => c.id === activo));
+  const cat = CATS[idx];
+  if (!cat) return;
+  $('#carta-contenido').innerHTML = categoriaHTML(cat, idx);
+  $('#carta-pag').innerHTML = paginadorHTML(idx);
+  $$('[data-ir]', $('#carta-pag')).forEach(b => b.addEventListener('click', () => irA(b.dataset.ir)));
+  refrescarFotos();
+}
+
+/* ══════════════════════════════════════════════════════════
+   5) Cambiar de categoría (con fundido)
+   ══════════════════════════════════════════════════════════ */
+function irA(id){
+  if (id === activo || cambiando) return;
+  cambiando = true;
+  history.replaceState(null, '', '#' + id);
+  const caja = $('#carta-contenido');
+  caja.classList.add('fading');
+  clearTimeout(temporizador);
+  temporizador = setTimeout(() => {
+    activo = id;
+    pintarTabs();
+    pintarCategoria();
+    caja.classList.remove('fading');
+    centrarTab();
+    const barra = $('.carta-tabs-bar');
+    const top = barra.getBoundingClientRect().top;
+    if (top < 60) window.scrollTo({ top: window.scrollY + top - 64, behavior: 'auto' });
+    cambiando = false;
+  }, quieto ? 0 : 180);
+}
+
+/* ══════════════════════════════════════════════════════════
+   6) Fotos de categoría: revelado + parallax (igual que el resto del sitio)
+   ══════════════════════════════════════════════════════════ */
+let marcos = [];
+function refrescarFotos(){
+  marcos = $$('.carta-foto .flyer');
+  if (quieto || !('IntersectionObserver' in window)){
+    marcos.forEach(m => m.classList.add('visto'));
+  } else {
+    const io = new IntersectionObserver((es,obs) => es.forEach(en => {
+      if (en.isIntersecting){ en.target.classList.add('visto'); obs.unobserve(en.target); }
+    }), { rootMargin:'0px 0px -8% 0px', threshold:.12 });
+    marcos.forEach(m => io.observe(m));
+    setTimeout(() => marcos.forEach(m => m.classList.add('visto')), 3000);
+  }
+  mover();
+}
+let pendiente = false;
+function mover(){
+  pendiente = false;
+  const alto = window.innerHeight;
+  if (!alto) return;
+  for (const m of marcos){
+    const img = m.querySelector('img');
+    if (!img) continue;
+    const r = m.getBoundingClientRect();
+    if (!r.height) continue;
+    if (r.bottom < -80 || r.top > alto + 80) continue;
+    const avance = (r.top + r.height) / (alto + r.height);
+    img.style.setProperty('--py', ((1 - avance * 2) * r.height * 0.075).toFixed(1) + 'px');
+  }
+}
+function pedirMover(){ if (!pendiente){ pendiente = true; requestAnimationFrame(mover); } }
+
+/* ══════════════════════════════════════════════════════════
+   7) Fondo vivo y nav (igual que el resto del sitio)
+   ══════════════════════════════════════════════════════════ */
+(function fondoVivo(){
+  const root = document.documentElement;
+  if (quieto) return;
+  const FOCOS = [
+    { s:'.b1', ax:26, ay:20, fx:1.0, fy:0.7, px:0.00, py:0.00, gx: 1, esc:.20, giro: 26 },
+    { s:'.b2', ax:32, ay:24, fx:0.7, fy:1.2, px:1.90, py:0.80, gx:-1, esc:.16, giro:-34 },
+    { s:'.b3', ax:29, ay:18, fx:1.4, fy:0.9, px:3.10, py:2.20, gx:-1, esc:.22, giro: 40 },
+    { s:'.b4', ax:34, ay:26, fx:0.9, fy:1.5, px:0.90, py:4.00, gx: 1, esc:.18, giro:-22 },
+    { s:'.b5', ax:24, ay:22, fx:1.2, fy:0.6, px:4.40, py:1.40, gx:-1, esc:.24, giro: 30 },
+    { s:'.b6', ax:36, ay:20, fx:0.6, fy:1.1, px:2.40, py:3.30, gx: 1, esc:.14, giro:-18 }
+  ];
+  FOCOS.forEach(f => { f.el = document.querySelector('#bg ' + f.s); });
+  const TAU = Math.PI * 2;
+  let destino = 0, actual = 0, corriendo = false, t0 = performance.now();
+  function medir(){ destino = window.scrollY || 0; arrancar(); }
+  function arrancar(){ if (!corriendo){ corriendo = true; requestAnimationFrame(animar); } }
+  function animar(ahora){
+    actual += (destino - actual) * 0.085;
+    const enMov = Math.abs(destino - actual) > 0.4;
+    if (!enMov) actual = destino;
+    const alto = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    const p = Math.min(1, Math.max(0, actual / alto));
+    const t = (ahora - t0) / 1000;
+    for (const f of FOCOS){
+      if (!f.el) continue;
+      const x = f.gx * f.ax * Math.sin(p * f.fx * TAU + f.px + t * 0.05);
+      const y =        f.ay * Math.cos(p * f.fy * TAU + f.py + t * 0.04);
+      const e = 1 + f.esc * Math.sin(p * TAU + f.px);
+      f.el.style.transform = 'translate3d(' + x.toFixed(2) + 'vw,' + y.toFixed(2) + 'vh,0) rotate(' +
+        (f.giro * p).toFixed(1) + 'deg) scale(' + e.toFixed(3) + ')';
+    }
+    if (enMov) requestAnimationFrame(animar);
+    else { corriendo = false; setTimeout(arrancar, 90); }
+  }
+  addEventListener('scroll', medir, { passive:true });
+  addEventListener('resize', medir, { passive:true });
+  medir();
+})();
+
+addEventListener('scroll', () => {
+  $('#nav').classList.toggle('stuck', scrollY > 40);
+  pedirMover();
+}, { passive:true });
+addEventListener('resize', pedirMover, { passive:true });
+
+/* Arranque */
+pintarTextosUI();
+pintarTabs();
+pintarCategoria();
+centrarTab();
+</script>
+</body>
+</html>
