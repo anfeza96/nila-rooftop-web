@@ -2879,8 +2879,8 @@ function irA(id){
     caja.classList.remove('fading');
     centrarTab();
     const barra = $('.carta-tabs-bar');
-    const top = barra.getBoundingClientRect().top;
-    if (top < 60) window.scrollTo({ top: window.scrollY + top - 64, behavior: 'auto' });
+    const delta = caja.getBoundingClientRect().top - barra.getBoundingClientRect().bottom;
+    if (Math.abs(delta) > 4) window.scrollTo({ top: window.scrollY + delta, behavior: 'auto' });
     cambiando = false;
   }, quieto ? 0 : 180);
 }
