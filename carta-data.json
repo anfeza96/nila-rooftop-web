@@ -640,15 +640,15 @@
               "name": "Alitas Nila",
               "prices": [
                 {
-                  "label": "6 u.",
+                  "label": "6 unidades",
                   "value": "$10.00"
                 },
                 {
-                  "label": "12 u.",
+                  "label": "12 unidades",
                   "value": "$18.00"
                 },
                 {
-                  "label": "18 u.",
+                  "label": "18 unidades",
                   "value": "$25.00"
                 }
               ],

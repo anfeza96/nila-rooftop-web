@@ -189,12 +189,12 @@ a:focus-visible, button:focus-visible{ outline:2px solid var(--gold); outline-of
 .carta-grupo-nota{ margin-top:16px; font-size:13.5px; color:var(--sand); }
 .carta-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr)); column-gap:clamp(28px,4vw,52px); }
 .plato{ padding:18px 0 20px; border-bottom:1px solid var(--line-soft); }
-.plato .fila{ display:flex; align-items:baseline; gap:12px; }
+.plato .fila{ display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 12px; }
 .plato h4{ font-weight:400; font-size:16px; letter-spacing:.1em; text-transform:uppercase; line-height:1.35; color:var(--text); text-wrap:balance; }
-.plato .leader{ flex:1; min-width:18px; border-bottom:1px dotted rgba(244,233,218,.22); transform:translateY(-4px); }
-.plato .precios{ display:flex; gap:14px; flex:none; align-items:baseline; }
+.plato .leader{ flex:1 1 30px; min-width:12px; border-bottom:1px dotted rgba(244,233,218,.22); transform:translateY(-4px); }
+.plato .precios{ display:flex; flex-wrap:wrap; gap:6px 16px; flex:0 1 auto; max-width:100%; align-items:baseline; }
 .plato .precio{ display:flex; align-items:baseline; gap:6px; }
-.plato .precio small{ font-family:var(--f-brand); font-size:9.5px; letter-spacing:.2em; text-transform:uppercase; color:var(--faint); }
+.plato .precio small{ font-family:var(--f-body); font-size:12px; letter-spacing:.02em; text-transform:none; color:var(--muted); }
 .plato .precio .valor{ font-family:var(--f-brand); font-size:16px; font-weight:400; color:var(--gold); white-space:nowrap; }
 .plato .insignia{
   display:inline-block; margin-top:8px; background:var(--gold); color:#1B1408;
@@ -972,15 +972,15 @@ a:focus-visible, button:focus-visible{ outline:2px solid var(--gold); outline-of
               "name": "Alitas Nila",
               "prices": [
                 {
-                  "label": "6 u.",
+                  "label": "6 unidades",
                   "value": "$10.00"
                 },
                 {
-                  "label": "12 u.",
+                  "label": "12 unidades",
                   "value": "$18.00"
                 },
                 {
-                  "label": "18 u.",
+                  "label": "18 unidades",
                   "value": "$25.00"
                 }
               ],
