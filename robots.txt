@@ -1,4 +1,2 @@
 User-agent: *
 Allow: /
-
-# Verificación de auto-deploy en Vercel (2026-09-25) — repo ya público
