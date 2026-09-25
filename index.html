@@ -191,6 +191,7 @@ h1,h2,h3,h4{ font-family:var(--f-brand); font-weight:300; margin:0; line-height:
 .nav-links a{
   font-family:var(--f-brand); font-size:11.5px; letter-spacing:.2em; text-transform:uppercase;
   color:var(--muted); text-decoration:none; padding:8px 0; position:relative; transition:color .25s;
+  white-space:nowrap;
 }
 .nav-links a::after{ content:""; position:absolute; left:0; right:100%; bottom:2px; height:1px; background:var(--gold); transition:right .3s; }
 .nav-links a:hover{ color:var(--text); }
@@ -1014,7 +1015,7 @@ a.card:hover{ background:var(--ground-3); }
       <p class="lede rise">Llena los datos y te llevamos a WhatsApp con el mensaje ya escrito. No hay formularios que se pierden ni correos sin respuesta: contestamos por el mismo chat.</p>
       <ul class="rules rise">
         <li><b>Terraza</b> — las mesas del borde se piden con anticipación, sobre todo al atardecer.</li>
-        <li><b>Si vas a llegar tarde</b> — avísanos por WhatsApp y te guardamos la mesa.</li>
+        <li><b>Retrasos</b> — si vas a llegar tarde, avísanos por WhatsApp y te guardamos la mesa.</li>
         <li><b>Grupos grandes</b> — para mesas numerosas escríbenos directo y lo armamos contigo.</li>
         <li><b>Corporativos</b> — se coordinan por <a href="https://www.instagram.com/nilarooftop.events/" target="_blank" rel="noopener" style="color:var(--sand)">@nilarooftop.events</a>.</li>
       </ul>
@@ -1168,7 +1169,7 @@ const CONFIG = {
   calle:      "3XJR+7RX, Carr. Panamericana",
   ciudad:     "Cuenca 010204, Ecuador",
   mapsUrl:    "https://maps.app.goo.gl/pejtRUZ2eF2BZgEW6",
-  reserva:    { desde: 17, hasta: 23.5, maxPersonas: 12 }
+  reserva:    { maxPersonas: 12 }
 };
 
 /* Horario confirmado por el propietario (18/09/2026).
@@ -1520,8 +1521,35 @@ addEventListener('resize', revisaRise, { passive:true });
   const iso = d => d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
   fecha.min = iso(new Date()); fecha.value = iso(new Date());
 
-  for (let h = CONFIG.reserva.desde; h <= CONFIG.reserva.hasta; h += 0.5) hora.add(new Option(hhmm(h), hhmm(h)));
-  hora.value = '20:00';
+  // Las horas disponibles salen del horario real por día (HORARIO), no de un
+  // rango fijo — así un martes no ofrece las 17:00 (abre 17:30) y un
+  // viernes/sábado sí llega hasta la madrugada.
+  function poblarHoras(){
+    const f = new Date(fecha.value + 'T12:00:00');
+    const dia = isNaN(f) ? new Date().getDay() : f.getDay();
+    const rango = HORARIO[dia].rango;
+    const previa = hora.value;
+    hora.innerHTML = '';
+    if (!rango){
+      hora.add(new Option('Cerrado este día', '', true, true));
+      hora.disabled = true;
+      return;
+    }
+    hora.disabled = false;
+    const [a, c] = rango, cierra = c <= a ? c + 24 : c;
+    const disponibles = [];
+    for (let h = a; h <= cierra; h += 0.5){
+      const et = hhmm(h % 24);
+      hora.add(new Option(et, et));
+      disponibles.push(et);
+    }
+    hora.value = disponibles.includes(previa) ? previa
+               : disponibles.includes('20:00') ? '20:00'
+               : disponibles[0];
+  }
+  poblarHoras();
+  fecha.addEventListener('change', poblarHoras);
+
   for (let p = 1; p <= CONFIG.reserva.maxPersonas; p++) pers.add(new Option(p === 1 ? '1 persona' : p + ' personas', String(p)));
   pers.add(new Option('Más de ' + CONFIG.reserva.maxPersonas, 'grupo'));
   pers.value = '2';
@@ -1544,7 +1572,7 @@ addEventListener('resize', revisaRise, { passive:true });
     const l = ['¡Hola ' + CONFIG.nombre + '! Quiero reservar una mesa.', ''];
     l.push('Nombre: ' + ($('#f-nombre').value.trim() || '—'));
     l.push('Fecha: ' + fLarga);
-    l.push('Hora: ' + hora.value);
+    l.push('Hora: ' + (hora.value || '—'));
     l.push('Personas: ' + p);
     l.push('Zona: ' + zona.value);
     if (ocasion) l.push('Ocasión: ' + ocasion);
@@ -1561,6 +1589,10 @@ addEventListener('resize', revisaRise, { passive:true });
       btn.href = '#'; btn.setAttribute('aria-disabled','true'); btn.style.opacity = '.45';
       nota.className = 'note warn';
       nota.textContent = 'Falta el número de WhatsApp. Ponlo en CONFIG.whatsapp (solo dígitos, con código de país — Ecuador es 593) y el botón se activa solo.';
+    } else if (hora.disabled){
+      btn.href = '#'; btn.setAttribute('aria-disabled','true'); btn.style.opacity = '.45';
+      nota.className = 'note warn';
+      nota.textContent = 'Cerrado ese día — elige otra fecha para reservar.';
     } else {
       btn.href = 'https://wa.me/' + CONFIG.whatsapp + '?text=' + encodeURIComponent(m);
       btn.removeAttribute('aria-disabled'); btn.style.opacity = '';

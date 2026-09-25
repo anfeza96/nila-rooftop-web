@@ -850,7 +850,7 @@
               ],
               "desc": {
                 "es": "Johnnie Walker Black Label, azúcar, limón",
-                "en": "Johnnie Walker Black Label, azúcar, limón"
+                "en": "Johnnie Walker Black Label, sugar, lime"
               },
               "signature": false
             },
@@ -864,7 +864,7 @@
               ],
               "desc": {
                 "es": "Ron 100 Fuegos, piña, crema de coco",
-                "en": "Ron 100 Fuegos, piña, crema de coco"
+                "en": "Ron 100 Fuegos, pineapple, coconut cream"
               },
               "signature": false
             },
@@ -892,7 +892,7 @@
               ],
               "desc": {
                 "es": "Tequila Karnal Silver, vodka, Ron 100 Fuegos, Gin Gordon’s, licor de naranja, Coca-Cola",
-                "en": "Tequila Karnal Silver, vodka, Ron 100 Fuegos, Gin Gordon’s, licor de naranja, Coca-Cola"
+                "en": "Tequila Karnal Silver, vodka, Ron 100 Fuegos, Gordon’s Gin, orange liqueur, Coca-Cola"
               },
               "signature": false
             },
@@ -906,7 +906,7 @@
               ],
               "desc": {
                 "es": "Tanqueray London Dry, vermut rosso, Campari",
-                "en": "Tanqueray London Dry, vermut rosso, Campari"
+                "en": "Tanqueray London Dry, sweet vermouth, Campari"
               },
               "signature": false
             },
@@ -920,7 +920,7 @@
               ],
               "desc": {
                 "es": "Smirnoff Tamarindo, toronja",
-                "en": "Smirnoff Tamarindo, toronja"
+                "en": "Smirnoff Tamarindo, grapefruit"
               },
               "signature": false
             },
@@ -934,7 +934,7 @@
               ],
               "desc": {
                 "es": "Smirnoff 21, jugo de arándanos, licor de naranja",
-                "en": "Smirnoff 21, jugo de arándanos, licor de naranja"
+                "en": "Smirnoff 21, cranberry juice, orange liqueur"
               },
               "signature": false
             },
@@ -948,7 +948,7 @@
               ],
               "desc": {
                 "es": "Tequila Karnal Silver, jugo de limón, triple sec",
-                "en": "Tequila Karnal Silver, jugo de limón, triple sec"
+                "en": "Tequila Karnal Silver, lime juice, triple sec"
               },
               "signature": false
             },
@@ -962,7 +962,7 @@
               ],
               "desc": {
                 "es": "Smirnoff 21, espresso, licor de café",
-                "en": "Smirnoff 21, espresso, licor de café"
+                "en": "Smirnoff 21, espresso, coffee liqueur"
               },
               "signature": false
             },
@@ -976,7 +976,7 @@
               ],
               "desc": {
                 "es": "Tequila Karnal Silver, toronja",
-                "en": "Tequila Karnal Silver, toronja"
+                "en": "Tequila Karnal Silver, grapefruit"
               },
               "signature": false
             },
@@ -1004,7 +1004,7 @@
               ],
               "desc": {
                 "es": "Gordon’s London Dry Gin, agua tónica, especias",
-                "en": "Gordon’s London Dry Gin, agua tónica, especias"
+                "en": "Gordon’s London Dry Gin, tonic water, spices"
               },
               "signature": false
             },
@@ -1018,7 +1018,7 @@
               ],
               "desc": {
                 "es": "Ron 100 Fuegos, limón, sirope (maracuyá, frutos rojos o simple)",
-                "en": "Ron 100 Fuegos, limón, sirope (maracuyá, frutos rojos o simple)"
+                "en": "Ron 100 Fuegos, lime, syrup (passion fruit, red berries, or plain)"
               },
               "signature": false
             },
@@ -1032,7 +1032,7 @@
               ],
               "desc": {
                 "es": "Ron 100 Fuegos, hierba buena, sirope (maracuyá, frutos rojos o simple)",
-                "en": "Ron 100 Fuegos, hierba buena, sirope (maracuyá, frutos rojos o simple)"
+                "en": "Ron 100 Fuegos, mint, syrup (passion fruit, red berries, or plain)"
               },
               "signature": false
             },
@@ -1046,7 +1046,7 @@
               ],
               "desc": {
                 "es": "Jack Daniel’s Tennessee, bitters, azúcar",
-                "en": "Jack Daniel’s Tennessee, bitters, azúcar"
+                "en": "Jack Daniel’s Tennessee, bitters, sugar"
               },
               "signature": false
             },
@@ -1060,7 +1060,7 @@
               ],
               "desc": {
                 "es": "Jack Daniel’s Tennessee, bitters, azúcar",
-                "en": "Jack Daniel’s Tennessee, bitters, azúcar"
+                "en": "Jack Daniel’s Tennessee, bitters, sugar"
               },
               "signature": false
             },
@@ -1102,7 +1102,7 @@
               ],
               "desc": {
                 "es": "Flor de Caña 4 años, Coca-Cola",
-                "en": "Flor de Caña 4 años, Coca-Cola"
+                "en": "Flor de Caña 4-Year, Coca-Cola"
               },
               "signature": false
             },
@@ -1144,7 +1144,7 @@
               ],
               "desc": {
                 "es": "Aguardiente ecuatoriano, naranjilla, azúcar, especias",
-                "en": "Aguardiente ecuatoriano, naranjilla, azúcar, especias"
+                "en": "Ecuadorian aguardiente, naranjilla, sugar, spices"
               },
               "signature": false
             },
@@ -1158,7 +1158,7 @@
               ],
               "desc": {
                 "es": "Luigi Bosca Finca La Linda Malbec, ron, licor de naranja, jugo de naranja, especias",
-                "en": "Luigi Bosca Finca La Linda Malbec, ron, licor de naranja, jugo de naranja, especias"
+                "en": "Luigi Bosca Finca La Linda Malbec, rum, orange liqueur, orange juice, spices"
               },
               "signature": false
             }

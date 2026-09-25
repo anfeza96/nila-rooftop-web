@@ -7,6 +7,11 @@
 <meta name="description" content="Próximos eventos en NILA ROOFTOP: DJ sets, fiestas y noches especiales en la terraza. Cuenca, Ecuador.">
 <link rel="icon" href="img/logo.jpg">
 
+<meta property="og:title" content="Eventos — NILA ROOFTOP">
+<meta property="og:description" content="Próximos eventos en NILA ROOFTOP: DJ sets, fiestas y noches especiales en la terraza. Cuenca, Ecuador.">
+<meta property="og:image" content="img/logotipo.webp">
+<meta property="og:type" content="website">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500;600&family=Karla:wght@300;400;500;600&family=Sacramento&display=swap">
@@ -543,6 +548,17 @@ function enlaceReserva(e){
   return 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(msg);
 }
 
+function enlaceConsulta(e){
+  const msg = '¡Hola ' + NOMBRE + '! Quiero más información sobre "' + e.titulo + '" el ' + fechaLarga(e) + '.';
+  return 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(msg);
+}
+
+// Eventos "Solo por invitación" no aceptan reservas abiertas por WhatsApp;
+// se ofrece un enlace de consulta en vez del botón normal de "Reservar".
+function esInvitacion(e){
+  return /invitaci/i.test(e.entrada || '');
+}
+
 /* ══════════════════════════════════════════════════════════
    3) Pintar la página
    ══════════════════════════════════════════════════════════ */
@@ -569,7 +585,9 @@ function pintar(){
             ? '<div class="gen" style="margin-bottom:20px">' + e.generos.map(g => '<span>' + escapa(g) + '</span>').join('') + '</div>'
             : '') +
           '<div style="display:flex;flex-wrap:wrap;gap:11px">' +
-            '<a class="btn btn-solid" href="' + enlaceReserva(e) + '" target="_blank" rel="noopener">Reservar para esta noche</a>' +
+            (esInvitacion(e)
+              ? '<a class="btn btn-solid" href="' + enlaceConsulta(e) + '" target="_blank" rel="noopener">Consultar acceso</a>'
+              : '<a class="btn btn-solid" href="' + enlaceReserva(e) + '" target="_blank" rel="noopener">Reservar para esta noche</a>') +
             '<a class="btn btn-line" href="https://www.instagram.com/nila.rooftop/" target="_blank" rel="noopener">Ver en Instagram</a>' +
           '</div>' +
         '</div>' +
@@ -617,7 +635,9 @@ function tarjeta(e, esPasado){
         (e.generos && e.generos.length
           ? '<div class="gen">' + e.generos.map(g => '<span>' + escapa(g) + '</span>').join('') + '</div>'
           : '') +
-        (esPasado ? '' : '<a class="btn btn-line btn-sm" style="margin-top:8px" href="' + enlaceReserva(e) + '" target="_blank" rel="noopener">Reservar</a>') +
+        (esPasado ? '' : esInvitacion(e)
+          ? '<a class="btn btn-line btn-sm" style="margin-top:8px" href="' + enlaceConsulta(e) + '" target="_blank" rel="noopener">Consultar acceso</a>'
+          : '<a class="btn btn-line btn-sm" style="margin-top:8px" href="' + enlaceReserva(e) + '" target="_blank" rel="noopener">Reservar</a>') +
       '</div>' +
     '</div></article>';
 }

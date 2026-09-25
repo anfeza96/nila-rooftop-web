@@ -7,6 +7,11 @@
 <meta name="description" content="Galería de NILA ROOFTOP: la terraza, los platos y las noches. Cuenca, Ecuador.">
 <link rel="icon" href="img/logo.jpg">
 
+<meta property="og:title" content="Galería — NILA ROOFTOP">
+<meta property="og:description" content="Galería de NILA ROOFTOP: la terraza, los platos y las noches. Cuenca, Ecuador.">
+<meta property="og:image" content="img/logotipo.webp">
+<meta property="og:type" content="website">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500;600&family=Karla:wght@300;400;500;600&family=Sacramento&display=swap">
@@ -573,9 +578,12 @@ mover();
 
 /* ── Visor a pantalla completa, con flechas y teclado ── */
 (function visor(){
-  const fotos = marcos.filter(m => m.tagName === 'FIGURE');
-  if (!fotos.length) return;
-  let abierto = null, indice = 0;
+  // La lista de fotos se recalcula cada vez que se abre el visor (no una sola
+  // vez al cargar el script), porque para entonces los huecos opcionales sin
+  // imagen ya se eliminaron del DOM — así "Siguiente" nunca llega a una rota.
+  function fotosVisibles(){ return marcos.filter(m => m.tagName === 'FIGURE' && m.isConnected); }
+  if (!marcos.some(m => m.tagName === 'FIGURE')) return;
+  let fotos = [], abierto = null, indice = 0;
 
   function pinta(){
     const f = fotos[indice];
@@ -583,6 +591,7 @@ mover();
     abierto.querySelector('.rotulo').textContent = f.dataset.txt + '  ·  ' + (indice+1) + ' de ' + fotos.length;
   }
   function abre(i){
+    fotos = fotosVisibles();
     indice = i;
     abierto = document.createElement('div');
     abierto.className = 'visor';
@@ -610,9 +619,14 @@ mover();
     if (e.key === 'ArrowRight'){ indice = (indice+1) % fotos.length; pinta(); }
     if (e.key === 'ArrowLeft'){ indice = (indice-1+fotos.length) % fotos.length; pinta(); }
   });
-  fotos.forEach((f,i) => {
-    f.addEventListener('click', () => abre(i));
-    f.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' '){ e.preventDefault(); abre(i); } });
+  marcos.forEach(f => {
+    function abrirDesde(){
+      const lista = fotosVisibles();
+      const i = lista.indexOf(f);
+      if (i > -1) abre(i);
+    }
+    f.addEventListener('click', abrirDesde);
+    f.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' '){ e.preventDefault(); abrirDesde(); } });
   });
 })();
 
