@@ -210,15 +210,15 @@ h1,h2,h3,h4{ font-family:var(--f-brand); font-weight:300; margin:0; line-height:
 @media (max-width:900px){
   .nav-in{ height:auto; flex-wrap:wrap; padding-block:11px; gap:8px 14px; }
   .nav-logo{ order:1; }
-  .nav-cta{ order:2; margin-left:auto; padding:9px 18px; }
+  .nav-cta{ order:2; margin-left:auto; padding:13px 18px; }
   .nav-links{
-    order:3; width:100%; margin-left:0; gap:19px;
+    order:3; width:100%; margin-left:0; gap:12px;
     overflow-x:auto; scrollbar-width:none; padding-bottom:1px;
     -webkit-mask-image:linear-gradient(90deg,#000 86%,transparent);
             mask-image:linear-gradient(90deg,#000 86%,transparent);
   }
   .nav-links::-webkit-scrollbar{ display:none; }
-  .nav-links a{ white-space:nowrap; flex:none; font-size:11px; padding:3px 0; }
+  .nav-links a{ white-space:nowrap; flex:none; font-size:11px; padding:15px 4px; display:flex; align-items:center; }
   /* la barra es más alta al partirse en dos: los anclajes lo compensan */
   #inicio,#lugar,#carta,#corporativos,#reserva,#visita,#contacto{ scroll-margin-top:112px; }
 }
@@ -445,7 +445,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .field{ display:flex; flex-direction:column; gap:7px; margin-bottom:16px; }
 .field label{ font-family:var(--f-brand); font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:var(--faint); font-weight:500; }
 .field input, .field select, .field textarea{
-  font-family:var(--f-body); font-size:15px; font-weight:300; color:var(--text);
+  font-family:var(--f-body); font-size:16px; font-weight:300; color:var(--text);
   background:var(--ground-2); border:1px solid var(--line-soft); border-radius:3px;
   padding:12px 14px; width:100%; transition:border-color .2s;
 }
@@ -459,7 +459,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .chip{
   font-family:var(--f-body); font-size:12.5px; font-weight:400; cursor:pointer;
   background:var(--ground-2); color:var(--muted); border:1px solid var(--line-soft);
-  border-radius:999px; padding:8px 16px; transition:all .2s;
+  border-radius:999px; padding:14px 16px; transition:all .2s;
 }
 .chip:hover{ color:var(--text); border-color:var(--faint); }
 .chip[aria-pressed="true"]{ background:var(--terra); border-color:var(--terra); color:var(--cream); }
@@ -515,6 +515,8 @@ a.card:hover{ background:var(--ground-3); }
 .foot-logo svg{ width:24px; height:24px; color:var(--sand); }
 .foot-logo b{ font-family:var(--f-brand); font-weight:300; font-size:14px; letter-spacing:.32em; padding-left:.32em; }
 .foot p{ margin:0; font-size:12px; color:var(--faint); }
+.foot a{ color:inherit; text-decoration:underline; text-underline-offset:2px; }
+.foot a:hover{ color:var(--text); }
 
 /* ───────────── LIGHTBOX ───────────── */
 .lb{ position:fixed; inset:0; z-index:200; background:rgba(12,8,5,.95); display:flex; align-items:center; justify-content:center; padding:22px; }
@@ -568,7 +570,7 @@ a.card:hover{ background:var(--ground-3); }
   background:var(--gold); border-color:var(--gold); color:#1B1408;
 }
 .nav-links a.aparte[aria-current]{ background:var(--gold); border-color:var(--gold); color:#1B1408; }
-@media (max-width:900px){ .nav-links a.aparte{ padding:5px 13px; margin:0; } }
+@media (max-width:900px){ .nav-links a.aparte{ padding:13px 15px; margin:0; } }
 
 /* ── Accesos a las otras dos páginas, al cierre ── */
 .puertas{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(14px,2vw,22px); margin-top:8px; }
@@ -687,9 +689,14 @@ a.card:hover{ background:var(--ground-3); }
 }
 .promos-puntos{ display:flex; gap:7px; justify-content:center; margin-top:22px; }
 .promos-puntos button{
-  width:7px; height:7px; padding:0; border-radius:50%; border:none; background:var(--line);
+  position:relative; width:7px; height:7px; padding:0; border-radius:50%; border:none; background:var(--line);
   cursor:pointer; transition:background .25s, width .25s;
 }
+/* el punto se ve chico a propósito; el alto que responde al toque crece
+   a ~43px, pero el ancho solo un poco — si creciera lo mismo que el alto,
+   el área de un punto se comería la del vecino (están a solo 7px) y el
+   toque activaría el punto equivocado */
+.promos-puntos button::after{ content:""; position:absolute; top:-18px; bottom:-18px; left:-3px; right:-3px; }
 .promos-puntos button[aria-current]{ background:var(--gold); width:20px; border-radius:4px; }
 @media (max-width:700px){ .promos-nav{ display:none; } }
 
@@ -715,8 +722,8 @@ a.card:hover{ background:var(--ground-3); }
 }
 .corp-slide img{ display:block; height:100%; width:auto; max-width:none; }
 .corp-nav{ display:flex; gap:8px; justify-content:flex-end; margin-top:12px; }
-.corp-nav .promos-flecha{ width:38px; height:38px; }
-.corp-nav .promos-flecha svg{ width:16px; height:16px; }
+.corp-nav .promos-flecha{ width:44px; height:44px; }
+.corp-nav .promos-flecha svg{ width:17px; height:17px; }
 .corp-puntos{ margin-top:14px; justify-content:flex-start; }
 </style>
 </head>
@@ -1137,6 +1144,7 @@ a.card:hover{ background:var(--ground-3); }
       </svg><b>NILA</b></span>
     <p>© <span id="year"></span> NILA ROOFTOP · Cardeca Business Center, Cuenca</p>
     <p>Aquí todo late distinto</p>
+    <p><a href="politica-privacidad.html">Política de datos</a></p>
   </div>
 </footer>
 

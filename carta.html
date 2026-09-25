@@ -92,15 +92,15 @@ h1,h2,h3,h4{ font-family:var(--f-brand); font-weight:300; margin:0; line-height:
 @media (max-width:900px){
   .nav-in{ height:auto; flex-wrap:wrap; padding-block:11px; gap:8px 14px; }
   .nav-logo{ order:1; }
-  .nav-cta{ order:2; margin-left:auto; padding:9px 18px; }
+  .nav-cta{ order:2; margin-left:auto; padding:13px 18px; }
   .nav-links{
-    order:3; width:100%; margin-left:0; gap:19px;
+    order:3; width:100%; margin-left:0; gap:12px;
     overflow-x:auto; scrollbar-width:none; padding-bottom:1px;
     -webkit-mask-image:linear-gradient(90deg,#000 86%,transparent);
             mask-image:linear-gradient(90deg,#000 86%,transparent);
   }
   .nav-links::-webkit-scrollbar{ display:none; }
-  .nav-links a{ white-space:nowrap; flex:none; font-size:11px; padding:3px 0; }
+  .nav-links a{ white-space:nowrap; flex:none; font-size:11px; padding:15px 4px; display:flex; align-items:center; }
 }
 .nav-links a.aparte{
   color:var(--gold); border:1px solid rgba(232,194,75,.45); border-radius:999px;
@@ -109,7 +109,7 @@ h1,h2,h3,h4{ font-family:var(--f-brand); font-weight:300; margin:0; line-height:
 }
 .nav-links a.aparte:hover, .nav-links a.aparte:focus-visible{ background:var(--gold); border-color:var(--gold); color:#1B1408; }
 .nav-links a.aparte[aria-current]{ background:var(--gold); border-color:var(--gold); color:#1B1408; }
-@media (max-width:900px){ .nav-links a.aparte{ padding:5px 13px; margin:0; } }
+@media (max-width:900px){ .nav-links a.aparte{ padding:13px 15px; margin:0; } }
 
 /* ── botones ── */
 .btn{
@@ -144,7 +144,7 @@ a:focus-visible, button:focus-visible{ outline:2px solid var(--gold); outline-of
 .idioma{ display:flex; padding:4px; border:1px solid var(--line); border-radius:999px; background:rgba(21,15,11,.5); }
 .idioma button{
   font-family:var(--f-brand); font-size:11.5px; letter-spacing:.18em; font-weight:500;
-  border:0; cursor:pointer; padding:9px 18px; border-radius:999px; background:transparent; color:var(--muted);
+  border:0; cursor:pointer; padding:14px 18px; border-radius:999px; background:transparent; color:var(--muted);
   transition:background .25s, color .25s;
 }
 .idioma button[aria-pressed="true"]{ background:var(--cream); color:var(--ink); }
@@ -247,6 +247,8 @@ a:focus-visible, button:focus-visible{ outline:2px solid var(--gold); outline-of
 .foot-logo svg{ width:24px; height:24px; color:var(--sand); }
 .foot-logo b{ font-family:var(--f-brand); font-weight:300; font-size:14px; letter-spacing:.32em; padding-left:.32em; }
 .foot p{ margin:0; font-size:12px; color:var(--faint); }
+.foot a{ color:inherit; text-decoration:underline; text-underline-offset:2px; }
+.foot a:hover{ color:var(--text); }
 </style>
 </head>
 <body>
@@ -319,6 +321,7 @@ a:focus-visible, button:focus-visible{ outline:2px solid var(--gold); outline-of
     </span>
     <p>© <span id="anio"></span> NILA ROOFTOP · Cardeca Business Center, Cuenca</p>
     <p>Aquí todo late distinto</p>
+    <p><a href="politica-privacidad.html">Política de datos</a></p>
   </div>
 </footer>
 
@@ -335,7 +338,7 @@ a:focus-visible, button:focus-visible{ outline:2px solid var(--gold); outline-of
       "tag": "Para disfrutar sin prisa",
       "lede": "Ven a disfrutar de una experiencia donde cada detalle cuenta. Gastronomía, coctelería de autor en el rooftop que redefine las noches en Cuenca.",
       "allergy": "Por favor déjanos saber si posees alguna restricción alimenticia, intolerancia o alergia.",
-      "iva": "Nuestros precios incluyen IVA",
+      "iva": "Nuestros precios incluyen IVA — el valor mostrado es el total a pagar",
       "c": "Copa",
       "b": "Botella",
       "badge": "Plato insignia",
@@ -349,7 +352,7 @@ a:focus-visible, button:focus-visible{ outline:2px solid var(--gold); outline-of
       "tag": "Made to be savored",
       "lede": "Come and enjoy an experience where every detail counts. Food and signature cocktails on the rooftop redefining nights in Cuenca.",
       "allergy": "Please let us know about any dietary restriction, intolerance or allergy.",
-      "iva": "Prices include VAT",
+      "iva": "Prices include VAT — the amount shown is the total you pay",
       "c": "Glass",
       "b": "Bottle",
       "badge": "Signature dish",

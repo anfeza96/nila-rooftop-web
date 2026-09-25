@@ -103,15 +103,15 @@ h1,h2,h3,h4{ font-family:var(--f-brand); font-weight:300; margin:0; line-height:
 @media (max-width:900px){
   .nav-in{ height:auto; flex-wrap:wrap; padding-block:11px; gap:8px 14px; }
   .nav-logo{ order:1; }
-  .nav-cta{ order:2; margin-left:auto; padding:9px 18px; }
+  .nav-cta{ order:2; margin-left:auto; padding:13px 18px; }
   .nav-links{
-    order:3; width:100%; margin-left:0; gap:19px;
+    order:3; width:100%; margin-left:0; gap:12px;
     overflow-x:auto; scrollbar-width:none; padding-bottom:1px;
     -webkit-mask-image:linear-gradient(90deg,#000 86%,transparent);
             mask-image:linear-gradient(90deg,#000 86%,transparent);
   }
   .nav-links::-webkit-scrollbar{ display:none; }
-  .nav-links a{ white-space:nowrap; flex:none; font-size:11px; padding:3px 0; }
+  .nav-links a{ white-space:nowrap; flex:none; font-size:11px; padding:15px 4px; display:flex; align-items:center; }
 }
 
 .btn{
@@ -127,7 +127,7 @@ h1,h2,h3,h4{ font-family:var(--f-brand); font-weight:300; margin:0; line-height:
 .btn-terra:hover{ background:var(--ember); }
 .btn-line{ border-color:var(--line); color:var(--text); background:rgba(21,15,11,.35); }
 .btn-line:hover{ border-color:var(--cream); }
-.btn-sm{ padding:10px 18px; font-size:11px; }
+.btn-sm{ padding:13px 18px; font-size:11px; }
 a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible{
   outline:2px solid var(--gold); outline-offset:3px;
 }
@@ -287,6 +287,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .foot-logo svg{ width:24px; height:24px; color:var(--sand); }
 .foot-logo b{ font-family:var(--f-brand); font-weight:300; font-size:14px; letter-spacing:.32em; padding-left:.32em; }
 .foot p{ margin:0; font-size:12px; color:var(--faint); }
+.foot a{ color:inherit; text-decoration:underline; text-underline-offset:2px; }
+.foot a:hover{ color:var(--text); }
 
 /* ── Eventos y Galería: son páginas aparte, y deben verse ──
    Van en pastilla dorada, el mismo recurso que NILA usa como marcador
@@ -302,7 +304,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   background:var(--gold); border-color:var(--gold); color:#1B1408;
 }
 .nav-links a.aparte[aria-current]{ background:var(--gold); border-color:var(--gold); color:#1B1408; }
-@media (max-width:900px){ .nav-links a.aparte{ padding:5px 13px; margin:0; } }
+@media (max-width:900px){ .nav-links a.aparte{ padding:13px 15px; margin:0; } }
 
 /* ── Rejilla de la galería ── */
 .gal{ display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr)); gap:12px; margin-top:40px; }
@@ -481,6 +483,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     </span>
     <p>© <span id="anio"></span> NILA ROOFTOP · Cardeca Business Center, Cuenca</p>
     <p>Aquí todo late distinto</p>
+    <p><a href="politica-privacidad.html">Política de datos</a></p>
   </div>
 </footer>
 

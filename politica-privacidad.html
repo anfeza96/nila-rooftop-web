@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Política de datos — NILA ROOFTOP</title>
+<meta name="description" content="Cómo NILA ROOFTOP usa los datos que dejas al reservar o escribir por WhatsApp.">
+<link rel="icon" href="img/logo.jpg">
+
+<meta property="og:title" content="Política de datos — NILA ROOFTOP">
+<meta property="og:description" content="Cómo NILA ROOFTOP usa los datos que dejas al reservar o escribir por WhatsApp.">
+<meta property="og:image" content="img/logotipo.webp">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500;600&family=Karla:wght@300;400;500;600&display=swap">
+
+<style>
+:root{
+  --ground:    #150F0B;
+  --ground-2:  #1F1710;
+  --cream:     #F4E9DA;
+  --gold:      #E8C24B;
+  --sand:      #D9A46A;
+  --text:      #F4E9DA;
+  --muted:     #B9A794;
+  --faint:     #857463;
+  --line:      rgba(244,233,218,.16);
+  --line-soft: rgba(244,233,218,.08);
+  --gutter: clamp(20px, 5vw, 60px);
+  --maxw: 760px;
+  --f-brand: "Jost", "Futura", "Century Gothic", system-ui, sans-serif;
+  --f-body:  "Karla", "Helvetica Neue", Arial, sans-serif;
+  color-scheme: dark;
+}
+*,*::before,*::after{ box-sizing:border-box; }
+body{
+  margin:0; background:var(--ground); color:var(--text);
+  font-family:var(--f-body); font-weight:300;
+  font-size:clamp(15.5px,.35vw + 14.5px,17px); line-height:1.75;
+  -webkit-font-smoothing:antialiased; overflow-x:hidden;
+}
+.wrap{ width:100%; max-width:var(--maxw); margin-inline:auto; padding-inline:var(--gutter); }
+h1,h2{ font-family:var(--f-brand); font-weight:300; margin:0; line-height:1.15; }
+
+/* ── Cabecera: solo el logo, esta página va fuera del menú principal ── */
+.top{ border-bottom:1px solid var(--line-soft); padding-block:20px; }
+.top-in{ display:flex; align-items:center; justify-content:space-between; gap:16px; }
+.logo{ display:flex; align-items:center; gap:11px; text-decoration:none; color:var(--text); min-height:44px; }
+.logo svg{ width:24px; height:24px; color:var(--sand); flex:none; }
+.logo b{ font-family:var(--f-brand); font-weight:300; font-size:15px; letter-spacing:.32em; padding-left:.32em; }
+.volver{
+  font-family:var(--f-brand); font-size:11.5px; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--muted); text-decoration:none; display:inline-flex; align-items:center;
+  min-height:44px; padding:0 2px;
+}
+.volver:hover{ color:var(--text); }
+
+/* ── Contenido ── */
+main{ padding-block:clamp(44px,7vw,76px); }
+.eyebrow{
+  font-family:var(--f-brand); font-size:11px; letter-spacing:.34em; text-transform:uppercase;
+  color:var(--sand); font-weight:500; margin:0 0 16px;
+}
+h1{ font-size:clamp(28px,4.6vw,42px); letter-spacing:-.005em; margin-bottom:10px; }
+.fecha{ color:var(--faint); font-size:13.5px; margin:0 0 40px; }
+section{ margin-top:38px; }
+h2{ font-size:clamp(18px,2.2vw,22px); color:var(--cream); margin-bottom:12px; }
+p{ margin:0 0 14px; color:var(--muted); max-width:64ch; }
+p:last-child{ margin-bottom:0; }
+ul{ margin:0 0 14px; padding-left:20px; color:var(--muted); }
+li{ margin-bottom:6px; }
+a{ color:var(--sand); }
+a:hover{ color:var(--gold); }
+strong{ color:var(--cream); font-weight:500; }
+.aviso{
+  margin:0 0 14px; padding:14px 16px; font-size:14px; line-height:1.6;
+  background:rgba(232,194,75,.1); border-left:3px solid var(--gold); color:var(--cream);
+}
+a:focus-visible{ outline:2px solid var(--gold); outline-offset:3px; }
+
+/* ── Footer, igual al resto del sitio ── */
+.foot{ border-top:1px solid var(--line-soft); padding-block:34px; background:var(--ground); }
+.foot-in{ display:flex; flex-wrap:wrap; gap:16px 26px; align-items:center; justify-content:space-between; }
+.foot-logo{ display:flex; align-items:center; gap:10px; }
+.foot-logo svg{ width:24px; height:24px; color:var(--sand); }
+.foot-logo b{ font-family:var(--f-brand); font-weight:300; font-size:14px; letter-spacing:.32em; padding-left:.32em; }
+.foot p{ margin:0; font-size:12px; color:var(--faint); }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top-in">
+    <a class="logo" href="index.html">
+      <svg viewBox="0 0 156.166 142.3839" fill="currentColor" aria-hidden="true">
+        <path d="M151.804,36.5492c-7.9934-12.4274-26.5083-15.4301-38.0885-6.1932-12.6717,10.1605-11.5238,28.5691-9.8996,43.1066,1.6158.7618,3.2726,1.4211,4.9601,1.9232-1.6069-11.2154-2.0177-25.0807,6.5995-33.6478,8.841-8.0377,23.2633.2905,24.8311,10.9621,1.5281,13.4325-10.8931,28.5025-24.7077,28.5307-11.1005-.2891-20.5052-8.0356-28.9133-14.6377-.8507,1.7592-1.7047,3.5253-2.5415,5.3016,6.3219,5.3891,13.382,10.1863,21.4355,12.5094,10.086,54.3826-51.5042,47.489-30.1527-3.5567,4.5414-11.4144,11.3128-22.5525,14.9378-34.3166C97.1734,26.7093,91.0993.9313,67.7796.1863c-27.5197-2.6947-39.1605,24.343-33.5069,48.394,2.4254-1.0111,4.9225-1.8378,7.464-2.4493.0544-43.2242,57.6092-30.4976,37.9894,15.0509-8.7458-6.8753-19.2847-12.5351-30.7407-11.3887C27.0878,51.7118,4.166,70.3219.2725,92.3353c-3.7259,23.655,31.7376,40.0583,46.4486,20.6093,12.0381-17.7003-.8363-38.1031-3.7853-56.5416,12.1696-2.7878,24.6147,2.6707,34.2183,9.9098-63.0114,87.1075,61.9017,107.122,34.0268,19.3073,26.8216,4.74,56.2663-22.7529,40.6232-49.071ZM39.2397,91.4068c-4.0354,14.2306-21.9505,11.0696-22.9828-2.8498-1.3034-12.7827,8.8184-24.7117,19.9973-29.8755,1.9251,10.6824,5.9741,21.9069,2.9855,32.7254Z"/>
+      </svg>
+      <b>NILA</b>
+    </a>
+    <a class="volver" href="index.html">← Volver al sitio</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <p class="eyebrow">Legal</p>
+    <h1>Política de datos personales</h1>
+    <p class="fecha">Última actualización: 25 de septiembre de 2026</p>
+
+    <p>Esta página explica, en lenguaje simple, qué pasa con los datos que dejas cuando reservas una mesa o escribes a NILA ROOFTOP a través de este sitio.</p>
+
+    <section>
+      <h2>Qué datos pedimos</h2>
+      <p>El formulario de reservas te pide:</p>
+      <ul>
+        <li>Nombre</li>
+        <li>Fecha y hora en la que quieres venir</li>
+        <li>Número de personas</li>
+        <li>Zona de preferencia (terraza o interior)</li>
+        <li>Ocasión, si aplica (cumpleaños, aniversario, etc.)</li>
+        <li>Cualquier nota que quieras dejarnos (alergias, silla para bebé, decoración u otro pedido especial)</li>
+      </ul>
+      <p>Ningún campo es obligatorio para funcionar: puedes dejar el nombre en blanco y el mensaje se arma igual.</p>
+    </section>
+
+    <section>
+      <h2>Para qué los usamos</h2>
+      <p>Únicamente para gestionar tu reserva o tu consulta y para contactarte por WhatsApp sobre ese pedido — confirmar disponibilidad, coordinar detalles o responder tus preguntas. No los usamos para nada más.</p>
+    </section>
+
+    <section>
+      <h2>Cómo se envían</h2>
+      <div class="aviso">Aquí no hay "servidor" en el sentido técnico: este sitio no tiene backend ni base de datos propia. Es un conjunto de páginas que corren en tu propio navegador.</div>
+      <p>Cuando llenas el formulario, tu navegador arma un mensaje de texto con esos datos y te lleva directo a WhatsApp (o te deja copiar el mensaje para pegarlo tú mismo). Ese mensaje llega como una conversación normal de WhatsApp al número de NILA ROOFTOP — nunca pasa por ningún servidor ni base de datos nuestra en el camino.</p>
+      <p>Los enlaces de "Reservar" en las páginas de Eventos y de Corporativos funcionan igual: arman un mensaje y abren WhatsApp directamente.</p>
+    </section>
+
+    <section>
+      <h2>Dónde quedan tus datos</h2>
+      <p>Una vez que el mensaje llega a WhatsApp, la conversación queda guardada en la cuenta de WhatsApp del negocio, igual que cualquier chat — sujeta a los propios términos y al cifrado de WhatsApp, no a los nuestros, porque nosotros no operamos esa plataforma. Este sitio en sí no guarda una copia en ningún lado.</p>
+    </section>
+
+    <section>
+      <h2>Qué no hacemos</h2>
+      <ul>
+        <li>No vendemos ni compartimos tus datos con terceros.</li>
+        <li>No armamos listas de contactos ni te suscribimos a nada sin que tú lo pidas.</li>
+        <li>No usamos cookies de seguimiento ni píxeles de publicidad en este sitio.</li>
+      </ul>
+      <p>Lo único que se guarda en tu navegador (no en ningún servidor nuestro) es tu preferencia de idioma en la Carta (español o inglés), para no tener que elegirlo de nuevo cada vez que la abres. Ese dato se queda únicamente en tu dispositivo.</p>
+      <p>Este sitio carga las tipografías desde Google Fonts, un servicio externo que puede recibir tu dirección IP como parte normal de esa descarga — igual que ocurre al cargar cualquier recurso de internet fuera de nuestro propio dominio.</p>
+    </section>
+
+    <section>
+      <h2>Tus opciones</h2>
+      <p>Si prefieres no usar el formulario, puedes escribirnos directo por WhatsApp o llamarnos — los datos que compartas ahí se rigen por esta misma política. Si ya nos escribiste y quieres que borremos esa conversación de nuestro teléfono, o tienes cualquier pregunta sobre esta política, contáctanos:</p>
+      <ul>
+        <li>WhatsApp: <a href="https://wa.me/593984958228" target="_blank" rel="noopener">+593 98 495 8228</a></li>
+        <li>Correo: <a href="mailto:nilarooftop@gmail.com">nilarooftop@gmail.com</a></li>
+      </ul>
+    </section>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <span class="foot-logo">
+      <svg viewBox="0 0 156.166 142.3839" fill="currentColor" aria-hidden="true">
+        <path d="M151.804,36.5492c-7.9934-12.4274-26.5083-15.4301-38.0885-6.1932-12.6717,10.1605-11.5238,28.5691-9.8996,43.1066,1.6158.7618,3.2726,1.4211,4.9601,1.9232-1.6069-11.2154-2.0177-25.0807,6.5995-33.6478,8.841-8.0377,23.2633.2905,24.8311,10.9621,1.5281,13.4325-10.8931,28.5025-24.7077,28.5307-11.1005-.2891-20.5052-8.0356-28.9133-14.6377-.8507,1.7592-1.7047,3.5253-2.5415,5.3016,6.3219,5.3891,13.382,10.1863,21.4355,12.5094,10.086,54.3826-51.5042,47.489-30.1527-3.5567,4.5414-11.4144,11.3128-22.5525,14.9378-34.3166C97.1734,26.7093,91.0993.9313,67.7796.1863c-27.5197-2.6947-39.1605,24.343-33.5069,48.394,2.4254-1.0111,4.9225-1.8378,7.464-2.4493.0544-43.2242,57.6092-30.4976,37.9894,15.0509-8.7458-6.8753-19.2847-12.5351-30.7407-11.3887C27.0878,51.7118,4.166,70.3219.2725,92.3353c-3.7259,23.655,31.7376,40.0583,46.4486,20.6093,12.0381-17.7003-.8363-38.1031-3.7853-56.5416,12.1696-2.7878,24.6147,2.6707,34.2183,9.9098-63.0114,87.1075,61.9017,107.122,34.0268,19.3073,26.8216,4.74,56.2663-22.7529,40.6232-49.071ZM39.2397,91.4068c-4.0354,14.2306-21.9505,11.0696-22.9828-2.8498-1.3034-12.7827,8.8184-24.7117,19.9973-29.8755,1.9251,10.6824,5.9741,21.9069,2.9855,32.7254Z"/>
+      </svg>
+      <b>NILA</b>
+    </span>
+    <p>© <span id="year"></span> NILA ROOFTOP · Cardeca Business Center, Cuenca</p>
+    <p>Aquí todo late distinto</p>
+  </div>
+</footer>
+
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
