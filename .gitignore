@@ -20,8 +20,12 @@ Videos portada NILA/
 _respaldo previo/
 fotos nuevas/
 
-# Configuración local de Claude Code — no es parte del sitio.
-.claude/
+# Configuración local de Claude Code, salvo los servidores de prueba.
+.claude/*
+!.claude/launch.json
+
+# Salida regenerable de herramientas/unir.js.
+herramientas/salida-artefacto/
 
 # Basura habitual del sistema
 .DS_Store

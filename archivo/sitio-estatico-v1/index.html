@@ -1,0 +1,1241 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NILA ROOFTOP — Aquí todo late distinto</title>
+<meta name="description" content="NILA ROOFTOP — Cocina de autor, coctelería y noches en la terraza. Cardeca Business Center, Cuenca.">
+<link rel="icon" href="img/logo.jpg">
+
+<meta property="og:title" content="NILA ROOFTOP">
+<meta property="og:description" content="Aquí todo late distinto. Cocina de autor, coctelería y noches en la terraza.">
+<meta property="og:image" content="img/logo.jpg">
+<meta property="og:type" content="website">
+
+<!-- Datos estructurados: Google los usa para mostrar horario, teléfono y
+     ubicación directamente en los resultados de búsqueda y en Maps. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BarOrPub",
+  "name": "NILA ROOFTOP",
+  "slogan": "Aquí todo late distinto",
+  "description": "Rooftop en Cuenca con cocina de autor, coctelería y noches con DJ. Terraza e interior en el Cardeca Business Center.",
+  "image": "img/logo.jpg",
+  "servesCuisine": ["Cocina de autor", "Andina", "Peruana"],
+  "priceRange": "$$",
+  "telephone": "+593984958228",
+  "email": "nilarooftop@gmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Carr. Panamericana, Cardeca Business Center",
+    "addressLocality": "Cuenca",
+    "postalCode": "010204",
+    "addressCountry": "EC"
+  },
+  "hasMap": "https://maps.app.goo.gl/pejtRUZ2eF2BZgEW6",
+  "sameAs": [
+    "https://www.instagram.com/nila.rooftop/",
+    "https://www.instagram.com/nilarooftop.events/"
+  ],
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Tuesday",  "opens": "17:30", "closes": "23:30" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Wednesday","Thursday"], "opens": "17:00", "closes": "23:30" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Friday","Saturday"], "opens": "17:00", "closes": "03:00" }
+  ],
+  "acceptsReservations": "https://wa.me/593984958228"
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500;600&family=Karla:wght@300;400;500;600&family=Sacramento&display=swap">
+
+<style>
+/* ══════════════════════════════════════════════════════════
+   NILA ROOFTOP
+   Paleta tomada del logotipo y del feed: terracota, arena,
+   crema y el amarillo marcador de los flyers.
+   ══════════════════════════════════════════════════════════ */
+:root{
+  /* marca */
+  --ground:    #150F0B;
+  --ground-2:  #1F1710;
+  --ground-3:  #2B1F16;
+  --terra:     #A0492E;
+  --terra-dk:  #7C3521;
+  --ember:     #C9663C;
+  --sand:      #D9A46A;
+  --cream:     #F4E9DA;
+  --gold:      #E8C24B;
+
+  --paper:     #F4E9DA;
+  --paper-2:   #EADCC8;
+  --ink:       #2A1D14;
+
+  --text:      #F4E9DA;
+  --muted:     #B9A794;
+  --faint:     #857463;
+  --line:      rgba(244,233,218,.16);
+  --line-soft: rgba(244,233,218,.08);
+  --ok:        #79B58A;
+
+  --gutter: clamp(20px, 5vw, 60px);
+  --maxw: 1200px;
+
+  --f-brand: "Jost", "Futura", "Century Gothic", system-ui, sans-serif;
+  --f-body:  "Karla", "Helvetica Neue", Arial, sans-serif;
+  --f-script:"Sacramento", "Segoe Script", cursive;
+
+  color-scheme: dark;
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto; }
+  *{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; }
+}
+
+body{
+  margin:0; background:var(--ground); color:var(--text);
+  font-family:var(--f-body); font-weight:300;
+  font-size:clamp(15px,.35vw + 14px,16.5px); line-height:1.7;
+  -webkit-font-smoothing:antialiased; overflow-x:hidden;
+}
+img{ max-width:100%; display:block; }
+h1,h2,h3,h4{ font-family:var(--f-brand); font-weight:300; margin:0; line-height:1.1; text-wrap:balance; }
+
+.wrap{ width:100%; max-width:var(--maxw); margin-inline:auto; padding-inline:var(--gutter); }
+.section{ padding-block:clamp(70px,9vw,124px); position:relative; }
+
+/* franja clara */
+.light{ background:var(--paper); color:var(--ink); }
+.light .eyebrow{ color:var(--terra); }
+.light .eyebrow::after{ background:linear-gradient(90deg,rgba(42,29,20,.25),transparent); }
+.light .lede{ color:#5C4636; }
+.light h2, .light h3{ color:var(--ink); }
+
+.eyebrow{
+  font-family:var(--f-brand); font-size:11px; letter-spacing:.34em; text-transform:uppercase;
+  color:var(--sand); font-weight:500; margin:0 0 20px; display:flex; align-items:center; gap:14px;
+}
+.eyebrow::after{ content:""; flex:1; height:1px; background:linear-gradient(90deg,var(--line),transparent); }
+
+.h2{ font-size:clamp(29px,5vw,52px); letter-spacing:-.005em; font-weight:300; }
+.lede{ color:var(--muted); max-width:60ch; font-size:clamp(15.5px,.4vw + 14.5px,18px); margin:20px 0 0; }
+
+/* marcador amarillo — device propio de los flyers de NILA */
+.mark{ background:var(--gold); color:#1B1408; padding:1px 8px 2px; font-weight:500; }
+.light .mark{ color:#1B1408; }
+
+/* dato pendiente de confirmar */
+.tbd{ color:var(--ember); border-bottom:1px dashed rgba(201,102,60,.6); }
+.light .tbd{ color:var(--terra); border-bottom-color:rgba(160,73,46,.5); }
+
+/* ───────────── FONDO VIVO ─────────────
+   Capa fija detrás de todo. Las manchas cálidas se desplazan con el
+   scroll en ambos sentidos; el movimiento es suavizado, así que al
+   frenar siguen un instante más y se asientan. */
+#bg{ position:fixed; inset:-45vh -45vw; z-index:0; pointer-events:none; overflow:hidden; }
+#bg b{
+  position:absolute; display:block; border-radius:50%;
+  filter:blur(72px); will-change:transform; transform:translate3d(0,0,0);
+}
+/* Posiciones base repartidas por todo el lienzo: unas ancladas a la
+   izquierda, otras a la derecha. El barrido lo calcula el JS con senos
+   y cosenos, así que cruzan la pantalla en ambos sentidos y siempre
+   hay al menos un foco a la vista, del principio al final de la página. */
+#bg .b1{ width:80vw; height:80vw; left: 4%; top:10%; background:radial-gradient(circle, rgba(160,73,46,.85), transparent 66%); }
+#bg .b2{ width:64vw; height:64vw; left:60%; top:18%; background:radial-gradient(circle, rgba(217,164,106,.58), transparent 66%); }
+#bg .b3{ width:72vw; height:72vw; left:56%; top:30%; background:radial-gradient(circle, rgba(201,102,60,.68), transparent 66%); }
+#bg .b4{ width:54vw; height:54vw; left:10%; top:36%; background:radial-gradient(circle, rgba(232,194,75,.32), transparent 66%); }
+#bg .b5{ width:76vw; height:76vw; left:50%; top:42%; background:radial-gradient(circle, rgba(124,53,33,.82), transparent 66%); }
+#bg .b6{ width:58vw; height:58vw; left: 8%; top:48%; background:radial-gradient(circle, rgba(217,164,106,.48), transparent 66%); }
+
+/* velo que garantiza el contraste del texto sobre los focos */
+#bg::after{ content:""; position:absolute; inset:0; background:rgba(21,15,11,.32); }
+
+/* en pantallas pequeñas menos focos: mismo efecto, menos coste */
+@media (max-width:700px){
+  #bg b{ filter:blur(58px); }
+  #bg .b4, #bg .b6{ display:none; }
+}
+@media (prefers-reduced-motion: reduce){ #bg b{ transform:none !important; } }
+
+/* el contenido va por encima del fondo vivo */
+.nav, .hero, .ribbon, .section, .foot{ position:relative; z-index:1; }
+
+/* Todas las franjas son semitransparentes para que el fondo se vea a lo
+   largo de TODA la página, incluidas las claras. */
+.ribbon{ background:rgba(31,23,16,.72) !important; backdrop-filter:blur(3px); }
+.reserva, .contacto{ background:rgba(31,23,16,.66) !important; backdrop-filter:blur(3px); }
+.amb{ background:rgba(21,15,11,.58) !important; }
+.card{ background:rgba(31,23,16,.62) !important; }
+.card-form{ background:rgba(21,15,11,.70) !important; backdrop-filter:blur(4px); }
+.foot{ background:rgba(21,15,11,.74) !important; }
+.light{ background:rgba(244,233,218,.88) !important; backdrop-filter:blur(2px); }
+
+/* ───────────── NAV ───────────── */
+.nav{
+  position:sticky; top:env(safe-area-inset-top,0px); z-index:70;
+  background:rgba(21,15,11,.6); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid transparent; transition:background .3s, border-color .3s;
+}
+.nav.stuck{ background:rgba(21,15,11,.94); border-bottom-color:var(--line-soft); }
+.nav-in{ display:flex; align-items:center; gap:22px; height:70px; }
+.nav-logo{ display:flex; align-items:center; gap:11px; text-decoration:none; color:var(--text); }
+.nav-logo svg{ width:26px; height:26px; color:var(--sand); flex:none; }
+.nav-logo b{ font-family:var(--f-brand); font-weight:300; font-size:16px; letter-spacing:.34em; padding-left:.34em; }
+.nav-links{ display:flex; gap:28px; margin-left:auto; }
+.nav-links a{
+  font-family:var(--f-brand); font-size:11.5px; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--muted); text-decoration:none; padding:8px 0; position:relative; transition:color .25s;
+}
+.nav-links a::after{ content:""; position:absolute; left:0; right:100%; bottom:2px; height:1px; background:var(--gold); transition:right .3s; }
+.nav-links a:hover{ color:var(--text); }
+.nav-links a.on{ color:var(--text); }
+.nav-links a.on::after{ right:0; }
+.nav-cta{
+  margin-left:auto; font-family:var(--f-brand); font-size:11.5px; letter-spacing:.18em; text-transform:uppercase;
+  text-decoration:none; padding:11px 22px; border:1px solid var(--line); border-radius:999px;
+  color:var(--text); transition:background .25s, border-color .25s, color .25s; white-space:nowrap;
+}
+.nav-cta:hover{ background:var(--terra); border-color:var(--terra); }
+.nav-links + .nav-cta{ margin-left:0; }
+@media (max-width:900px){ .nav-links{ display:none; } }
+
+/* ───────────── HERO ───────────── */
+.hero{
+  position:relative; isolation:isolate; overflow:hidden;
+  min-height:clamp(580px,80vh,780px);
+  display:flex; flex-direction:column; justify-content:flex-end;
+  padding-block:clamp(80px,12vw,110px) clamp(46px,7vw,72px);
+}
+/* textura "arena líquida" del feed, recreada en CSS.
+   Capa externa = parallax con el scroll · capa interna = deriva lenta propia */
+.hero-bg{
+  position:absolute; inset:-14% -6%; z-index:-3;
+  transform:translate3d(0, calc(var(--sy,0px) * .26), 0);
+  will-change:transform;
+}
+.hero-bg i{
+  position:absolute; inset:0; display:block; opacity:.82;
+  background:
+    radial-gradient(38% 30% at 74% 18%, rgba(244,233,218,.42), transparent 62%),
+    radial-gradient(46% 34% at 22% 34%, rgba(217,164,106,.52), transparent 66%),
+    radial-gradient(60% 44% at 60% 72%, rgba(160,73,46,.72), transparent 70%),
+    radial-gradient(70% 50% at 10% 96%, rgba(124,53,33,.8), transparent 72%),
+    linear-gradient(160deg, #C98B52 0%, #A0492E 42%, #4A2216 74%, #150F0B 100%);
+  filter:saturate(1.05);
+  animation:drift 26s ease-in-out infinite alternate;
+}
+@keyframes drift{ from{ transform:scale(1) translate3d(0,0,0);} to{ transform:scale(1.07) translate3d(-1.8%,-1.8%,0);} }
+.hero::after{
+  content:""; position:absolute; inset:0; z-index:-2;
+  background:linear-gradient(180deg, rgba(21,15,11,.42) 0%, rgba(21,15,11,.15) 34%, rgba(21,15,11,.78) 84%, var(--ground) 100%);
+}
+.grain{
+  position:absolute; inset:0; z-index:-1; pointer-events:none; opacity:.07; mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.hero-in{ position:relative; z-index:2; }
+.status{
+  display:inline-flex; align-items:center; gap:9px;
+  font-family:var(--f-brand); font-size:11px; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--text); border:1px solid var(--line); border-radius:999px; padding:7px 17px 7px 13px;
+  background:rgba(21,15,11,.5); backdrop-filter:blur(6px);
+}
+.dot{ width:7px; height:7px; border-radius:50%; background:var(--faint); }
+.status.open .dot{ background:var(--ok); animation:pulse 2.6s ease-out infinite; }
+@keyframes pulse{ 0%{ box-shadow:0 0 0 0 rgba(121,181,138,.5);} 70%{ box-shadow:0 0 0 10px rgba(121,181,138,0);} 100%{ box-shadow:0 0 0 0 rgba(121,181,138,0);} }
+
+/* logotipo — mismo trazo que el de Instagram: mariposa + NILA + ROOFTOP */
+.logo{ margin:30px 0 0; }
+.logo-butterfly{ width:clamp(38px,5.6vw,62px); height:auto; color:var(--cream); margin-bottom:clamp(12px,2vw,20px); }
+.logo-word{
+  font-family:var(--f-brand); font-weight:200;
+  font-size:clamp(58px,15.5vw,172px); line-height:.9; letter-spacing:.14em;
+  margin:0; padding-left:.14em; color:var(--cream);
+}
+.logo-sub{
+  margin:clamp(8px,1.4vw,16px) 0 0; padding-left:.66em;
+  font-family:var(--f-brand); font-weight:300; color:var(--cream);
+  font-size:clamp(10px,1.9vw,17px); letter-spacing:.66em; text-transform:uppercase; opacity:.9;
+}
+.hero-tag{
+  font-family:var(--f-script); font-size:clamp(30px,5.6vw,52px); line-height:1.1;
+  color:var(--gold); margin:26px 0 0;
+}
+.hero-actions{ display:flex; flex-wrap:wrap; gap:13px; margin-top:32px; }
+
+/* botones */
+.btn{
+  display:inline-flex; align-items:center; gap:10px; cursor:pointer;
+  font-family:var(--f-brand); font-size:12px; letter-spacing:.16em; text-transform:uppercase; font-weight:500;
+  padding:15px 28px; border-radius:999px; text-decoration:none; border:1px solid transparent;
+  transition:transform .18s, background .25s, border-color .25s, color .25s;
+}
+.btn:active{ transform:translateY(1px); }
+.btn-solid{ background:var(--cream); color:var(--ink); }
+.btn-solid:hover{ background:#fff; }
+.btn-terra{ background:var(--terra); color:var(--cream); }
+.btn-terra:hover{ background:var(--ember); }
+.btn-line{ border-color:var(--line); color:var(--text); background:rgba(21,15,11,.35); }
+.btn-line:hover{ border-color:var(--cream); }
+.light .btn-line{ border-color:rgba(42,29,20,.3); color:var(--ink); background:transparent; }
+.light .btn-line:hover{ border-color:var(--ink); background:rgba(42,29,20,.05); }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible{
+  outline:2px solid var(--gold); outline-offset:3px;
+}
+
+/* ───────────── CINTA DE DATOS ───────────── */
+.ribbon{ background:var(--ground-2); border-block:1px solid var(--line-soft); }
+.ribbon-in{ display:grid; grid-template-columns:repeat(4,1fr); }
+.cell{ padding:26px 22px; border-left:1px solid var(--line-soft); }
+.cell:first-child{ border-left:0; }
+.cell .k{ font-family:var(--f-brand); font-size:10px; letter-spacing:.26em; text-transform:uppercase; color:var(--faint); margin:0 0 8px; }
+.cell .v{ font-family:var(--f-brand); font-weight:300; font-size:clamp(16px,1.9vw,21px); margin:0; color:var(--text); }
+@media (max-width:780px){
+  .ribbon-in{ grid-template-columns:repeat(2,1fr); }
+  .cell:nth-child(3){ border-left:0; }
+  .cell:nth-child(n+3){ border-top:1px solid var(--line-soft); }
+}
+
+/* ───────────── SPLIT GENÉRICO ───────────── */
+.split{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(30px,5.5vw,76px); align-items:center; }
+.split.wide-left{ grid-template-columns:1.1fr .9fr; }
+@media (max-width:900px){ .split, .split.wide-left{ grid-template-columns:1fr; } }
+
+.shot{ position:relative; overflow:hidden; border-radius:3px; background:var(--ground-3); }
+/* La imagen es más alta que su marco: ese margen es el recorrido del
+   parallax que el JS aplica mientras haces scroll. */
+.shot img{
+  position:absolute; left:0; top:-9%; width:100%; height:118%;
+  object-fit:cover; will-change:transform;
+  transform:translate3d(0, var(--py,0px), 0);
+  transition:scale .7s cubic-bezier(.2,.7,.3,1), filter .7s ease;
+}
+.shot::after{ content:""; position:absolute; inset:0; box-shadow:inset 0 0 0 1px var(--line-soft); pointer-events:none; z-index:3; }
+
+/* Revelado: la foto se descubre de abajo a arriba al entrar en pantalla */
+@media (prefers-reduced-motion: no-preference){
+  .js .shot{ clip-path:inset(0 0 100% 0); transition:clip-path 1.05s cubic-bezier(.16,.84,.26,1); }
+  .js .shot.visto{ clip-path:inset(0 0 0 0); }
+  .js .shot img{ scale:1.12; transition:scale 1.4s cubic-bezier(.16,.84,.26,1), filter .7s ease; }
+  .js .shot.visto img{ scale:1; }
+}
+
+/* Destello que cruza la foto al pasar el cursor */
+.shot::before{
+  content:""; position:absolute; inset:0; z-index:2; pointer-events:none;
+  background:linear-gradient(104deg, transparent 36%, rgba(244,233,218,.26) 47%, rgba(232,194,75,.16) 52%, transparent 62%);
+  transform:translateX(-130%);
+  transition:transform 1s cubic-bezier(.3,.7,.3,1);
+}
+.shot:hover::before, .shot:focus-visible::before{ transform:translateX(130%); }
+.shot:hover img{ scale:1.07; filter:saturate(1.12) brightness(1.04); }
+
+/* Fotos de los platos: deriva lenta tipo Ken Burns, para que la comida
+   nunca se vea como una foto estática de catálogo */
+@media (prefers-reduced-motion: no-preference){
+  .js .dish .shot.visto img{ animation:kenburns 16s ease-in-out infinite alternate; }
+}
+@keyframes kenburns{
+  from{ scale:1.01; object-position:48% 44%; }
+  to  { scale:1.11; object-position:54% 58%; }
+}
+
+.shot.ph img{ display:none; }
+.shot.ph img{ display:none; }
+.shot.ph{ background:linear-gradient(150deg,#C98B52,#A0492E 55%,#3A1B12); }
+.shot .ph-t{ display:none; position:absolute; inset:0; flex-direction:column; align-items:center; justify-content:center; gap:8px; text-align:center; padding:18px; }
+.shot.ph .ph-t{ display:flex; }
+.shot .ph-t span{ font-family:var(--f-brand); font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:rgba(244,233,218,.8); }
+.shot .ph-t b{ font-family:var(--f-body); font-weight:500; font-size:11.5px; color:#1B1408; background:var(--gold); padding:2px 8px; }
+
+/* ───────────── AMBIENTES ───────────── */
+.two{ display:grid; grid-template-columns:1fr 1fr; gap:1px; margin-top:44px; background:var(--line-soft); border:1px solid var(--line-soft); }
+@media (max-width:720px){ .two{ grid-template-columns:1fr; } }
+.amb{ background:var(--ground); padding:clamp(26px,3.6vw,40px); }
+.amb .n{ font-family:var(--f-brand); font-size:10px; letter-spacing:.3em; text-transform:uppercase; color:var(--gold); margin:0 0 14px; }
+.amb h3{ font-size:clamp(23px,3vw,31px); margin:0 0 12px; }
+.amb p{ margin:0; color:var(--muted); font-size:15px; }
+
+.facts{ margin-top:6px; }
+.fact{ display:grid; grid-template-columns:auto 1fr; gap:18px; padding:20px 0; border-top:1px solid var(--line-soft); }
+.fact:last-child{ border-bottom:1px solid var(--line-soft); }
+.fact svg{ width:28px; height:28px; color:var(--sand); flex:none; }
+.fact h4{ font-size:18px; margin:0 0 4px; }
+.fact p{ margin:0; color:var(--muted); font-size:14.5px; }
+
+/* ───────────── CARTA ───────────── */
+.dishes{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(16px,2.4vw,28px); margin-top:44px; }
+@media (max-width:680px){ .dishes{ grid-template-columns:1fr; } }
+.dish .shot{ aspect-ratio:4/5; }
+.dish h3{ font-size:clamp(20px,2.4vw,26px); margin:18px 0 5px; }
+.dish p{ margin:0; color:#5C4636; font-size:14.5px; }
+.dish .tagline{ font-family:var(--f-script); font-size:26px; color:var(--terra); line-height:1; margin:0 0 2px; }
+
+/* ───────────── NOCHES ───────────── */
+.nights{ display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr)); gap:clamp(16px,2.4vw,26px); margin-top:44px; }
+.night .shot{ aspect-ratio:4/5; }
+.night h3{ font-size:21px; margin:16px 0 5px; }
+.night p{ margin:0; color:var(--muted); font-size:14px; }
+.brands{ display:flex; flex-wrap:wrap; gap:10px; margin-top:38px; align-items:center; }
+.brands .k{ font-family:var(--f-brand); font-size:10px; letter-spacing:.26em; text-transform:uppercase; color:var(--faint); margin-right:6px; }
+.brands span.b{
+  font-family:var(--f-brand); font-size:12px; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--muted); border:1px solid var(--line-soft); border-radius:999px; padding:7px 16px;
+}
+
+/* ───────────── GALERÍA ───────────── */
+.gal{ display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr)); gap:10px; margin-top:40px; }
+.gal .shot{ aspect-ratio:1; cursor:zoom-in; }
+.gal .shot.ph{ cursor:default; }
+
+/* Tarjeta final de la galería: lleva a Instagram, donde sí está todo */
+.tile-ig{
+  display:flex; align-items:center; justify-content:center; text-decoration:none;
+  cursor:pointer; background:linear-gradient(152deg,#C98B52,#A0492E 52%,#5A2718);
+}
+.tile-ig .tile-in{ display:flex; flex-direction:column; align-items:center; gap:9px; text-align:center; padding:22px; position:relative; z-index:3; }
+.tile-ig svg{ width:26px; height:26px; color:var(--cream); }
+.tile-ig b{ font-family:var(--f-brand); font-weight:300; font-size:17px; letter-spacing:.12em; color:var(--cream); }
+.tile-ig em{ font-style:normal; font-size:12.5px; line-height:1.5; color:rgba(244,233,218,.82); max-width:24ch; }
+.tile-ig u{
+  text-decoration:none; margin-top:6px; font-family:var(--f-brand); font-size:10px;
+  letter-spacing:.24em; text-transform:uppercase; color:#1B1408; background:var(--gold); padding:6px 14px;
+}
+
+/* ───────────── RESERVA ───────────── */
+.reserva{ background:var(--ground-2); border-block:1px solid var(--line-soft); }
+.res-grid{ display:grid; grid-template-columns:.92fr 1.08fr; gap:clamp(32px,6vw,76px); align-items:start; }
+@media (max-width:920px){ .res-grid{ grid-template-columns:1fr; } }
+
+.card-form{ background:var(--ground); border:1px solid var(--line); border-radius:4px; padding:clamp(22px,3.6vw,34px); }
+.row2{ display:grid; grid-template-columns:1fr 1fr; gap:15px; }
+@media (max-width:520px){ .row2{ grid-template-columns:1fr; } }
+.field{ display:flex; flex-direction:column; gap:7px; margin-bottom:16px; }
+.field label{ font-family:var(--f-brand); font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:var(--faint); font-weight:500; }
+.field input, .field select, .field textarea{
+  font-family:var(--f-body); font-size:15px; font-weight:300; color:var(--text);
+  background:var(--ground-2); border:1px solid var(--line-soft); border-radius:3px;
+  padding:12px 14px; width:100%; transition:border-color .2s;
+}
+.field input:hover, .field select:hover, .field textarea:hover{ border-color:var(--faint); }
+.field textarea{ resize:vertical; min-height:72px; }
+.field select{
+  appearance:none; padding-right:38px; background-repeat:no-repeat; background-position:right 14px center; background-size:12px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8' fill='none' stroke='%23B9A794' stroke-width='1.5'%3E%3Cpath d='M1 1.5 6 6.5l5-5'/%3E%3C/svg%3E");
+}
+.chips{ display:flex; flex-wrap:wrap; gap:8px; }
+.chip{
+  font-family:var(--f-body); font-size:12.5px; font-weight:400; cursor:pointer;
+  background:var(--ground-2); color:var(--muted); border:1px solid var(--line-soft);
+  border-radius:999px; padding:8px 16px; transition:all .2s;
+}
+.chip:hover{ color:var(--text); border-color:var(--faint); }
+.chip[aria-pressed="true"]{ background:var(--terra); border-color:var(--terra); color:var(--cream); }
+
+.preview{ margin-top:20px; border:1px solid var(--line-soft); border-radius:3px; background:var(--ground-2); padding:16px 18px; }
+.preview .k{ font-family:var(--f-brand); font-size:10px; letter-spacing:.24em; text-transform:uppercase; color:var(--faint); margin:0 0 9px; }
+.preview .t{ margin:0; font-size:14px; color:var(--muted); white-space:pre-line; line-height:1.6; }
+.actions{ display:flex; flex-wrap:wrap; gap:12px; margin-top:20px; }
+.note{ font-size:12.5px; color:var(--faint); margin:14px 0 0; line-height:1.55; }
+.note.warn{ color:var(--ember); }
+
+.rules{ list-style:none; padding:0; margin:30px 0 0; }
+.rules li{ padding:14px 0; border-top:1px solid var(--line-soft); font-size:14.5px; color:var(--muted); }
+.rules li:last-child{ border-bottom:1px solid var(--line-soft); }
+.rules b{ color:var(--text); font-weight:500; font-family:var(--f-brand); letter-spacing:.04em; }
+
+/* ───────────── VISITA ───────────── */
+.hours{ list-style:none; padding:0; margin:28px 0 0; }
+.hours li{
+  display:flex; justify-content:space-between; align-items:baseline; gap:18px;
+  padding:13px 12px; border-bottom:1px solid rgba(42,29,20,.12); font-size:15px; color:#5C4636;
+}
+.hours li:first-child{ border-top:1px solid rgba(42,29,20,.12); }
+.hours li.today{ background:rgba(160,73,46,.09); color:var(--ink); }
+.hours .d{ font-family:var(--f-brand); letter-spacing:.06em; }
+.hours li.today .d::after{
+  content:"hoy"; font-size:9.5px; letter-spacing:.2em; text-transform:uppercase;
+  background:var(--gold); color:#1B1408; padding:1px 7px; margin-left:11px; vertical-align:2px;
+}
+.hours .h{ font-variant-numeric:tabular-nums; }
+.hours .h.cerrado{ color:#9B8776; font-style:italic; }
+.aviso{
+  margin:18px 0 0; padding:13px 16px; font-size:13.5px; line-height:1.55;
+  background:rgba(232,194,75,.2); border-left:3px solid var(--gold); color:#4A3520;
+}
+.addr .street{ font-family:var(--f-brand); font-weight:300; font-size:clamp(22px,2.8vw,30px); margin:0 0 6px; }
+.addr p{ margin:0 0 5px; color:#5C4636; }
+
+/* ───────────── CONTACTO ───────────── */
+.contacto{ background:var(--ground-2); }
+.cards{ display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr)); gap:1px; margin-top:44px; background:var(--line-soft); border:1px solid var(--line-soft); }
+.card{ background:var(--ground-2); padding:28px 24px 30px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:9px; transition:background .25s; }
+a.card:hover{ background:var(--ground-3); }
+.card svg{ width:21px; height:21px; color:var(--sand); }
+.card .k{ font-family:var(--f-brand); font-size:10px; letter-spacing:.24em; text-transform:uppercase; color:var(--faint); }
+.card .v{ font-family:var(--f-brand); font-weight:300; font-size:18px; word-break:break-word; color:var(--text); }
+.card .m{ font-size:13px; color:var(--muted); }
+
+/* ───────────── FOOTER ───────────── */
+.foot{ border-top:1px solid var(--line-soft); padding-block:34px; background:var(--ground); }
+.foot-in{ display:flex; flex-wrap:wrap; gap:16px 26px; align-items:center; justify-content:space-between; }
+.foot-logo{ display:flex; align-items:center; gap:10px; }
+.foot-logo svg{ width:24px; height:24px; color:var(--sand); }
+.foot-logo b{ font-family:var(--f-brand); font-weight:300; font-size:14px; letter-spacing:.32em; padding-left:.32em; }
+.foot p{ margin:0; font-size:12px; color:var(--faint); }
+
+/* ───────────── LIGHTBOX ───────────── */
+.lb{ position:fixed; inset:0; z-index:200; background:rgba(12,8,5,.95); display:flex; align-items:center; justify-content:center; padding:22px; }
+.lb img{ max-width:min(1000px,94vw); max-height:86vh; width:auto; }
+.lb button{ position:absolute; top:calc(16px + env(safe-area-inset-top,0px)); right:16px; width:42px; height:42px; border-radius:999px; background:transparent; border:1px solid var(--line); color:var(--text); font-size:20px; cursor:pointer; }
+
+/* ───────────── APARICIÓN ───────────── */
+.rise{ opacity:1; transform:none; }
+@media (prefers-reduced-motion: no-preference){
+  .js .rise{ opacity:0; transform:translateY(16px); transition:opacity .7s ease, transform .7s cubic-bezier(.2,.7,.3,1); }
+  .js .rise.in{ opacity:1; transform:none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ════════ FONDO VIVO ════════ -->
+<div id="bg" aria-hidden="true"><b class="b1"></b><b class="b2"></b><b class="b3"></b><b class="b4"></b><b class="b5"></b><b class="b6"></b></div>
+
+<!-- ════════ NAV ════════ -->
+<nav class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a class="nav-logo" href="#inicio">
+      <svg viewBox="0 0 64 56" fill="none" stroke="currentColor" stroke-width="2.8" aria-hidden="true">
+        <path d="M32 28c-6-9-11-13-17-11-6 2-7 9-3 13 4 4 12 3 20-2z" stroke-linejoin="round"/>
+        <path d="M32 28c6-9 11-13 17-11 6 2 7 9 3 13-4 4-12 3-20-2z" stroke-linejoin="round"/>
+        <path d="M32 28c-5 8-5 15 0 18 5-3 5-10 0-18z" stroke-linejoin="round"/>
+      </svg>
+      <b>NILA</b>
+    </a>
+    <div class="nav-links">
+      <a href="#lugar">El lugar</a>
+      <a href="#carta">Carta</a>
+      <a href="eventos.html">Eventos</a>
+      <a href="#galeria">Galería</a>
+      <a href="#visita">Visítanos</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+    <a class="nav-cta" href="#reserva">Reservar</a>
+  </div>
+</nav>
+
+<!-- ════════ HERO ════════ -->
+<header class="hero" id="inicio">
+  <div class="hero-bg" aria-hidden="true"><i></i></div>
+  <div class="grain"></div>
+  <div class="wrap hero-in">
+    <div class="status" id="status" role="status">
+      <span class="dot" aria-hidden="true"></span>
+      <span id="status-text">Consultando horario…</span>
+    </div>
+
+    <div class="logo">
+      <svg class="logo-butterfly" viewBox="0 0 64 56" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true">
+        <path d="M32 28c-6-9-11-13-17-11-6 2-7 9-3 13 4 4 12 3 20-2z" stroke-linejoin="round"/>
+        <path d="M32 28c6-9 11-13 17-11 6 2 7 9 3 13-4 4-12 3-20-2z" stroke-linejoin="round"/>
+        <path d="M32 28c-5 8-5 15 0 18 5-3 5-10 0-18z" stroke-linejoin="round"/>
+      </svg>
+      <h1 class="logo-word">NILA</h1>
+      <p class="logo-sub">Rooftop</p>
+    </div>
+
+    <p class="hero-tag">Aquí todo late distinto</p>
+
+    <div class="hero-actions">
+      <a class="btn btn-solid" href="#reserva">Reservar mesa</a>
+      <a class="btn btn-line" href="#carta">Ver la carta</a>
+      <a class="btn btn-line" href="https://www.instagram.com/nila.rooftop/" target="_blank" rel="noopener">@nila.rooftop</a>
+    </div>
+  </div>
+</header>
+
+<!-- ════════ CINTA ════════ -->
+<div class="ribbon">
+  <div class="wrap ribbon-in">
+    <div class="cell"><p class="k">Hoy</p><p class="v" id="c-hoy">—</p></div>
+    <div class="cell"><p class="k">Dónde</p><p class="v">Cardeca Business Center</p></div>
+    <div class="cell"><p class="k">Google</p><p class="v"><a href="https://maps.app.goo.gl/pejtRUZ2eF2BZgEW6" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">4,1 ★ <span style="color:var(--faint);font-size:.75em">111 opiniones</span></a></p></div>
+    <div class="cell"><p class="k">Reservas</p><p class="v" id="c-tel"><a href="https://wa.me/593984958228" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">+593 98 495 8228</a></p></div>
+  </div>
+</div>
+
+<!-- ════════ EL LUGAR ════════ -->
+<section class="section" id="lugar">
+  <div class="wrap">
+    <div class="split wide-left">
+      <div class="rise">
+        <p class="eyebrow">El lugar</p>
+        <h2 class="h2">Cuenca se ve mejor<br>desde arriba.</h2>
+        <p class="lede">NILA ocupa la última planta del <b style="color:var(--text);font-weight:400">Cardeca Business Center</b>, sobre la Panamericana. Subir cinco minutos cambia la escala de la noche: abajo queda el tráfico, arriba se abre Cuenca entera y el ruido se convierte en música.</p>
+        <p class="lede">La terraza cambia de carácter con la hora. A las cinco es luz dorada y conversación tranquila. Hacia las nueve la cocina va a su ritmo y las mesas se llenan. Pasada la medianoche del viernes y el sábado, esto ya es otra cosa: la barra no para y suena hasta las tres.</p>
+        <p class="lede">No hace falta elegir entre cenar bien y salir. Aquí las dos cosas ocurren en la misma mesa.</p>
+        <div class="hero-actions" style="margin-top:30px">
+          <a class="btn btn-terra" href="#reserva">Reservar mesa</a>
+        </div>
+      </div>
+
+      <div class="facts rise">
+        <div class="fact">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 15h18M12 15v6M7 21h10M4 4h16l-8 11z"/></svg>
+          <div><h4>Coctelería</h4><p>Clásicos, autor y happy hours. Las promos se anuncian en Instagram.</p></div>
+        </div>
+        <div class="fact">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M7 3v8a3 3 0 0 0 6 0V3M10 11v10M17 3c-1.5 2-2 4-2 6s.5 3 2 3v9"/></svg>
+          <div><h4>Cocina de autor</h4><p>Platos con acento andino y toques peruanos. Carta corta que rota.</p></div>
+        </div>
+        <div class="fact">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+          <div><h4>Noches NILA PROD</h4><p>DJ sets de house, reggaetón y crossover con artistas invitados.</p></div>
+        </div>
+        <div class="fact">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <div><h4>Eventos corporativos</h4><p>Terraza completa o área privada. Se coordinan por <a href="https://www.instagram.com/nilarooftop.events/" target="_blank" rel="noopener" style="color:var(--sand)">@nilarooftop.events</a>.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="two rise">
+      <div class="amb">
+        <p class="n">Ambiente 01</p>
+        <h3>Terraza</h3>
+        <p>Cielo abierto y la ciudad de fondo. Es la zona que primero se llena, y las mesas del borde son las primeras en irse. Si vienes por el atardecer, reserva: a esa hora no queda sitio por casualidad.</p>
+      </div>
+      <div class="amb">
+        <p class="n">Ambiente 02</p>
+        <h3>Interior</h3>
+        <p>Mesa puesta, luz cálida y música al volumen justo para oírse sin levantar la voz. Para cenar sin prisa, para una mesa larga, o para cuando Cuenca decide llover.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ CARTA ════════ -->
+<section class="section light" id="carta">
+  <div class="wrap">
+    <p class="eyebrow rise">La carta</p>
+    <h2 class="h2 rise">Cocina que vale<br>el viaje hasta el último piso.</h2>
+    <p class="lede rise">Carta corta, que rota. Preferimos hacer bien pocas cosas antes que ofrecer una lista que nadie termina de leer. Estos son dos de los que más salen de la cocina.</p>
+
+    <div class="dishes rise">
+      <article class="dish">
+        <div class="shot"><img src="img/plato-risotto.jpg" alt="Risotto anticuchero de NILA ROOFTOP" loading="lazy"><div class="ph-t"><span>Foto pendiente</span><b>img/plato-risotto.jpg</b></div></div>
+        <p class="tagline">must try</p>
+        <h3>Risotto anticuchero</h3>
+        <p>Risotto cremoso de hierbas con anticucho y aros crocantes. El plato firma de la casa.</p>
+      </article>
+      <article class="dish">
+        <div class="shot"><img src="img/plato-ensalada.jpg" alt="Ensalada de pollo de NILA ROOFTOP" loading="lazy"><div class="ph-t"><span>Foto pendiente</span><b>img/plato-ensalada.jpg</b></div></div>
+        <p class="tagline">fresh pick</p>
+        <h3>Ensalada de pollo</h3>
+        <p>Verdes frescos, pollo a la parrilla y aderezo de la casa. La opción ligera de la carta.</p>
+      </article>
+    </div>
+
+    <div class="hero-actions rise" style="margin-top:38px">
+      <a class="btn btn-terra" id="menu-btn" href="#" target="_blank" rel="noopener">Ver carta completa</a>
+      <a class="btn btn-line" href="#reserva">Reservar mesa</a>
+    </div>
+    <p class="note rise" id="menu-note" style="color:#7A6250"></p>
+  </div>
+</section>
+
+<!-- ════════ NOCHES ════════ -->
+<section class="section" id="noches">
+  <div class="wrap">
+    <p class="eyebrow rise">Noches</p>
+    <h2 class="h2 rise">NILA PROD.</h2>
+    <p class="lede rise">Viernes y sábado la terraza aguanta hasta las tres. Sesiones con residentes e invitados de fuera: house, reggaetón y crossover repartidos entre los dos ambientes. Lo que viene se anuncia primero en Instagram.</p>
+
+    <div class="nights rise">
+      <article class="night">
+        <div class="shot"><img src="img/evento-tommax.jpg" alt="TOMMAX en NILA ROOFTOP" loading="lazy"><div class="ph-t"><span>Foto pendiente</span><b>img/evento-tommax.jpg</b></div></div>
+        <h3>TOMMAX</h3>
+        <p>From Río de Janeiro to the City of Four Rivers. Con DJ Tou y DJ Fer Andrade.</p>
+      </article>
+      <article class="night">
+        <div class="shot"><img src="img/evento-aniversario.jpg" alt="The Anniversary en NILA ROOFTOP" loading="lazy"><div class="ph-t"><span>Foto pendiente</span><b>img/evento-aniversario.jpg</b></div></div>
+        <h3>The Anniversary</h3>
+        <p>Dos ambientes, welcome drinks, promos toda la noche, photobooth y alfombra roja.</p>
+      </article>
+      <article class="night">
+        <div class="shot"><img src="img/textura-promo.jpg" alt="Promociones de NILA ROOFTOP" loading="lazy"><div class="ph-t"><span>Foto pendiente</span><b>img/textura-promo.jpg</b></div></div>
+        <h3>Promos y happy hours</h3>
+        <p>Rotan cada semana. Las publicamos primero en las historias destacadas de Instagram.</p>
+      </article>
+    </div>
+
+    <div class="hero-actions rise" style="margin-top:38px">
+      <a class="btn btn-terra" href="eventos.html">Ver todos los eventos</a>
+    </div>
+
+    <div class="brands rise">
+      <span class="k">Marcas aliadas en la barra</span>
+      <span class="b">Tanqueray</span>
+      <span class="b">Don Julio</span>
+      <span class="b">Smirnoff</span>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ GALERÍA ════════ -->
+<section class="section" id="galeria" style="padding-top:0">
+  <div class="wrap">
+    <p class="eyebrow rise">Galería</p>
+    <h2 class="h2 rise">Así se vive NILA.</h2>
+    <p class="lede rise">Una muestra de lo que pasa arriba. El resto, y lo que va saliendo cada semana, está en Instagram.</p>
+    <div class="gal rise" id="gal">
+      <figure class="shot"><img src="img/plato-risotto.jpg" alt="Risotto anticuchero" loading="lazy"><div class="ph-t"><span>Foto pendiente</span><b>img/plato-risotto.jpg</b></div></figure>
+      <figure class="shot"><img src="img/textura-promo.jpg" alt="Promociones NILA" loading="lazy"><div class="ph-t"><span>Foto pendiente</span><b>img/textura-promo.jpg</b></div></figure>
+      <figure class="shot"><img src="img/plato-ensalada.jpg" alt="Ensalada de pollo" loading="lazy"><div class="ph-t"><span>Foto pendiente</span><b>img/plato-ensalada.jpg</b></div></figure>
+      <figure class="shot"><img src="img/evento-tommax.jpg" alt="Noche TOMMAX" loading="lazy"><div class="ph-t"><span>Foto pendiente</span><b>img/evento-tommax.jpg</b></div></figure>
+      <figure class="shot"><img src="img/evento-aniversario.jpg" alt="The Anniversary" loading="lazy"><div class="ph-t"><span>Foto pendiente</span><b>img/evento-aniversario.jpg</b></div></figure>
+      <a class="shot tile-ig" href="https://www.instagram.com/nila.rooftop/" target="_blank" rel="noopener">
+        <span class="tile-in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          <b>@nila.rooftop</b>
+          <em>33 mil personas ya nos siguen. Las fotos nuevas salen ahí primero.</em>
+          <u>Ver el perfil</u>
+        </span>
+      </a>
+    </div>
+    <p class="note" id="gal-note"></p>
+  </div>
+</section>
+
+<!-- ════════ RESERVA ════════ -->
+<section class="section reserva" id="reserva">
+  <div class="wrap res-grid">
+    <div class="rise">
+      <p class="eyebrow">Reservas</p>
+      <h2 class="h2">Aparta tu mesa<br>en un minuto.</h2>
+      <p class="lede">Llena los datos y te llevamos a WhatsApp con el mensaje ya escrito. No hay formularios que se pierden ni correos sin respuesta: contestamos por el mismo chat.</p>
+      <ul class="rules">
+        <li><b>Terraza</b> — las mesas del borde se piden con anticipación, sobre todo al atardecer.</li>
+        <li><b>Si vas a llegar tarde</b> — avísanos por WhatsApp y te guardamos la mesa.</li>
+        <li><b>Grupos grandes</b> — para mesas numerosas escríbenos directo y lo armamos contigo.</li>
+        <li><b>Corporativos</b> — se coordinan por <a href="https://www.instagram.com/nilarooftop.events/" target="_blank" rel="noopener" style="color:var(--sand)">@nilarooftop.events</a>.</li>
+      </ul>
+    </div>
+
+    <form class="card-form rise" id="form" novalidate>
+      <div class="field">
+        <label for="f-nombre">Nombre</label>
+        <input id="f-nombre" type="text" placeholder="Tu nombre y apellido" autocomplete="name">
+      </div>
+      <div class="row2">
+        <div class="field"><label for="f-fecha">Fecha</label><input id="f-fecha" type="date"></div>
+        <div class="field"><label for="f-hora">Hora</label><select id="f-hora"></select></div>
+      </div>
+      <div class="row2">
+        <div class="field"><label for="f-personas">Personas</label><select id="f-personas"></select></div>
+        <div class="field"><label for="f-zona">Zona</label><select id="f-zona"><option>Terraza</option><option>Interior</option><option>La que esté disponible</option></select></div>
+      </div>
+      <div class="field">
+        <label id="lbl-oc">Ocasión</label>
+        <div class="chips" role="group" aria-labelledby="lbl-oc" id="chips">
+          <button type="button" class="chip" aria-pressed="false">Cumpleaños</button>
+          <button type="button" class="chip" aria-pressed="false">Aniversario</button>
+          <button type="button" class="chip" aria-pressed="false">Atardecer</button>
+          <button type="button" class="chip" aria-pressed="false">Corporativo</button>
+          <button type="button" class="chip" aria-pressed="false">Solo a pasarla bien</button>
+        </div>
+      </div>
+      <div class="field">
+        <label for="f-notas">Algo que debamos saber</label>
+        <textarea id="f-notas" placeholder="Alergias, mesa al borde, silla para bebé, decoración…"></textarea>
+      </div>
+
+      <div class="preview">
+        <p class="k">Mensaje que se enviará</p>
+        <p class="t" id="prev"></p>
+      </div>
+
+      <div class="actions">
+        <a class="btn btn-solid" id="wa" href="#" target="_blank" rel="noopener">Enviar por WhatsApp</a>
+        <button class="btn btn-line" type="button" id="copy">Copiar mensaje</button>
+      </div>
+      <p class="note" id="res-note"></p>
+    </form>
+  </div>
+</section>
+
+<!-- ════════ VISITA ════════ -->
+<section class="section light" id="visita">
+  <div class="wrap split">
+    <div class="rise">
+      <p class="eyebrow">Horarios</p>
+      <h2 class="h2">Cuándo estamos.</h2>
+      <ul class="hours" id="hours"></ul>
+      <p class="aviso" id="hours-aviso" hidden></p>
+      <p class="note" style="color:#7A6250">Los horarios de días especiales y feriados se anuncian en Instagram.</p>
+    </div>
+    <div class="rise">
+      <p class="eyebrow">Cómo llegar</p>
+      <h2 class="h2">Dónde estamos.</h2>
+      <div class="addr" style="margin-top:28px">
+        <p class="street">Cardeca Business Center</p>
+        <p id="a-calle">3XJR+7RX, Carr. Panamericana</p>
+        <p id="a-ciudad">Cuenca 010204, Ecuador</p>
+        <p style="color:#7A6250;font-size:14px;margin-top:12px">Dentro del Cardeca Business Center, sobre la Panamericana. Si es tu primera vez, escríbenos por WhatsApp y te orientamos.</p>
+      </div>
+      <div class="hero-actions" style="margin-top:26px">
+        <a class="btn btn-terra" id="maps" href="#" target="_blank" rel="noopener">Abrir en Google Maps</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ CONTACTO ════════ -->
+<section class="section contacto" id="contacto">
+  <div class="wrap">
+    <p class="eyebrow rise">Contacto</p>
+    <h2 class="h2 rise">Escríbenos.</h2>
+    <p class="lede rise">Reservas, eventos corporativos, prensa o una duda suelta: por aquí respondemos.</p>
+    <div class="cards rise" id="cards"></div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <span class="foot-logo">
+      <svg viewBox="0 0 64 56" fill="none" stroke="currentColor" stroke-width="2.8" aria-hidden="true">
+        <path d="M32 28c-6-9-11-13-17-11-6 2-7 9-3 13 4 4 12 3 20-2z" stroke-linejoin="round"/>
+        <path d="M32 28c6-9 11-13 17-11 6 2 7 9 3 13-4 4-12 3-20-2z" stroke-linejoin="round"/>
+        <path d="M32 28c-5 8-5 15 0 18 5-3 5-10 0-18z" stroke-linejoin="round"/>
+      </svg><b>NILA</b></span>
+    <p>© <span id="year"></span> NILA ROOFTOP · Cardeca Business Center, Cuenca</p>
+    <p>Aquí todo late distinto</p>
+  </div>
+</footer>
+
+<script>
+document.documentElement.classList.add('js');
+
+/* ══════════════════════════════════════════════════════════
+   1) CONFIGURACIÓN — edita SOLO este bloque
+   ══════════════════════════════════════════════════════════ */
+const CONFIG = {
+  nombre:     "NILA ROOFTOP",
+  whatsapp:   "593984958228",
+  telefono:   "+593 98 495 8228",
+  email:      "nilarooftop@gmail.com",
+  instagram:  "nila.rooftop",
+  instagramEventos: "nilarooftop.events",
+  calle:      "3XJR+7RX, Carr. Panamericana",
+  ciudad:     "Cuenca 010204, Ecuador",
+  mapsUrl:    "https://maps.app.goo.gl/pejtRUZ2eF2BZgEW6",
+  menuUrl:    "https://drive.google.com/file/d/1SZI059OuIx2Alylm4EnqC4LV4mo30W9_/view",
+  reserva:    { desde: 17, hasta: 23.5, maxPersonas: 12 }
+};
+
+/* Horario confirmado por el propietario (18/09/2026).
+   Formato: [apertura, cierre] en 24h. El cierre puede pasar de medianoche
+   (3 = 3:00 am). null = cerrado ese día. Índice 0 = domingo. */
+const HORARIO_CONFIRMADO = true;
+const HORARIO = [
+  { dia:"Domingo",   rango:null        },
+  { dia:"Lunes",     rango:null        },
+  { dia:"Martes",    rango:[17.5, 23.5] },
+  { dia:"Miércoles", rango:[17,   23.5] },
+  { dia:"Jueves",    rango:[17,   23.5] },
+  { dia:"Viernes",   rango:[17,    3]   },
+  { dia:"Sábado",    rango:[17,    3]   }
+];
+
+/* ══════════════════════════════════════════════════════════
+   2) Utilidades
+   ══════════════════════════════════════════════════════════ */
+const $  = (s,c=document) => c.querySelector(s);
+const $$ = (s,c=document) => [...c.querySelectorAll(s)];
+const hhmm = h => String(Math.floor(h)%24).padStart(2,'0')+':'+String(Math.round((h%1)*60)).padStart(2,'0');
+const falta = v => !v || !String(v).trim();
+
+$('#year').textContent = new Date().getFullYear();
+
+/* ══════════════════════════════════════════════════════════
+   3) ¿Abierto ahora? + tabla de horarios
+   ══════════════════════════════════════════════════════════ */
+function estado(now = new Date()){
+  const d = now.getDay(), t = now.getHours() + now.getMinutes()/60;
+  const hoy = HORARIO[d].rango;
+  if (hoy){
+    const [a,c] = hoy, cierra = c <= a ? c + 24 : c;
+    if (t >= a && t < cierra) return { abierto:true, cierra:c };
+  }
+  const ayer = HORARIO[(d+6)%7].rango;              // arrastre de la noche anterior
+  if (ayer){ const [a,c] = ayer; if (c <= a && t < c) return { abierto:true, cierra:c }; }
+  for (let i = 0; i < 8; i++){
+    const idx = (d+i)%7, r = HORARIO[idx].rango;
+    if (!r) continue;
+    if (i === 0 && t >= r[0]) continue;
+    return { abierto:false, cuando: i===0 ? 'hoy' : i===1 ? 'mañana' : HORARIO[idx].dia.toLowerCase(), desde:r[0] };
+  }
+  return { abierto:false };
+}
+
+(function pintarHorario(){
+  const d = new Date().getDay(), hoy = HORARIO[d];
+  const box = $('#status'), txt = $('#status-text');
+
+  if (HORARIO_CONFIRMADO){
+    const e = estado();
+    if (e.abierto){ box.classList.add('open'); txt.textContent = 'Abierto ahora · cierra ' + hhmm(e.cierra); }
+    else if (e.cuando){ txt.textContent = 'Cerrado · abre ' + e.cuando + ' ' + hhmm(e.desde); }
+    else { txt.textContent = 'Consulta nuestros horarios'; }
+    $('#c-hoy').textContent = hoy.rango ? hhmm(hoy.rango[0]) + ' – ' + hhmm(hoy.rango[1]) : 'Cerrado';
+  } else {
+    txt.textContent = 'Escríbenos por WhatsApp';
+    $('#c-hoy').textContent = 'Abrimos 17:00';
+    const av = $('#hours-aviso');
+    if (av){
+      av.hidden = false;
+      av.textContent = 'Horario por confirmar: las horas de cierre son provisionales. Escríbenos por WhatsApp para confirmar el día que quieras venir.';
+    }
+  }
+
+  const ul = $('#hours');
+  HORARIO.forEach((h,i) => {
+    const li = document.createElement('li');
+    if (i === d) li.className = 'today';
+    li.innerHTML = '<span class="d">' + h.dia + '</span>' +
+      (h.rango ? '<span class="h">' + hhmm(h.rango[0]) + ' – ' + hhmm(h.rango[1]) + '</span>'
+               : '<span class="h cerrado">Cerrado</span>');
+    ul.appendChild(li);
+  });
+})();
+
+/* ══════════════════════════════════════════════════════════
+   3b) Fondo vivo: el scroll mueve las manchas en ambos sentidos
+   ══════════════════════════════════════════════════════════ */
+(function fondoVivo(){
+  const root = document.documentElement;
+  // Con "reducir movimiento" activado el CSS ya deja los focos quietos;
+  // aquí ni siquiera arrancamos el bucle.
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  /* Cada foco tiene su propia amplitud, frecuencia y desfase. Al usar
+     senos y cosenos el recorrido es cíclico: los focos van y vuelven
+     cruzando la pantalla, entran por la izquierda y por la derecha, y
+     ninguno se pierde fuera del lienzo por muy larga que sea la página.
+       ax, ay  amplitud del barrido (vw / vh)
+       fx, fy  vueltas completas a lo largo de todo el scroll
+       px, py  desfase, para que no se muevan en bloque
+       gx      empuje horizontal extra: negativo = hacia la izquierda */
+  const FOCOS = [
+    { s:'.b1', ax:26, ay:20, fx:1.0, fy:0.7, px:0.00, py:0.00, gx: 1, esc:.20, giro: 26 },
+    { s:'.b2', ax:32, ay:24, fx:0.7, fy:1.2, px:1.90, py:0.80, gx:-1, esc:.16, giro:-34 },
+    { s:'.b3', ax:29, ay:18, fx:1.4, fy:0.9, px:3.10, py:2.20, gx:-1, esc:.22, giro: 40 },
+    { s:'.b4', ax:34, ay:26, fx:0.9, fy:1.5, px:0.90, py:4.00, gx: 1, esc:.18, giro:-22 },
+    { s:'.b5', ax:24, ay:22, fx:1.2, fy:0.6, px:4.40, py:1.40, gx:-1, esc:.24, giro: 30 },
+    { s:'.b6', ax:36, ay:20, fx:0.6, fy:1.1, px:2.40, py:3.30, gx: 1, esc:.14, giro:-18 }
+  ];
+  FOCOS.forEach(f => { f.el = document.querySelector('#bg ' + f.s); });
+
+  const TAU = Math.PI * 2;
+  let destino = 0, actual = 0, corriendo = false, t0 = performance.now();
+
+  function medir(){
+    destino = window.scrollY || window.pageYOffset || 0;
+    arrancar();
+  }
+  function arrancar(){
+    if (!corriendo){ corriendo = true; requestAnimationFrame(animar); }
+  }
+
+  function animar(ahora){
+    // Interpolación: el fondo persigue al scroll. Por eso también se
+    // mueve al subir, y sigue un instante después de soltar.
+    actual += (destino - actual) * 0.085;
+    const enMovimiento = Math.abs(destino - actual) > 0.4;
+    if (!enMovimiento) actual = destino;
+
+    const alto = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    const p = Math.min(1, Math.max(0, actual / alto));   // 0 arriba del todo · 1 abajo del todo
+    const t = (ahora - t0) / 1000;                       // deriva lenta cuando nadie hace scroll
+
+    root.style.setProperty('--sy', actual.toFixed(1) + 'px');
+    root.style.setProperty('--sp', p.toFixed(4));
+
+    for (const f of FOCOS){
+      if (!f.el) continue;
+      const x = f.gx * f.ax * Math.sin(p * f.fx * TAU + f.px + t * 0.05);
+      const y =        f.ay * Math.cos(p * f.fy * TAU + f.py + t * 0.04);
+      const e = 1 + f.esc * Math.sin(p * TAU + f.px);
+      const g = f.giro * p;
+      f.el.style.transform =
+        'translate3d(' + x.toFixed(2) + 'vw,' + y.toFixed(2) + 'vh,0) ' +
+        'rotate(' + g.toFixed(1) + 'deg) scale(' + e.toFixed(3) + ')';
+    }
+
+    // Sigue animando mientras el scroll se asienta; si no, late despacio
+    // para que el fondo nunca quede completamente congelado.
+    if (enMovimiento) requestAnimationFrame(animar);
+    else { corriendo = false; setTimeout(arrancar, 90); }
+  }
+
+  addEventListener('scroll', medir, { passive:true });
+  addEventListener('resize', medir, { passive:true });
+  medir();
+})();
+
+/* ══════════════════════════════════════════════════════════
+   4) Nav: sombra y sección activa · aparición de bloques
+   ══════════════════════════════════════════════════════════ */
+(function nav(){
+  const nav = $('#nav');
+  addEventListener('scroll', () => nav.classList.toggle('stuck', scrollY > 40), {passive:true});
+  const links = $$('.nav-links a');
+  const secs = links.map(a => $(a.getAttribute('href'))).filter(Boolean);
+  if (!('IntersectionObserver' in window)) return;
+  const io = new IntersectionObserver(es => es.forEach(en => {
+    if (!en.isIntersecting) return;
+    links.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + en.target.id));
+  }), { rootMargin:'-45% 0px -50% 0px' });
+  secs.forEach(s => io.observe(s));
+})();
+
+(function rise(){
+  const els = $$('.rise');
+  const quieto = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!('IntersectionObserver' in window) || quieto){ els.forEach(e => e.classList.add('in')); return; }
+  const io = new IntersectionObserver((es,obs) => es.forEach(en => {
+    if (en.isIntersecting){ en.target.classList.add('in'); obs.unobserve(en.target); }
+  }), { rootMargin:'0px 0px -10% 0px', threshold:.06 });
+  els.forEach(e => io.observe(e));
+  setTimeout(() => els.forEach(e => e.classList.add('in')), 3000);   // red de seguridad
+})();
+
+/* ══════════════════════════════════════════════════════════
+   5) Fotos faltantes + lightbox
+   ══════════════════════════════════════════════════════════ */
+(function fotos(){
+  let faltan = 0, total = 0;
+  $$('.shot img').forEach(img => {
+    total++;
+    const marcar = () => { img.closest('.shot').classList.add('ph'); faltan++; resumen(); };
+    if (img.complete){ if (!img.naturalWidth) marcar(); }
+    else img.addEventListener('error', marcar, {once:true});
+  });
+  function resumen(){
+    const n = $('#gal-note'); if (!n) return;
+    n.className = 'note warn';
+    n.textContent = 'Faltan ' + faltan + ' de ' + total + ' imágenes. Guárdalas en la carpeta img/ con el nombre que aparece sobre cada hueco y se colocan solas.';
+  }
+})();
+
+/* ══════════════════════════════════════════════════════════
+   5b) Imágenes vivas: revelado al entrar + parallax interno
+   ══════════════════════════════════════════════════════════ */
+(function imagenesVivas(){
+  const marcos = $$('.shot');
+  const quieto = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Revelado: cada marco se descubre cuando entra en pantalla
+  if (!('IntersectionObserver' in window) || quieto){
+    marcos.forEach(m => m.classList.add('visto'));
+  } else {
+    const io = new IntersectionObserver((es, obs) => es.forEach(en => {
+      if (en.isIntersecting){ en.target.classList.add('visto'); obs.unobserve(en.target); }
+    }), { rootMargin:'0px 0px -8% 0px', threshold:.12 });
+    marcos.forEach(m => io.observe(m));
+    setTimeout(() => marcos.forEach(m => m.classList.add('visto')), 3000);  // red de seguridad
+  }
+
+  if (quieto) return;
+
+  /* Parallax interno. La visibilidad se decide midiendo cada marco, no
+     con un IntersectionObserver: hay entornos donde el observador no
+     dispara y el efecto se quedaba muerto sin avisar. Medir 11 marcos
+     por fotograma es barato, y solo ocurre mientras haces scroll. */
+  const conFoto = marcos
+    .map(m => ({ m, img: m.firstElementChild }))
+    .filter(o => o.img && o.img.tagName === 'IMG');
+
+  let pendiente = false;
+  function mover(){
+    pendiente = false;
+    const alto = window.innerHeight;
+    if (!alto) return;                       // panel oculto o pestaña en segundo plano
+    for (const o of conFoto){
+      const r = o.m.getBoundingClientRect();
+      if (!r.height) continue;                        // evita dividir por cero
+      if (r.bottom < -80 || r.top > alto + 80) continue;   // fuera de pantalla
+      // avance de 0 (el marco asoma por abajo) a 1 (acaba de salir por arriba)
+      const avance = (r.top + r.height) / (alto + r.height);
+      const t = 1 - avance * 2;              // +1 arriba · 0 en el centro · -1 abajo
+      o.img.style.setProperty('--py', (t * r.height * 0.075).toFixed(1) + 'px');
+    }
+  }
+  function pedir(){ if (!pendiente){ pendiente = true; requestAnimationFrame(mover); } }
+
+  addEventListener('scroll', pedir, { passive:true });
+  addEventListener('resize', pedir, { passive:true });
+  mover();
+})();
+
+(function lightbox(){
+  $('#gal').addEventListener('click', e => {
+    const fig = e.target.closest('.shot');
+    if (!fig || fig.classList.contains('ph')) return;
+    if (fig.tagName === 'A') return;                    // la tarjeta de Instagram abre su enlace
+    if (!fig.querySelector('img')) return;
+    const lb = document.createElement('div');
+    lb.className = 'lb';
+    lb.innerHTML = '<button aria-label="Cerrar">&times;</button>';
+    const im = document.createElement('img');
+    im.src = fig.querySelector('img').src; im.alt = '';
+    lb.appendChild(im);
+    const cerrar = () => { lb.remove(); removeEventListener('keydown', esc); };
+    const esc = ev => { if (ev.key === 'Escape') cerrar(); };
+    lb.addEventListener('click', cerrar);
+    addEventListener('keydown', esc);
+    document.body.appendChild(lb);
+    lb.querySelector('button').focus();
+  });
+})();
+
+/* ══════════════════════════════════════════════════════════
+   6) Reserva → WhatsApp
+   ══════════════════════════════════════════════════════════ */
+(function reserva(){
+  const form = $('#form'), fecha = $('#f-fecha'), hora = $('#f-hora'), pers = $('#f-personas'), zona = $('#f-zona');
+  const iso = d => d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+  fecha.min = iso(new Date()); fecha.value = iso(new Date());
+
+  for (let h = CONFIG.reserva.desde; h <= CONFIG.reserva.hasta; h += 0.5) hora.add(new Option(hhmm(h), hhmm(h)));
+  hora.value = '20:00';
+  for (let p = 1; p <= CONFIG.reserva.maxPersonas; p++) pers.add(new Option(p === 1 ? '1 persona' : p + ' personas', String(p)));
+  pers.add(new Option('Más de ' + CONFIG.reserva.maxPersonas, 'grupo'));
+  pers.value = '2';
+
+  let ocasion = '';
+  $('#chips').addEventListener('click', e => {
+    const c = e.target.closest('.chip'); if (!c) return;
+    const activo = c.getAttribute('aria-pressed') === 'true';
+    $$('.chip').forEach(x => x.setAttribute('aria-pressed','false'));
+    c.setAttribute('aria-pressed', String(!activo));
+    ocasion = activo ? '' : c.textContent.trim();
+    pintar();
+  });
+
+  function mensaje(){
+    const f = new Date(fecha.value + 'T12:00:00');
+    const fLarga = isNaN(f) ? fecha.value : f.toLocaleDateString('es-EC',{weekday:'long',day:'numeric',month:'long'});
+    const p = pers.value === 'grupo' ? 'más de ' + CONFIG.reserva.maxPersonas + ' personas'
+            : pers.value === '1' ? '1 persona' : pers.value + ' personas';
+    const l = ['¡Hola ' + CONFIG.nombre + '! Quiero reservar una mesa.', ''];
+    l.push('Nombre: ' + ($('#f-nombre').value.trim() || '—'));
+    l.push('Fecha: ' + fLarga);
+    l.push('Hora: ' + hora.value);
+    l.push('Personas: ' + p);
+    l.push('Zona: ' + zona.value);
+    if (ocasion) l.push('Ocasión: ' + ocasion);
+    const n = $('#f-notas').value.trim();
+    if (n) l.push('Notas: ' + n);
+    return l.join('\n');
+  }
+
+  function pintar(){
+    const m = mensaje();
+    $('#prev').textContent = m;
+    const btn = $('#wa'), nota = $('#res-note');
+    if (falta(CONFIG.whatsapp)){
+      btn.href = '#'; btn.setAttribute('aria-disabled','true'); btn.style.opacity = '.45';
+      nota.className = 'note warn';
+      nota.textContent = 'Falta el número de WhatsApp. Ponlo en CONFIG.whatsapp (solo dígitos, con código de país — Ecuador es 593) y el botón se activa solo.';
+    } else {
+      btn.href = 'https://wa.me/' + CONFIG.whatsapp + '?text=' + encodeURIComponent(m);
+      btn.removeAttribute('aria-disabled'); btn.style.opacity = '';
+      nota.className = 'note';
+      nota.textContent = 'Se abre WhatsApp con el mensaje listo. Confirmamos por el mismo chat.';
+    }
+  }
+
+  form.addEventListener('input', pintar);
+  form.addEventListener('change', pintar);
+  form.addEventListener('submit', e => e.preventDefault());
+  $('#wa').addEventListener('click', e => { if (falta(CONFIG.whatsapp)) e.preventDefault(); });
+  $('#copy').addEventListener('click', async () => {
+    const b = $('#copy');
+    try { await navigator.clipboard.writeText(mensaje()); b.textContent = 'Copiado'; }
+    catch { b.textContent = 'No se pudo copiar'; }
+    setTimeout(() => { b.textContent = 'Copiar mensaje'; }, 1800);
+  });
+  pintar();
+})();
+
+/* ══════════════════════════════════════════════════════════
+   7) Dirección, mapa, carta y tarjetas de contacto
+   ══════════════════════════════════════════════════════════ */
+(function contacto(){
+  if (!falta(CONFIG.calle))  $('#a-calle').textContent  = CONFIG.calle;
+  if (!falta(CONFIG.ciudad)) $('#a-ciudad').textContent = CONFIG.ciudad;
+  if (!falta(CONFIG.whatsapp) && !falta(CONFIG.telefono)){
+    $('#c-tel').innerHTML = '<a href="https://wa.me/' + CONFIG.whatsapp + '" target="_blank" rel="noopener" ' +
+      'style="color:inherit;text-decoration:none">' + CONFIG.telefono + '</a>';
+  }
+
+  const apagar = el => { el.setAttribute('aria-disabled','true'); el.style.opacity = '.45'; el.href = '#';
+                         el.addEventListener('click', e => e.preventDefault()); };
+
+  // Google Maps
+  const destino = ['Cardeca Business Center', CONFIG.calle, CONFIG.ciudad].filter(Boolean).join(', ');
+  const maps = $('#maps');
+  if (!falta(CONFIG.mapsUrl)) maps.href = CONFIG.mapsUrl;
+  else maps.href = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(destino);
+
+  // Carta
+  const menu = $('#menu-btn');
+  if (!falta(CONFIG.menuUrl)){
+    menu.href = CONFIG.menuUrl;
+    $('#menu-note').textContent = 'La carta se abre en Google Drive. Asegúrate de que el archivo esté compartido como "Cualquier persona con el enlace"; si no, tus clientes verán una pantalla de permiso denegado.';
+  } else apagar(menu);
+
+  const ico = {
+    wa:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M21 11.5a8.4 8.4 0 0 1-12.6 7.3L3 20.5l1.8-5.2A8.5 8.5 0 1 1 21 11.5z"/><path d="M8.6 9.2c.2 2.6 2.2 4.6 4.8 4.8.5 0 1-.3 1.2-.8l.2-.5-1.9-1-.7.8a4.6 4.6 0 0 1-2-2l.8-.7-1-1.9-.5.2c-.5.2-.8.6-.9 1.1z"/></svg>',
+    tel: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.8a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.8 2.1z"/></svg>',
+    mail:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>',
+    ig:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>',
+    pin: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>'
+  };
+
+  const items = [
+    { k:'WhatsApp',  v:CONFIG.telefono, m:'Reservas y respuestas rápidas', i:ico.wa,
+      href: falta(CONFIG.whatsapp) ? null : 'https://wa.me/' + CONFIG.whatsapp },
+    { k:'Teléfono',  v:CONFIG.telefono, m:'En horario de servicio', i:ico.tel,
+      href: falta(CONFIG.telefono) ? null : 'tel:' + CONFIG.telefono.replace(/[^+\d]/g,'') },
+    { k:'Correo',    v:CONFIG.email, m:'Eventos, prensa y proveedores', i:ico.mail,
+      href: falta(CONFIG.email) ? null : 'mailto:' + CONFIG.email },
+    { k:'Instagram', v:'@' + CONFIG.instagram, m:'Promos, happy hours y horarios', i:ico.ig,
+      href:'https://www.instagram.com/' + CONFIG.instagram + '/' },
+    { k:'Corporativos', v:'@' + CONFIG.instagramEventos, m:'Eventos de empresa', i:ico.ig,
+      href:'https://www.instagram.com/' + CONFIG.instagramEventos + '/' },
+    { k:'Dirección', v:'Cardeca Business Center', m:CONFIG.ciudad, i:ico.pin, href:maps.href }
+  ];
+
+  const cont = $('#cards');
+  items.forEach(it => {
+    const el = document.createElement(it.href ? 'a' : 'div');
+    el.className = 'card';
+    if (it.href){ el.href = it.href; el.target = '_blank'; el.rel = 'noopener'; }
+    const v = falta(it.v) ? '<span class="tbd">[pendiente]</span>' : it.v;
+    el.innerHTML = it.i + '<span class="k">' + it.k + '</span><span class="v">' + v + '</span><span class="m">' + it.m + '</span>';
+    cont.appendChild(el);
+  });
+})();
+</script>
+</body>
+</html>

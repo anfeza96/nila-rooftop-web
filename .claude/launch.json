@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "nila",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["herramientas/servidor.js"],
+      "port": 5178
+    },
+    {
+      "name": "nila-headers",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["herramientas/servidor-headers.js"],
+      "port": 5190
+    }
+  ]
+}
