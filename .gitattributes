@@ -1,0 +1,9 @@
+# Fines de línea LF en todas las máquinas, para que regenerar carta.html
+# en Windows no produzca cambios falsos en miles de líneas.
+* text=auto eol=lf
+
+*.webp binary
+*.jpg binary
+*.png binary
+*.mp4 binary
+*.ai binary

@@ -13,7 +13,8 @@ const OUT  = path.join(RAIZ, 'carta.html');
 
 const data = JSON.parse(fs.readFileSync(DATA, 'utf8'));
 
-let tpl = fs.readFileSync(TPL, 'utf8');
+// LF siempre: JSON.stringify produce LF, y una plantilla en CRLF (checkout en Windows) dejaría el archivo mezclado.
+let tpl = fs.readFileSync(TPL, 'utf8').replace(/\r\n/g, '\n');
 if (!tpl.includes('__CARTA_DATA_JSON__')) throw new Error('no encontré el placeholder en la plantilla');
 
 // Con sangría, para que editar un precio sea cuestión de buscar el plato.
