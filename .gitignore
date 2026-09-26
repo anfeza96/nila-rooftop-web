@@ -9,7 +9,11 @@ sitio-estatico/
 package-lock.json
 tsconfig.app.tsbuildinfo
 tsconfig.node.tsbuildinfo
-vercel.json
+
+# Secretos y configuración local de Vercel — nunca deben subirse.
+.env
+.env.*
+.vercel/
 
 # Carpetas de trabajo local — no forman parte del sitio publicado.
 Videos portada NILA/

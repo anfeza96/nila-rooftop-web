@@ -1,0 +1,5 @@
+# Archivos del repo que no deben publicarse en el sitio.
+marca/
+carta-data.json
+img/eventos/LEEME.txt
+img/galeria/LEEME.txt
