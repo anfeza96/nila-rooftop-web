@@ -422,6 +422,14 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   color:var(--muted); border:1px solid var(--line-soft); border-radius:999px; padding:7px 16px;
 }
 
+/* ───────────── TESTIMONIOS ───────────── */
+.testi-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr)); gap:1px; margin-top:44px; background:var(--line-soft); border:1px solid var(--line-soft); }
+.testi{ background:var(--ground-2); padding:clamp(28px,3.6vw,38px); display:flex; flex-direction:column; gap:16px; }
+.testi .quote-mark{ font-family:var(--f-script); font-size:44px; line-height:.6; color:var(--gold); }
+.testi .txt{ margin:0; color:var(--text); font-size:16px; line-height:1.6; text-wrap:pretty; }
+.testi .autor{ display:flex; align-items:baseline; justify-content:space-between; gap:10px; flex-wrap:wrap; }
+.testi .autor b{ font-family:var(--f-brand); font-weight:400; font-size:13px; letter-spacing:.04em; color:var(--sand); }
+.testi .autor span{ font-size:12px; color:var(--faint); }
 
 /* ── Eventos corporativos ── */
 .servicios{ display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr)); gap:1px; margin-top:44px; background:var(--line-soft); border:1px solid var(--line-soft); }
@@ -1046,6 +1054,28 @@ a.card:hover{ background:var(--ground-3); }
   </div>
 </section>
 
+<!-- ════════ TESTIMONIOS ════════ -->
+<section class="section" id="testimonios">
+  <div class="wrap">
+    <p class="eyebrow rise">Lo que dicen</p>
+    <h2 class="h2 rise titulo">Cuencanos que ya subieron.</h2>
+    <p class="lede rise">Extracto real de nuestras reseñas en <a href="https://maps.app.goo.gl/pejtRUZ2eF2BZgEW6" target="_blank" rel="noopener" style="color:var(--sand)">Google · 4,1 ★ 112 opiniones</a>.</p>
+
+    <div class="testi-grid rise">
+      <article class="testi">
+        <span class="quote-mark" aria-hidden="true">&ldquo;</span>
+        <p class="txt">Buena ubicación, ambiente acogedor y agradable, hay música en vivo y/o eventos especiales por temporadas. Ideal para compartir con amigos.</p>
+        <div class="autor"><b>Patty Reivan</b><span>Google · Local Guide</span></div>
+      </article>
+      <article class="testi">
+        <span class="quote-mark" aria-hidden="true">&ldquo;</span>
+        <p class="txt">Excelente servicio, comida variada, vista espectacular de la ciudad y la seguridad es prioritaria en el local.</p>
+        <div class="autor"><b>Felipe Zamora</b><span>Google</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
 <!-- ════════ RESERVA ════════ -->
 <section class="section reserva" id="reserva">
   <div class="wrap res-grid">
@@ -1398,7 +1428,7 @@ function preparaRise(){
   const quieto = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // Rejillas cuyos hijos entran escalonados en vez de todo el bloque a la vez
-  const REJILLAS = ['.facts', '.two', '.dishes', '.servicios', '.cards', '.rules', '.hours'];
+  const REJILLAS = ['.facts', '.two', '.dishes', '.servicios', '.cards', '.rules', '.hours', '.testi-grid'];
   REJILLAS.forEach(sel => $$(sel).forEach(cont => {
     cont.classList.remove('rise');               // ya no anima el contenedor: animan sus hijos
     [...cont.children].forEach((hijo, i) => {
