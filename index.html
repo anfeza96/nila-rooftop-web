@@ -373,13 +373,31 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .shot .ph-t span{ font-family:var(--f-brand); font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:rgba(244,233,218,.8); }
 .shot .ph-t b{ font-family:var(--f-body); font-weight:500; font-size:11.5px; color:#1B1408; background:var(--gold); padding:2px 8px; }
 
-/* ───────────── AMBIENTES ───────────── */
-.two{ display:grid; grid-template-columns:1fr 1fr; gap:1px; margin-top:44px; background:var(--line-soft); border:1px solid var(--line-soft); }
+/* ───────────── AMBIENTES ─────────────
+   Tarjetas con foto de fondo, mismo lenguaje visual que .puerta y el
+   carrusel de promos: foto a sangre, degradado oscuro, texto encima.
+   El degradado de fondo es el respaldo mientras no exista la foto real
+   — así nunca se ve un hueco roto, solo un color de marca. */
+.two{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(14px,2vw,22px); margin-top:44px; }
 @media (max-width:720px){ .two{ grid-template-columns:1fr; } }
-.amb{ background:var(--ground); padding:clamp(26px,3.6vw,40px); }
+.amb{
+  position:relative; overflow:hidden; border-radius:4px; border:1px solid var(--line-soft);
+  min-height:clamp(280px,32vw,380px); display:flex; align-items:flex-end;
+  background:linear-gradient(150deg,#C98B52,#A0492E 55%,#3A1B12);
+}
+.amb-img{
+  position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0;
+  transition:scale .8s cubic-bezier(.2,.7,.3,1), filter .8s ease;
+}
+.amb::after{
+  content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
+  background:linear-gradient(170deg, rgba(21,15,11,.30) 0%, rgba(21,15,11,.70) 55%, rgba(12,8,5,.92) 100%);
+}
+.amb:hover .amb-img{ scale:1.06; filter:saturate(1.1) brightness(1.04); }
+.amb-in{ position:relative; z-index:2; padding:clamp(26px,3.6vw,40px); }
 .amb .n{ font-family:var(--f-brand); font-size:10px; letter-spacing:.3em; text-transform:uppercase; color:var(--gold); margin:0 0 14px; }
-.amb h3{ font-size:clamp(23px,3vw,31px); margin:0 0 12px; }
-.amb p{ margin:0; color:var(--muted); font-size:15px; }
+.amb h3{ font-size:clamp(23px,3vw,31px); margin:0 0 12px; color:var(--cream); }
+.amb p{ margin:0; color:rgba(244,233,218,.82); font-size:15px; }
 
 .facts{ margin-top:6px; }
 .fact{ display:grid; grid-template-columns:auto 1fr; gap:18px; padding:20px 0; border-top:1px solid var(--line-soft); }
@@ -849,14 +867,20 @@ a.card:hover{ background:var(--ground-3); }
 
     <div class="two rise">
       <div class="amb">
-        <p class="n">Ambiente 01</p>
-        <h3>Terraza</h3>
-        <p>Espacio cerrado, no a cielo abierto — la ciudad se ve completa a través de ventanales de piso a techo. Aquí aparece la magia: show de luces profesional, una barra grande, mesas en lounge y la consola del DJ. Es la zona que primero se llena; si vienes por el atardecer, reserva.</p>
+        <img class="amb-img" src="img/ambiente-terraza.webp" alt="Terraza de NILA ROOFTOP" loading="lazy">
+        <div class="amb-in">
+          <p class="n">Ambiente 01</p>
+          <h3>Terraza</h3>
+          <p>Espacio cerrado, no a cielo abierto — la ciudad se ve completa a través de ventanales de piso a techo. Aquí aparece la magia: show de luces profesional, una barra grande, mesas en lounge y la consola del DJ. Es la zona que primero se llena; si vienes por el atardecer, reserva.</p>
+        </div>
       </div>
       <div class="amb">
-        <p class="n">Ambiente 02</p>
-        <h3>Interior</h3>
-        <p>Mesa puesta, luz cálida y música al volumen justo para oírse sin levantar la voz. Para cenar sin prisa, para una mesa larga, o para cuando Cuenca decide llover.</p>
+        <img class="amb-img" src="img/ambiente-interior.webp" alt="Interior de NILA ROOFTOP" loading="lazy">
+        <div class="amb-in">
+          <p class="n">Ambiente 02</p>
+          <h3>Interior</h3>
+          <p>Mesa puesta, luz cálida y música al volumen justo para oírse sin levantar la voz. Para cenar sin prisa, para una mesa larga, o para cuando Cuenca decide llover.</p>
+        </div>
       </div>
     </div>
   </div>
