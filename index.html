@@ -517,6 +517,10 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 }
 .hours .h{ font-variant-numeric:tabular-nums; }
 .hours .h.cerrado{ color:#9B8776; font-style:italic; }
+.practica{ list-style:none; padding:0; margin:24px 0 0; }
+.practica li{ display:flex; flex-wrap:wrap; gap:6px 12px; padding:12px 0; border-top:1px solid rgba(42,29,20,.12); font-size:14.5px; color:#5C4636; }
+.practica li:last-child{ border-bottom:1px solid rgba(42,29,20,.12); }
+.practica b{ color:var(--ink); font-weight:500; font-family:var(--f-brand); letter-spacing:.04em; flex:0 0 120px; }
 .aviso{
   margin:18px 0 0; padding:13px 16px; font-size:13.5px; line-height:1.55;
   background:rgba(232,194,75,.2); border-left:3px solid var(--gold); color:#4A3520;
@@ -1142,6 +1146,13 @@ a.card:hover{ background:var(--ground-3); }
       <ul class="hours rise" id="hours"></ul>
       <p class="aviso" id="hours-aviso" hidden></p>
       <p class="note" style="color:#7A6250">Los horarios de días especiales y feriados se anuncian en Instagram.</p>
+
+      <p style="margin:26px 0 10px;font-family:var(--f-brand);font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--terra)">Antes de venir</p>
+      <ul class="practica rise">
+        <li><b>Vestimenta</b> Semi-formal, smart casual.</li>
+        <li><b>Edad</b> A partir de las 11:00 pm, ingreso solo a mayores de 18 años.</li>
+        <li><b>Acceso</b> Ascensor al último piso del Cardeca Business Center.</li>
+      </ul>
     </div>
     <div>
       <p class="eyebrow rise">Cómo llegar</p>
@@ -1428,7 +1439,7 @@ function preparaRise(){
   const quieto = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // Rejillas cuyos hijos entran escalonados en vez de todo el bloque a la vez
-  const REJILLAS = ['.facts', '.two', '.dishes', '.servicios', '.cards', '.rules', '.hours', '.testi-grid'];
+  const REJILLAS = ['.facts', '.two', '.dishes', '.servicios', '.cards', '.rules', '.hours', '.testi-grid', '.practica'];
   REJILLAS.forEach(sel => $$(sel).forEach(cont => {
     cont.classList.remove('rise');               // ya no anima el contenedor: animan sus hijos
     [...cont.children].forEach((hijo, i) => {
