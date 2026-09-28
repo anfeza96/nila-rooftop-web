@@ -370,8 +370,29 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     <p>© <span id="anio"></span> NILA ROOFTOP · Cardeca Business Center, Cuenca</p>
     <p>Aquí todo late distinto</p>
     <p><a href="politica-privacidad.html">Política de datos</a></p>
+    <p class="visitas" id="visitas" hidden></p>
   </div>
 </footer>
+
+<script>
+/* Contador de visitas: cada navegador suma una vez al día; el número vive en /api/visitas. */
+(function(){
+  const el = document.getElementById('visitas');
+  if (!el || !window.fetch) return;
+  const hoy = new Date().toISOString().slice(0, 10);
+  let contada = false;
+  try { contada = localStorage.getItem('nila-visita') === hoy; } catch (e) {}
+  fetch('/api/visitas', { method: contada ? 'GET' : 'POST', cache: 'no-store' })
+    .then(function(r){ return r.ok ? r.json() : null; })
+    .then(function(d){
+      if (!d || !d.total) return;
+      if (!contada) try { localStorage.setItem('nila-visita', hoy); } catch (e) {}
+      el.textContent = d.total.toLocaleString('es-EC') + (d.total === 1 ? ' visita' : ' visitas');
+      el.hidden = false;
+    })
+    .catch(function(){});
+})();
+</script>
 
 <!-- ═══════════════════════════════════════════════════════════
      DATOS DE LOS EVENTOS
