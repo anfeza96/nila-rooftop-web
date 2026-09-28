@@ -306,17 +306,40 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .nav-links a.aparte[aria-current]{ background:var(--gold); border-color:var(--gold); color:#1B1408; }
 @media (max-width:900px){ .nav-links a.aparte{ padding:13px 15px; margin:0; } }
 
-/* ── Rejilla de la galería ── */
-.gal{ display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr)); gap:12px; margin-top:40px; }
-.gal .marco{ aspect-ratio:1; cursor:zoom-in; }
-.gal .marco:nth-child(1){ grid-column:span 2; aspect-ratio:2/1; }
-@media (max-width:620px){
-  .gal{ grid-template-columns:1fr 1fr; }
-  .gal .marco:nth-child(n){ grid-column:span 1; aspect-ratio:1; }
-  .gal .marco:nth-child(1){ grid-column:span 2; aspect-ratio:3/2; }
+/* ── Mosaico de la galería ──
+   Filas flexibles: cada foto tiene un peso base (--w, unas más anchas
+   que otras) y al mover el mouse sobre la fila, la foto más cercana al
+   cursor crece y sus vecinas ceden espacio, en continuo, como un dock.
+   En pantallas táctiles se vuelve una cuadrícula con fotos de distinto
+   tamaño y se resalta la que queda en el centro al hacer scroll.
+   Las fotos de la rejilla son miniaturas de 480 px (~26 KB); la versión
+   grande solo se descarga al abrir el visor. */
+.gal{ display:flex; flex-direction:column; gap:10px; margin-top:40px; }
+.fila{ display:flex; gap:10px; height:clamp(210px,24vw,340px); }
+.fila.baja{ height:clamp(170px,18vw,260px); }
+.fila .marco{
+  flex:var(--w,1) 1 0; min-width:0; cursor:zoom-in;
+  transition:flex-grow .75s cubic-bezier(.22,.8,.24,1);
+}
+/* la foto activa además se desplaza un poco siguiendo al mouse */
+.fila .marco img, .js .fila .marco img{ translate:var(--mx,0) var(--my,0);
+  transition:scale .9s cubic-bezier(.2,.7,.3,1), filter .6s ease, translate .9s cubic-bezier(.2,.7,.3,1); }
+/* la foto en foco se ilumina; las demás de esa fila bajan un poco */
+.fila.enfoque .marco:not(.activa) img{ filter:brightness(.6) saturate(.85); }
+.fila .marco.activa img, .js .fila .marco.activa img{ scale:1.06; filter:saturate(1.12) brightness(1.05); }
+.marco.activa .pie-foto{ opacity:1; }
+.marco.activa::before{ transform:translateX(130%); }
+@media (max-width:760px){
+  .gal{ display:grid; grid-template-columns:repeat(3,1fr); grid-auto-rows:clamp(110px,31vw,200px); grid-auto-flow:dense; gap:6px; }
+  .fila, .fila.baja{ display:contents; }
+  .fila .marco{ flex:none; transition:none; }
+  .marco.alta{ grid-row:span 2; }
+  .marco.ancha{ grid-column:span 2; }
+  .fila.enfoque .marco:not(.activa) img{ filter:none; }
+  .gal .marco .pie-foto{ padding:18px 8px 7px; font-size:9px; letter-spacing:.08em; }
 }
 
-.marco{ position:relative; overflow:hidden; border-radius:3px; background:var(--ground-3); }
+.marco{ position:relative; margin:0; overflow:hidden; border-radius:3px; background:var(--ground-3); }
 .marco img{ position:absolute; left:0; top:-9%; width:100%; height:118%; object-fit:cover; will-change:transform;
   transform:translate3d(0, var(--py,0px), 0); transition:scale .7s cubic-bezier(.2,.7,.3,1), filter .7s ease; }
 .marco::after{ content:""; position:absolute; inset:0; box-shadow:inset 0 0 0 1px var(--line-soft); pointer-events:none; z-index:3; }
@@ -330,6 +353,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   .js .marco.visto{ clip-path:inset(0 0 0 0); }
   .js .marco img{ scale:1.12; transition:scale 1.4s cubic-bezier(.16,.84,.26,1), filter .7s ease; }
   .js .marco.visto img{ scale:1; }
+  /* el revelado no debe pisar la transición de ancho del mosaico */
+  .js .fila .marco{ transition:clip-path 1.05s cubic-bezier(.16,.84,.26,1), flex-grow .75s cubic-bezier(.22,.8,.24,1); }
 }
 .marco .pie-foto{ position:absolute; left:0; right:0; bottom:0; z-index:4; padding:28px 16px 13px; margin:0;
   background:linear-gradient(180deg,transparent,rgba(12,8,5,.85)); opacity:0; transition:opacity .4s ease;
@@ -398,78 +423,274 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   <div class="wrap">
     <p class="lede">Platos, noches y la vista que hace que valga subir. Pulsa cualquier foto para verla a tamaño completo.</p>
     <div class="gal" id="gal">
-      <figure class="marco" tabindex="0" data-src="img/galeria/risotto.webp" data-txt="Risotto anticuchero">
-        <img src="img/galeria/risotto.webp" alt="Risotto anticuchero — NILA ROOFTOP" loading="lazy">
-        <figcaption class="pie-foto">Risotto anticuchero</figcaption>
-      </figure>
-      <figure class="marco" tabindex="0" data-src="img/galeria/ensalada.webp" data-txt="Ensalada de pollo">
-        <img src="img/galeria/ensalada.webp" alt="Ensalada de pollo — NILA ROOFTOP" loading="lazy">
-        <figcaption class="pie-foto">Ensalada de pollo</figcaption>
-      </figure>
-      <figure class="marco" tabindex="0" data-src="img/galeria/tommax.webp" data-txt="Noche TOMMAX">
-        <img src="img/galeria/tommax.webp" alt="Noche TOMMAX — NILA ROOFTOP" loading="lazy">
-        <figcaption class="pie-foto">Noche TOMMAX</figcaption>
-      </figure>
-      <figure class="marco" tabindex="0" data-src="img/galeria/aniversario.webp" data-txt="The Anniversary">
-        <img src="img/galeria/aniversario.webp" alt="The Anniversary — NILA ROOFTOP" loading="lazy">
-        <figcaption class="pie-foto">The Anniversary</figcaption>
-      </figure>
-      <figure class="marco" tabindex="0" data-opcional="1" data-src="img/galeria/01.jpg" data-txt="NILA ROOFTOP">
-        <img src="img/galeria/01.jpg" alt="NILA ROOFTOP — NILA ROOFTOP" loading="lazy">
-        <figcaption class="pie-foto">NILA ROOFTOP</figcaption>
-      </figure>
-      <figure class="marco" tabindex="0" data-opcional="1" data-src="img/galeria/02.jpg" data-txt="NILA ROOFTOP">
-        <img src="img/galeria/02.jpg" alt="NILA ROOFTOP — NILA ROOFTOP" loading="lazy">
-        <figcaption class="pie-foto">NILA ROOFTOP</figcaption>
-      </figure>
-      <figure class="marco" tabindex="0" data-opcional="1" data-src="img/galeria/03.jpg" data-txt="NILA ROOFTOP">
-        <img src="img/galeria/03.jpg" alt="NILA ROOFTOP — NILA ROOFTOP" loading="lazy">
-        <figcaption class="pie-foto">NILA ROOFTOP</figcaption>
-      </figure>
-      <figure class="marco" tabindex="0" data-opcional="1" data-src="img/galeria/04.jpg" data-txt="NILA ROOFTOP">
-        <img src="img/galeria/04.jpg" alt="NILA ROOFTOP — NILA ROOFTOP" loading="lazy">
-        <figcaption class="pie-foto">NILA ROOFTOP</figcaption>
-      </figure>
-      <figure class="marco" tabindex="0" data-opcional="1" data-src="img/galeria/05.jpg" data-txt="NILA ROOFTOP">
-        <img src="img/galeria/05.jpg" alt="NILA ROOFTOP — NILA ROOFTOP" loading="lazy">
-        <figcaption class="pie-foto">NILA ROOFTOP</figcaption>
-      </figure>
-      <figure class="marco" tabindex="0" data-opcional="1" data-src="img/galeria/06.jpg" data-txt="NILA ROOFTOP">
-        <img src="img/galeria/06.jpg" alt="NILA ROOFTOP — NILA ROOFTOP" loading="lazy">
-        <figcaption class="pie-foto">NILA ROOFTOP</figcaption>
-      </figure>
-      <figure class="marco" tabindex="0" data-opcional="1" data-src="img/galeria/07.jpg" data-txt="NILA ROOFTOP">
-        <img src="img/galeria/07.jpg" alt="NILA ROOFTOP — NILA ROOFTOP" loading="lazy">
-        <figcaption class="pie-foto">NILA ROOFTOP</figcaption>
-      </figure>
-      <figure class="marco" tabindex="0" data-opcional="1" data-src="img/galeria/08.jpg" data-txt="NILA ROOFTOP">
-        <img src="img/galeria/08.jpg" alt="NILA ROOFTOP — NILA ROOFTOP" loading="lazy">
-        <figcaption class="pie-foto">NILA ROOFTOP</figcaption>
-      </figure>
-      <figure class="marco" tabindex="0" data-opcional="1" data-src="img/galeria/09.jpg" data-txt="NILA ROOFTOP">
-        <img src="img/galeria/09.jpg" alt="NILA ROOFTOP — NILA ROOFTOP" loading="lazy">
-        <figcaption class="pie-foto">NILA ROOFTOP</figcaption>
-      </figure>
-      <figure class="marco" tabindex="0" data-opcional="1" data-src="img/galeria/10.jpg" data-txt="NILA ROOFTOP">
-        <img src="img/galeria/10.jpg" alt="NILA ROOFTOP — NILA ROOFTOP" loading="lazy">
-        <figcaption class="pie-foto">NILA ROOFTOP</figcaption>
-      </figure>
-      <figure class="marco" tabindex="0" data-opcional="1" data-src="img/galeria/11.jpg" data-txt="NILA ROOFTOP">
-        <img src="img/galeria/11.jpg" alt="NILA ROOFTOP — NILA ROOFTOP" loading="lazy">
-        <figcaption class="pie-foto">NILA ROOFTOP</figcaption>
-      </figure>
-      <figure class="marco" tabindex="0" data-opcional="1" data-src="img/galeria/12.jpg" data-txt="NILA ROOFTOP">
-        <img src="img/galeria/12.jpg" alt="NILA ROOFTOP — NILA ROOFTOP" loading="lazy">
-        <figcaption class="pie-foto">NILA ROOFTOP</figcaption>
-      </figure>
-      <a class="marco tile-ig" href="https://www.instagram.com/nila.rooftop/" target="_blank" rel="noopener">
-        <span class="dentro">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
-          <b>@nila.rooftop</b>
-          <em>33 mil personas ya nos siguen. Las fotos nuevas salen ahí primero.</em>
-          <u>Ver el perfil</u>
-        </span>
-      </a>
+      <div class="fila">
+        <figure class="marco alta" style="--w:1.35" tabindex="0" role="button" aria-label="Ver foto: Letrero iluminado de NILA ROOFTOP" data-src="img/galeria/fotos/01.webp" data-txt="Terraza del Despecho">
+          <img src="img/galeria/mini/01.webp" alt="Letrero iluminado de NILA ROOFTOP" width="480" height="600" loading="eager" fetchpriority="high" decoding="async">
+          <figcaption class="pie-foto">Terraza del Despecho</figcaption>
+        </figure>
+        <figure class="marco" style="--w:1" tabindex="0" role="button" aria-label="Ver foto: Amigas celebrando en la pista" data-src="img/galeria/fotos/02.webp" data-txt="Noches como esta · Foto: NBM Experience Studio">
+          <img src="img/galeria/mini/02.webp" alt="Amigas celebrando en la pista" width="480" height="600" loading="eager" fetchpriority="high" decoding="async">
+          <figcaption class="pie-foto">Noches como esta</figcaption>
+        </figure>
+        <figure class="marco" style="--w:1" tabindex="0" role="button" aria-label="Ver foto: DJ en la cabina durante Over 21" data-src="img/galeria/fotos/03.webp" data-txt="Over 21 · Foto: NBM Experience Studio">
+          <img src="img/galeria/mini/03.webp" alt="DJ en la cabina durante Over 21" width="480" height="600" loading="eager" fetchpriority="high" decoding="async">
+          <figcaption class="pie-foto">Over 21</figcaption>
+        </figure>
+        <figure class="marco alta" style="--w:1.3" tabindex="0" role="button" aria-label="Ver foto: Copa de vino en la terraza, con las luces de Cuenca de fondo" data-src="img/galeria/fotos/04.webp" data-txt="En buena compañía">
+          <img src="img/galeria/mini/04.webp" alt="Copa de vino en la terraza, con las luces de Cuenca de fondo" width="480" height="600" loading="eager" fetchpriority="high" decoding="async">
+          <figcaption class="pie-foto">En buena compañía</figcaption>
+        </figure>
+        <figure class="marco" style="--w:1" tabindex="0" role="button" aria-label="Ver foto: Celebración de cumpleaños con torta y champaña" data-src="img/galeria/fotos/05.webp" data-txt="Noches para compartir">
+          <img src="img/galeria/mini/05.webp" alt="Celebración de cumpleaños con torta y champaña" width="480" height="600" loading="eager" fetchpriority="high" decoding="async">
+          <figcaption class="pie-foto">Noches para compartir</figcaption>
+        </figure>
+        <figure class="marco" style="--w:1" tabindex="0" role="button" aria-label="Ver foto: Tres amigas en la pista durante Over 21" data-src="img/galeria/fotos/06.webp" data-txt="Over 21 · Foto: NBM Experience Studio">
+          <img src="img/galeria/mini/06.webp" alt="Tres amigas en la pista durante Over 21" width="480" height="600" loading="eager" fetchpriority="high" decoding="async">
+          <figcaption class="pie-foto">Over 21</figcaption>
+        </figure>
+      </div>
+      <div class="fila baja">
+        <figure class="marco" style="--w:1.3" tabindex="0" role="button" aria-label="Ver foto: Risotto anticuchero de NILA ROOFTOP" data-src="img/galeria/fotos/07.webp" data-txt="Risotto anticuchero">
+          <img src="img/galeria/mini/07.webp" alt="Risotto anticuchero de NILA ROOFTOP" width="480" height="600" loading="lazy" decoding="async">
+          <figcaption class="pie-foto">Risotto anticuchero</figcaption>
+        </figure>
+        <figure class="marco ancha" style="--w:1.4" tabindex="0" role="button" aria-label="Ver foto: La pista llena, con las luces en movimiento" data-src="img/galeria/fotos/08.webp" data-txt="Noches como esta · Foto: NBM Experience Studio">
+          <img src="img/galeria/mini/08.webp" alt="La pista llena, con las luces en movimiento" width="480" height="600" loading="lazy" decoding="async">
+          <figcaption class="pie-foto">Noches como esta</figcaption>
+        </figure>
+        <figure class="marco" style="--w:1" tabindex="0" role="button" aria-label="Ver foto: Karaoke en la Terraza del Despecho" data-src="img/galeria/fotos/09.webp" data-txt="Terraza del Despecho">
+          <img src="img/galeria/mini/09.webp" alt="Karaoke en la Terraza del Despecho" width="480" height="600" loading="lazy" decoding="async">
+          <figcaption class="pie-foto">Terraza del Despecho</figcaption>
+        </figure>
+        <figure class="marco alta" style="--w:1.4" tabindex="0" role="button" aria-label="Ver foto: DJ frente a la rueda de luces rojas" data-src="img/galeria/fotos/10.webp" data-txt="Noches para compartir">
+          <img src="img/galeria/mini/10.webp" alt="DJ frente a la rueda de luces rojas" width="480" height="600" loading="lazy" decoding="async">
+          <figcaption class="pie-foto">Noches para compartir</figcaption>
+        </figure>
+        <figure class="marco" style="--w:1" tabindex="0" role="button" aria-label="Ver foto: Pareja en una mesa de la terraza" data-src="img/galeria/fotos/11.webp" data-txt="En buena compañía">
+          <img src="img/galeria/mini/11.webp" alt="Pareja en una mesa de la terraza" width="480" height="600" loading="lazy" decoding="async">
+          <figcaption class="pie-foto">En buena compañía</figcaption>
+        </figure>
+        <figure class="marco" style="--w:1" tabindex="0" role="button" aria-label="Ver foto: Cabina del DJ bajo el letrero de NILA" data-src="img/galeria/fotos/12.webp" data-txt="Over 21 · Foto: NBM Experience Studio">
+          <img src="img/galeria/mini/12.webp" alt="Cabina del DJ bajo el letrero de NILA" width="480" height="600" loading="lazy" decoding="async">
+          <figcaption class="pie-foto">Over 21</figcaption>
+        </figure>
+      </div>
+      <div class="fila">
+        <figure class="marco" style="--w:1.25" tabindex="0" role="button" aria-label="Ver foto: Grupo de amigas en la terraza" data-src="img/galeria/fotos/13.webp" data-txt="Noches como esta · Foto: NBM Experience Studio">
+          <img src="img/galeria/mini/13.webp" alt="Grupo de amigas en la terraza" width="480" height="600" loading="lazy" decoding="async">
+          <figcaption class="pie-foto">Noches como esta</figcaption>
+        </figure>
+        <figure class="marco" style="--w:1" tabindex="0" role="button" aria-label="Ver foto: Amigos en un reservado del interior" data-src="img/galeria/fotos/14.webp" data-txt="Noches para compartir">
+          <img src="img/galeria/mini/14.webp" alt="Amigos en un reservado del interior" width="480" height="600" loading="lazy" decoding="async">
+          <figcaption class="pie-foto">Noches para compartir</figcaption>
+        </figure>
+        <figure class="marco" style="--w:1.2" tabindex="0" role="button" aria-label="Ver foto: Ensalada de pollo de NILA ROOFTOP" data-src="img/galeria/fotos/15.webp" data-txt="Ensalada de pollo">
+          <img src="img/galeria/mini/15.webp" alt="Ensalada de pollo de NILA ROOFTOP" width="480" height="600" loading="lazy" decoding="async">
+          <figcaption class="pie-foto">Ensalada de pollo</figcaption>
+        </figure>
+        <figure class="marco" style="--w:1" tabindex="0" role="button" aria-label="Ver foto: Amigas cantando y tomándose una selfie" data-src="img/galeria/fotos/16.webp" data-txt="Terraza del Despecho">
+          <img src="img/galeria/mini/16.webp" alt="Amigas cantando y tomándose una selfie" width="480" height="600" loading="lazy" decoding="async">
+          <figcaption class="pie-foto">Terraza del Despecho</figcaption>
+        </figure>
+        <figure class="marco ancha" style="--w:1.4" tabindex="0" role="button" aria-label="Ver foto: Grupo frente a la cabina, bajo el letrero de NILA" data-src="img/galeria/fotos/17.webp" data-txt="Noches como esta · Foto: NBM Experience Studio">
+          <img src="img/galeria/mini/17.webp" alt="Grupo frente a la cabina, bajo el letrero de NILA" width="480" height="600" loading="lazy" decoding="async">
+          <figcaption class="pie-foto">Noches como esta</figcaption>
+        </figure>
+        <figure class="marco" style="--w:1" tabindex="0" role="button" aria-label="Ver foto: Grupo brindando junto a la barra" data-src="img/galeria/fotos/18.webp" data-txt="Noches para compartir">
+          <img src="img/galeria/mini/18.webp" alt="Grupo brindando junto a la barra" width="480" height="600" loading="lazy" decoding="async">
+          <figcaption class="pie-foto">Noches para compartir</figcaption>
+        </figure>
+        <figure class="marco" style="--w:1" tabindex="0" role="button" aria-label="Ver foto: El DJ saluda desde la cabina" data-src="img/galeria/fotos/19.webp" data-txt="Over 21 · Foto: NBM Experience Studio">
+          <img src="img/galeria/mini/19.webp" alt="El DJ saluda desde la cabina" width="480" height="600" loading="lazy" decoding="async">
+          <figcaption class="pie-foto">Over 21</figcaption>
+        </figure>
+      </div>
+      <div class="fila baja">
+        <figure class="marco alta" style="--w:1.3" tabindex="0" role="button" aria-label="Ver foto: Dos amigas en una mesa de la terraza" data-src="img/galeria/fotos/20.webp" data-txt="En buena compañía">
+          <img src="img/galeria/mini/20.webp" alt="Dos amigas en una mesa de la terraza" width="480" height="600" loading="lazy" decoding="async">
+          <figcaption class="pie-foto">En buena compañía</figcaption>
+        </figure>
+        <figure class="marco" style="--w:1" tabindex="0" role="button" aria-label="Ver foto: Amigas bajo la luz cálida del interior" data-src="img/galeria/fotos/21.webp" data-txt="Noches para compartir">
+          <img src="img/galeria/mini/21.webp" alt="Amigas bajo la luz cálida del interior" width="480" height="600" loading="lazy" decoding="async">
+          <figcaption class="pie-foto">Noches para compartir</figcaption>
+        </figure>
+        <figure class="marco" style="--w:1" tabindex="0" role="button" aria-label="Ver foto: Pareja sonriendo en su mesa" data-src="img/galeria/fotos/22.webp" data-txt="Terraza del Despecho">
+          <img src="img/galeria/mini/22.webp" alt="Pareja sonriendo en su mesa" width="480" height="600" loading="lazy" decoding="async">
+          <figcaption class="pie-foto">Terraza del Despecho</figcaption>
+        </figure>
+        <figure class="marco" style="--w:1.2" tabindex="0" role="button" aria-label="Ver foto: DJ mezclando bajo las luces rojas" data-src="img/galeria/fotos/23.webp" data-txt="Over 21 · Foto: NBM Experience Studio">
+          <img src="img/galeria/mini/23.webp" alt="DJ mezclando bajo las luces rojas" width="480" height="600" loading="lazy" decoding="async">
+          <figcaption class="pie-foto">Over 21</figcaption>
+        </figure>
+        <figure class="marco" style="--w:1" tabindex="0" role="button" aria-label="Ver foto: Tres amigas posando en la pista" data-src="img/galeria/fotos/24.webp" data-txt="Noches como esta · Foto: NBM Experience Studio">
+          <img src="img/galeria/mini/24.webp" alt="Tres amigas posando en la pista" width="480" height="600" loading="lazy" decoding="async">
+          <figcaption class="pie-foto">Noches como esta</figcaption>
+        </figure>
+      </div>
+      <div class="fila">
+        <figure class="marco" style="--w:1" tabindex="0" role="button" aria-label="Ver foto: Pareja abrazada en el interior" data-src="img/galeria/fotos/25.webp" data-txt="Noches para compartir">
+          <img src="img/galeria/mini/25.webp" alt="Pareja abrazada en el interior" width="480" height="600" loading="lazy" decoding="async">
+          <figcaption class="pie-foto">Noches para compartir</figcaption>
+        </figure>
+        <figure class="marco alta" style="--w:1.3" tabindex="0" role="button" aria-label="Ver foto: Pareja sonriendo en su mesa de la terraza" data-src="img/galeria/fotos/26.webp" data-txt="En buena compañía">
+          <img src="img/galeria/mini/26.webp" alt="Pareja sonriendo en su mesa de la terraza" width="480" height="600" loading="lazy" decoding="async">
+          <figcaption class="pie-foto">En buena compañía</figcaption>
+        </figure>
+        <figure class="marco" style="--w:1" tabindex="0" role="button" aria-label="Ver foto: Tres amigos abrazados en la pista" data-src="img/galeria/fotos/27.webp" data-txt="Over 21 · Foto: NBM Experience Studio">
+          <img src="img/galeria/mini/27.webp" alt="Tres amigos abrazados en la pista" width="480" height="600" loading="lazy" decoding="async">
+          <figcaption class="pie-foto">Over 21</figcaption>
+        </figure>
+        <figure class="marco" style="--w:1.35" tabindex="0" role="button" aria-label="Ver foto: Los DJ saludan desde la cabina" data-src="img/galeria/fotos/28.webp" data-txt="Noches como esta · Foto: NBM Experience Studio">
+          <img src="img/galeria/mini/28.webp" alt="Los DJ saludan desde la cabina" width="480" height="600" loading="lazy" decoding="async">
+          <figcaption class="pie-foto">Noches como esta</figcaption>
+        </figure>
+        <figure class="marco" style="--w:1" tabindex="0" role="button" aria-label="Ver foto: Dos amigas sonriendo en la terraza" data-src="img/galeria/fotos/29.webp" data-txt="Terraza del Despecho">
+          <img src="img/galeria/mini/29.webp" alt="Dos amigas sonriendo en la terraza" width="480" height="600" loading="lazy" decoding="async">
+          <figcaption class="pie-foto">Terraza del Despecho</figcaption>
+        </figure>
+        <figure class="marco" style="--w:1" tabindex="0" role="button" aria-label="Ver foto: Dos amigos brindando junto a la barra" data-src="img/galeria/fotos/30.webp" data-txt="Noches para compartir">
+          <img src="img/galeria/mini/30.webp" alt="Dos amigos brindando junto a la barra" width="480" height="600" loading="lazy" decoding="async">
+          <figcaption class="pie-foto">Noches para compartir</figcaption>
+        </figure>
+      </div>
+      <div class="fila baja">
+        <figure class="marco" style="--w:1" tabindex="0" role="button" aria-label="Ver foto: Dos amigos con sus tragos en la fiesta" data-src="img/galeria/fotos/31.webp" data-txt="Over 21 · Foto: NBM Experience Studio">
+          <img src="img/galeria/mini/31.webp" alt="Dos amigos con sus tragos en la fiesta" width="480" height="600" loading="lazy" decoding="async">
+          <figcaption class="pie-foto">Over 21</figcaption>
+        </figure>
+        <figure class="marco" style="--w:1.25" tabindex="0" role="button" aria-label="Ver foto: Amigas celebrando en la pista" data-src="img/galeria/fotos/32.webp" data-txt="Noches como esta · Foto: NBM Experience Studio">
+          <img src="img/galeria/mini/32.webp" alt="Amigas celebrando en la pista" width="480" height="600" loading="lazy" decoding="async">
+          <figcaption class="pie-foto">Noches como esta</figcaption>
+        </figure>
+        <figure class="marco alta" style="--w:1.3" tabindex="0" role="button" aria-label="Ver foto: Grupos de amigas compartiendo mesa" data-src="img/galeria/fotos/33.webp" data-txt="En buena compañía">
+          <img src="img/galeria/mini/33.webp" alt="Grupos de amigas compartiendo mesa" width="480" height="600" loading="lazy" decoding="async">
+          <figcaption class="pie-foto">En buena compañía</figcaption>
+        </figure>
+        <figure class="marco" style="--w:1.2" tabindex="0" role="button" aria-label="Ver foto: La pista vista desde la cabina" data-src="img/galeria/fotos/60.webp" data-txt="Noches como esta · Foto: NBM Experience Studio">
+          <img src="img/galeria/mini/60.webp" alt="La pista vista desde la cabina" width="480" height="600" loading="lazy" decoding="async">
+          <figcaption class="pie-foto">Noches como esta</figcaption>
+        </figure>
+        <figure class="marco" style="--w:1" tabindex="0" role="button" aria-label="Ver foto: El DJ elige la siguiente canción" data-src="img/galeria/fotos/34.webp" data-txt="Over 21 · Foto: NBM Experience Studio">
+          <img src="img/galeria/mini/34.webp" alt="El DJ elige la siguiente canción" width="480" height="600" loading="lazy" decoding="async">
+          <figcaption class="pie-foto">Over 21</figcaption>
+        </figure>
+        <figure class="marco" style="--w:1" tabindex="0" role="button" aria-label="Ver foto: Pareja con sus cócteles" data-src="img/galeria/fotos/35.webp" data-txt="Noches para compartir">
+          <img src="img/galeria/mini/35.webp" alt="Pareja con sus cócteles" width="480" height="600" loading="lazy" decoding="async">
+          <figcaption class="pie-foto">Noches para compartir</figcaption>
+        </figure>
+      </div>
+      <div class="fila">
+        <figure class="marco" style="--w:1.2" tabindex="0" role="button" aria-label="Ver foto: Amigos celebrando con una botella" data-src="img/galeria/fotos/36.webp" data-txt="Noches como esta · Foto: NBM Experience Studio">
+          <img src="img/galeria/mini/36.webp" alt="Amigos celebrando con una botella" width="480" height="600" loading="lazy" decoding="async">
+          <figcaption class="pie-foto">Noches como esta</figcaption>
+        </figure>
+        <figure class="marco" style="--w:1.35" tabindex="0" role="button" aria-label="Ver foto: Cantando al micrófono junto a la lámpara de mesa" data-src="img/galeria/fotos/37.webp" data-txt="Terraza del Despecho">
+          <img src="img/galeria/mini/37.webp" alt="Cantando al micrófono junto a la lámpara de mesa" width="480" height="600" loading="lazy" decoding="async">
+          <figcaption class="pie-foto">Terraza del Despecho</figcaption>
+        </figure>
+        <figure class="marco" style="--w:1" tabindex="0" role="button" aria-label="Ver foto: Pareja abrazada en la pista" data-src="img/galeria/fotos/38.webp" data-txt="Over 21 · Foto: NBM Experience Studio">
+          <img src="img/galeria/mini/38.webp" alt="Pareja abrazada en la pista" width="480" height="600" loading="lazy" decoding="async">
+          <figcaption class="pie-foto">Over 21</figcaption>
+        </figure>
+        <figure class="marco ancha" style="--w:1.4" tabindex="0" role="button" aria-label="Ver foto: Manos arriba en la pista" data-src="img/galeria/fotos/39.webp" data-txt="Noches como esta · Foto: NBM Experience Studio">
+          <img src="img/galeria/mini/39.webp" alt="Manos arriba en la pista" width="480" height="600" loading="lazy" decoding="async">
+          <figcaption class="pie-foto">Noches como esta</figcaption>
+        </figure>
+        <figure class="marco" style="--w:1" tabindex="0" role="button" aria-label="Ver foto: Cuatro amigos en la terraza" data-src="img/galeria/fotos/40.webp" data-txt="Noches para compartir">
+          <img src="img/galeria/mini/40.webp" alt="Cuatro amigos en la terraza" width="480" height="600" loading="lazy" decoding="async">
+          <figcaption class="pie-foto">Noches para compartir</figcaption>
+        </figure>
+        <figure class="marco alta" style="--w:1.3" tabindex="0" role="button" aria-label="Ver foto: Mesas llenas en la terraza" data-src="img/galeria/fotos/41.webp" data-txt="En buena compañía">
+          <img src="img/galeria/mini/41.webp" alt="Mesas llenas en la terraza" width="480" height="600" loading="lazy" decoding="async">
+          <figcaption class="pie-foto">En buena compañía</figcaption>
+        </figure>
+        <figure class="marco ancha" style="--w:1.25" tabindex="0" role="button" aria-label="Ver foto: Grupo de amigos posando junto a la pista" data-src="img/galeria/fotos/42.webp" data-txt="Over 21 · Foto: NBM Experience Studio">
+          <img src="img/galeria/mini/42.webp" alt="Grupo de amigos posando junto a la pista" width="480" height="600" loading="lazy" decoding="async">
+          <figcaption class="pie-foto">Over 21</figcaption>
+        </figure>
+      </div>
+      <div class="fila baja">
+        <figure class="marco" style="--w:1" tabindex="0" role="button" aria-label="Ver foto: Pareja posando en la fiesta" data-src="img/galeria/fotos/43.webp" data-txt="Noches como esta · Foto: NBM Experience Studio">
+          <img src="img/galeria/mini/43.webp" alt="Pareja posando en la fiesta" width="480" height="600" loading="lazy" decoding="async">
+          <figcaption class="pie-foto">Noches como esta</figcaption>
+        </figure>
+        <figure class="marco" style="--w:1" tabindex="0" role="button" aria-label="Ver foto: Tres amigos con sus copas en la terraza" data-src="img/galeria/fotos/44.webp" data-txt="Noches para compartir">
+          <img src="img/galeria/mini/44.webp" alt="Tres amigos con sus copas en la terraza" width="480" height="600" loading="lazy" decoding="async">
+          <figcaption class="pie-foto">Noches para compartir</figcaption>
+        </figure>
+        <figure class="marco" style="--w:1.3" tabindex="0" role="button" aria-label="Ver foto: Cinco amigos posando bajo las luces" data-src="img/galeria/fotos/45.webp" data-txt="Over 21 · Foto: NBM Experience Studio">
+          <img src="img/galeria/mini/45.webp" alt="Cinco amigos posando bajo las luces" width="480" height="600" loading="lazy" decoding="async">
+          <figcaption class="pie-foto">Over 21</figcaption>
+        </figure>
+        <figure class="marco" style="--w:1" tabindex="0" role="button" aria-label="Ver foto: Retrato en movimiento desde la cabina" data-src="img/galeria/fotos/46.webp" data-txt="Noches como esta · Foto: NBM Experience Studio">
+          <img src="img/galeria/mini/46.webp" alt="Retrato en movimiento desde la cabina" width="480" height="600" loading="lazy" decoding="async">
+          <figcaption class="pie-foto">Noches como esta</figcaption>
+        </figure>
+        <figure class="marco alta" style="--w:1.3" tabindex="0" role="button" aria-label="Ver foto: Grupos de amigos en la terraza" data-src="img/galeria/fotos/47.webp" data-txt="Terraza del Despecho">
+          <img src="img/galeria/mini/47.webp" alt="Grupos de amigos en la terraza" width="480" height="600" loading="lazy" decoding="async">
+          <figcaption class="pie-foto">Terraza del Despecho</figcaption>
+        </figure>
+        <figure class="marco" style="--w:1" tabindex="0" role="button" aria-label="Ver foto: Pareja posando en la fiesta" data-src="img/galeria/fotos/48.webp" data-txt="Over 21 · Foto: NBM Experience Studio">
+          <img src="img/galeria/mini/48.webp" alt="Pareja posando en la fiesta" width="480" height="600" loading="lazy" decoding="async">
+          <figcaption class="pie-foto">Over 21</figcaption>
+        </figure>
+      </div>
+      <div class="fila">
+        <figure class="marco alta" style="--w:1.35" tabindex="0" role="button" aria-label="Ver foto: Grupos compartiendo mesa frente a las luces de Cuenca" data-src="img/galeria/fotos/49.webp" data-txt="Noches para compartir">
+          <img src="img/galeria/mini/49.webp" alt="Grupos compartiendo mesa frente a las luces de Cuenca" width="480" height="600" loading="lazy" decoding="async">
+          <figcaption class="pie-foto">Noches para compartir</figcaption>
+        </figure>
+        <figure class="marco" style="--w:1" tabindex="0" role="button" aria-label="Ver foto: Dos amigos bajo las luces violetas" data-src="img/galeria/fotos/50.webp" data-txt="Noches como esta · Foto: NBM Experience Studio">
+          <img src="img/galeria/mini/50.webp" alt="Dos amigos bajo las luces violetas" width="480" height="600" loading="lazy" decoding="async">
+          <figcaption class="pie-foto">Noches como esta</figcaption>
+        </figure>
+        <figure class="marco" style="--w:1" tabindex="0" role="button" aria-label="Ver foto: Tres amigos abrazados" data-src="img/galeria/fotos/51.webp" data-txt="Over 21 · Foto: NBM Experience Studio">
+          <img src="img/galeria/mini/51.webp" alt="Tres amigos abrazados" width="480" height="600" loading="lazy" decoding="async">
+          <figcaption class="pie-foto">Over 21</figcaption>
+        </figure>
+        <figure class="marco alta" style="--w:1.3" tabindex="0" role="button" aria-label="Ver foto: Amigos en los sillones del interior" data-src="img/galeria/fotos/52.webp" data-txt="En buena compañía">
+          <img src="img/galeria/mini/52.webp" alt="Amigos en los sillones del interior" width="480" height="600" loading="lazy" decoding="async">
+          <figcaption class="pie-foto">En buena compañía</figcaption>
+        </figure>
+        <figure class="marco" style="--w:1.2" tabindex="0" role="button" aria-label="Ver foto: La pista en movimiento" data-src="img/galeria/fotos/53.webp" data-txt="Noches como esta · Foto: NBM Experience Studio">
+          <img src="img/galeria/mini/53.webp" alt="La pista en movimiento" width="480" height="600" loading="lazy" decoding="async">
+          <figcaption class="pie-foto">Noches como esta</figcaption>
+        </figure>
+        <figure class="marco" style="--w:1" tabindex="0" role="button" aria-label="Ver foto: Tres amigos bajo las luces azules" data-src="img/galeria/fotos/54.webp" data-txt="Over 21 · Foto: NBM Experience Studio">
+          <img src="img/galeria/mini/54.webp" alt="Tres amigos bajo las luces azules" width="480" height="600" loading="lazy" decoding="async">
+          <figcaption class="pie-foto">Over 21</figcaption>
+        </figure>
+      </div>
+      <div class="fila baja">
+        <figure class="marco" style="--w:1" tabindex="0" role="button" aria-label="Ver foto: Amigas en la terraza, con la ciudad de fondo" data-src="img/galeria/fotos/55.webp" data-txt="Noches para compartir">
+          <img src="img/galeria/mini/55.webp" alt="Amigas en la terraza, con la ciudad de fondo" width="480" height="600" loading="lazy" decoding="async">
+          <figcaption class="pie-foto">Noches para compartir</figcaption>
+        </figure>
+        <figure class="marco" style="--w:1.25" tabindex="0" role="button" aria-label="Ver foto: Saludo desde la cabina del DJ" data-src="img/galeria/fotos/56.webp" data-txt="Noches como esta · Foto: NBM Experience Studio">
+          <img src="img/galeria/mini/56.webp" alt="Saludo desde la cabina del DJ" width="480" height="600" loading="lazy" decoding="async">
+          <figcaption class="pie-foto">Noches como esta</figcaption>
+        </figure>
+        <figure class="marco" style="--w:1" tabindex="0" role="button" aria-label="Ver foto: DJ concentrado en la mezcla" data-src="img/galeria/fotos/57.webp" data-txt="Over 21 · Foto: NBM Experience Studio">
+          <img src="img/galeria/mini/57.webp" alt="DJ concentrado en la mezcla" width="480" height="600" loading="lazy" decoding="async">
+          <figcaption class="pie-foto">Over 21</figcaption>
+        </figure>
+        <figure class="marco alta" style="--w:1.3" tabindex="0" role="button" aria-label="Ver foto: Grupos de amigos en la terraza" data-src="img/galeria/fotos/58.webp" data-txt="Noches para compartir">
+          <img src="img/galeria/mini/58.webp" alt="Grupos de amigos en la terraza" width="480" height="600" loading="lazy" decoding="async">
+          <figcaption class="pie-foto">Noches para compartir</figcaption>
+        </figure>
+        <figure class="marco" style="--w:1" tabindex="0" role="button" aria-label="Ver foto: Brazos arriba al ritmo de la música" data-src="img/galeria/fotos/59.webp" data-txt="Over 21 · Foto: NBM Experience Studio">
+          <img src="img/galeria/mini/59.webp" alt="Brazos arriba al ritmo de la música" width="480" height="600" loading="lazy" decoding="async">
+          <figcaption class="pie-foto">Over 21</figcaption>
+        </figure>
+        <a class="marco tile-ig ancha" style="--w:1.4" href="https://www.instagram.com/nila.rooftop/" target="_blank" rel="noopener">
+          <span class="dentro">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+            <b>@nila.rooftop</b>
+            <em>33 mil personas ya nos siguen. Las fotos nuevas salen ahí primero.</em>
+            <u>Ver el perfil</u>
+          </span>
+        </a>
+      </div>
     </div>
   </div>
 </section>
@@ -592,6 +813,8 @@ mover();
     const f = fotos[indice];
     abierto.querySelector('img').src = f.dataset.src;
     abierto.querySelector('.rotulo').textContent = f.dataset.txt + '  ·  ' + (indice+1) + ' de ' + fotos.length;
+    const sig = fotos[(indice+1) % fotos.length];   // la siguiente ya queda descargada
+    if (sig && sig !== f) new Image().src = sig.dataset.src;
   }
   function abre(i){
     fotos = fotosVisibles();
@@ -631,6 +854,92 @@ mover();
     f.addEventListener('click', abrirDesde);
     f.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' '){ e.preventDefault(); abrirDesde(); } });
   });
+})();
+
+/* ── Mosaico vivo: la foto más cercana al mouse se agranda y sus vecinas
+   ceden espacio; en celular se destaca la foto que pasa por el centro. ── */
+(function mosaico(){
+  const filas = $$('.fila');
+  if (!filas.length) return;
+  const quieto = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const celular = matchMedia('(max-width: 760px)');
+  const conMouse = matchMedia('(hover: hover) and (pointer: fine)');
+  const ALCANCE = 0.32, CRECE = 1.9;
+
+  function suelta(fila){
+    fila.classList.remove('enfoque');
+    $$('.marco', fila).forEach(m => { m.style.flexGrow = ''; m.classList.remove('activa'); paneo(m); });
+  }
+  // Los centros se calculan con los pesos base (no con el ancho animado del
+  // momento), para que el efecto no se persiga a sí mismo mientras crece.
+  function centros(fila){
+    const ms = $$('.marco', fila);
+    const pesos = ms.map(m => parseFloat(m.style.getPropertyValue('--w')) || 1);
+    const total = pesos.reduce((a, b) => a + b, 0);
+    let acum = 0;
+    return ms.map((m, i) => { const c = (acum + pesos[i] / 2) / total; acum += pesos[i]; return { m, w: pesos[i], c }; });
+  }
+  // La foto activa se desplaza unos pixeles hacia donde está el mouse.
+  function paneo(m, px, py){
+    const img = m.querySelector('img'); if (!img) return;
+    if (px == null){ img.style.removeProperty('--mx'); img.style.removeProperty('--my'); return; }
+    img.style.setProperty('--mx', ((0.5 - px) * 5).toFixed(2) + '%');
+    img.style.setProperty('--my', ((0.5 - py) * 5).toFixed(2) + '%');
+  }
+  function enfoca(fila, x){   // x: posición relativa 0–1 dentro de la fila
+    let mejor = null, dmin = Infinity;
+    centros(fila).forEach(t => {
+      const d = Math.abs(x - t.c);
+      const k = Math.max(0, 1 - d / ALCANCE);
+      if (!quieto) t.m.style.flexGrow = (t.w * (1 + CRECE * k * k)).toFixed(3);
+      if (d < dmin){ dmin = d; mejor = t.m; }
+    });
+    fila.classList.add('enfoque');
+    $$('.marco', fila).forEach(m => { m.classList.toggle('activa', m === mejor); if (m !== mejor) paneo(m); });
+    return mejor;
+  }
+
+  filas.forEach(fila => {
+    let x = 0, cx = 0, cy = 0, pedido = false;
+    fila.addEventListener('pointermove', e => {
+      if (e.pointerType !== 'mouse' || celular.matches) return;
+      const r = fila.getBoundingClientRect();
+      x = (e.clientX - r.left) / r.width; cx = e.clientX; cy = e.clientY;
+      if (!pedido){ pedido = true; requestAnimationFrame(() => {
+        pedido = false;
+        const m = enfoca(fila, x);
+        if (m && !quieto){ const q = m.getBoundingClientRect(); paneo(m, (cx - q.left) / q.width, (cy - q.top) / q.height); }
+      }); }
+    });
+    fila.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse') suelta(fila); });
+    // Teclado: al tabular, la foto enfocada se agranda igual que con el mouse.
+    fila.addEventListener('focusin', e => {
+      if (celular.matches) return;
+      const t = centros(fila).find(t => t.m.contains(e.target));
+      if (t) enfoca(fila, t.c);
+    });
+    fila.addEventListener('focusout', e => { if (!fila.contains(e.relatedTarget)) suelta(fila); });
+  });
+
+  // Celular: sin mouse, se destaca la foto que cruza la franja central.
+  let io = null;
+  function modo(){
+    filas.forEach(suelta);
+    if (io){ io.disconnect(); io = null; }
+    if (!celular.matches || conMouse.matches || !('IntersectionObserver' in window)) return;
+    // De las que cruzan la franja central, se destaca solo la más cercana al centro.
+    const enFranja = new Set();
+    io = new IntersectionObserver(es => {
+      es.forEach(en => en.isIntersecting ? enFranja.add(en.target) : enFranja.delete(en.target));
+      const medio = innerHeight / 2;
+      let mejor = null, dmin = Infinity;
+      enFranja.forEach(m => { const r = m.getBoundingClientRect(); const d = Math.abs(r.top + r.height / 2 - medio); if (d < dmin){ dmin = d; mejor = m; } });
+      $$('.fila .marco').forEach(m => m.classList.toggle('activa', m === mejor));
+    }, { rootMargin:'-42% 0px -42% 0px' });
+    $$('.fila .marco').forEach(m => io.observe(m));
+  }
+  modo();
+  (celular.addEventListener ? celular.addEventListener('change', modo) : celular.addListener(modo));
 })();
 
 window.__galListo = true;

@@ -850,10 +850,10 @@ a.card:hover{ background:var(--ground-3); }
 <header class="hero" id="inicio">
   <div class="hero-bg" aria-hidden="true"><i></i></div>
   <div class="hero-video" aria-hidden="true">
-    <video autoplay muted loop playsinline preload="auto" poster="video/hero-terraza-poster.webp" disablepictureinpicture tabindex="-1">
+    <video muted loop playsinline preload="none" poster="video/hero-terraza-poster.webp" disablepictureinpicture tabindex="-1">
       <source src="video/hero-terraza.mp4" type="video/mp4">
     </video>
-    <video autoplay muted loop playsinline preload="auto" poster="video/hero-comida-poster.webp" disablepictureinpicture tabindex="-1">
+    <video muted loop playsinline preload="none" poster="video/hero-comida-poster.webp" disablepictureinpicture tabindex="-1">
       <source src="video/hero-comida.mp4" type="video/mp4">
     </video>
   </div>
@@ -938,9 +938,9 @@ a.card:hover{ background:var(--ground-3); }
 
     <div class="two rise">
       <div class="amb">
-        <img class="amb-img on" src="img/ambientes/terraza-1.webp" alt="Barra iluminada y salón de la terraza" loading="lazy">
-        <img class="amb-img" data-src="img/ambientes/terraza-2.webp" alt="Mesas junto a los ventanales, con Cuenca de fondo">
-        <img class="amb-img" data-src="img/ambientes/terraza-3.webp" alt="Lounge de la terraza entre palmeras y calefactores">
+        <img class="amb-img on" src="img/ambientes/tarjeta/terraza-1.webp" data-full="img/ambientes/terraza-1.webp" alt="Barra iluminada y salón de la terraza" loading="lazy">
+        <img class="amb-img" data-src="img/ambientes/tarjeta/terraza-2.webp" data-full="img/ambientes/terraza-2.webp" alt="Mesas junto a los ventanales, con Cuenca de fondo">
+        <img class="amb-img" data-src="img/ambientes/tarjeta/terraza-3.webp" data-full="img/ambientes/terraza-3.webp" alt="Lounge de la terraza entre palmeras y calefactores">
         <div class="amb-puntos" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
         <div class="amb-in">
           <p class="n">Ambiente 01</p>
@@ -950,10 +950,10 @@ a.card:hover{ background:var(--ground-3); }
         </div>
       </div>
       <div class="amb">
-        <img class="amb-img on" src="img/ambientes/interior-1.webp" alt="Mesas del interior con vista hacia la terraza" loading="lazy">
-        <img class="amb-img" data-src="img/ambientes/interior-2.webp" alt="Barra interior iluminada, con la ciudad por la ventana">
-        <img class="amb-img" data-src="img/ambientes/interior-3.webp" alt="Salón interior con reservados y luces de colores">
-        <img class="amb-img" data-src="img/ambientes/interior-4.webp" alt="Pista de baile del interior">
+        <img class="amb-img on" src="img/ambientes/tarjeta/interior-1.webp" data-full="img/ambientes/interior-1.webp" alt="Mesas del interior con vista hacia la terraza" loading="lazy">
+        <img class="amb-img" data-src="img/ambientes/tarjeta/interior-2.webp" data-full="img/ambientes/interior-2.webp" alt="Barra interior iluminada, con la ciudad por la ventana">
+        <img class="amb-img" data-src="img/ambientes/tarjeta/interior-3.webp" data-full="img/ambientes/interior-3.webp" alt="Salón interior con reservados y luces de colores">
+        <img class="amb-img" data-src="img/ambientes/tarjeta/interior-4.webp" data-full="img/ambientes/interior-4.webp" alt="Pista de baile del interior">
         <div class="amb-puntos" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
         <div class="amb-in">
           <p class="n">Ambiente 02</p>
@@ -1644,7 +1644,9 @@ addEventListener('resize', revisaRise, { passive:true });
 /* ══════════════════════════════════════════════════════════
    5c) Ambientes: fotos que rotan en la tarjeta + visor
    Cada foto se descarga recién cuando está por mostrarse, así la
-   sección no suma peso a la carga inicial de la página.
+   sección no suma peso a la carga inicial de la página. La tarjeta
+   usa la versión de 1000 px; la de 1400 px (data-full) solo se
+   pide si alguien abre el visor.
    ══════════════════════════════════════════════════════════ */
 (function ambientes(){
   const tarjetas = $$('.amb');
@@ -1723,7 +1725,7 @@ addEventListener('resize', revisaRise, { passive:true });
 
     function ir(j){
       k = (j + fotos.length) % fotos.length;
-      img.src = fuente(fotos[k]);
+      img.src = fotos[k].dataset.full || fuente(fotos[k]);   // el visor usa la versión grande
       img.alt = fotos[k].alt;
       cap.textContent = fotos[k].alt;
       tit.textContent = titulo + ' · ' + (k + 1) + ' / ' + fotos.length;
@@ -1965,19 +1967,27 @@ addEventListener('resize', revisaRise, { passive:true });
   if (!cinta.length) return;
 
   if (menos.matches){ cinta.forEach(v => { v.pause(); v.removeAttribute('autoplay'); }); return; }
+  /* Con ahorro de datos se queda el póster: los videos pesan ~2 MB. */
+  if (navigator.connection && navigator.connection.saveData) return;
 
   const arranca = () => cinta.forEach(v => { const p = v.play(); if (p) p.catch(() => {}); });
 
-  /* Safari en ahorro de energía y algún Android niegan el arranque hasta
+  /* Los videos (preload="none") recién se piden cuando la página terminó
+     de cargar: así no compiten con el texto y las fotos de la portada.
+     Safari en ahorro de energía y algún Android niegan el arranque hasta
      que hay un gesto. El primero que haga el visitante sirve. */
-  arranca();
   const alPrimerGesto = () => {
     arranca();
     ['touchstart','click','keydown','scroll'].forEach(e =>
       window.removeEventListener(e, alPrimerGesto));
   };
-  ['touchstart','click','keydown','scroll'].forEach(e =>
-    window.addEventListener(e, alPrimerGesto, { once:false, passive:true }));
+  const cargada = () => {
+    arranca();
+    ['touchstart','click','keydown','scroll'].forEach(e =>
+      window.addEventListener(e, alPrimerGesto, { once:false, passive:true }));
+  };
+  if (document.readyState === 'complete') cargada();
+  else window.addEventListener('load', cargada, { once:true });
 
   /* Pausa fuera de pantalla. Se mide directamente en cada desplazamiento
      porque IntersectionObserver no siempre dispara en vistas previas. */

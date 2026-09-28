@@ -1,12 +1,15 @@
 CARPETA DE LA GALERÍA
 =====================
-Aquí van las fotos que se muestran en galeria.html
+Fotos que se muestran en galeria.html (hoy son 60).
 
-Para AÑADIR fotos nuevas sin tocar código, nómbralas así:
-  01.jpg, 02.jpg, 03.jpg ... hasta 12.jpg
+  mini/NN.webp   miniatura 480x600 que se ve en el mosaico (~26 KB)
+  fotos/NN.webp  versión grande (1080 px) que solo se descarga al abrir el visor
 
-La página busca esos doce nombres y muestra solo los que existan.
-Si falta uno, simplemente no aparece: no deja hueco ni da error.
+Para sumar una foto:
+  1. Crear las dos versiones con el mismo número (61, 62, ...).
+  2. Agregar su línea (peso, pie, texto alternativo) en herramientas/armar-galeria.js
+     y ajustar TAMANOS para que las filas sumen el total.
+  3. Correr: node herramientas/armar-galeria.js galeria.html
 
-Formatos aceptados: .jpg
-Tamaño recomendado: 1200 px de ancho como mínimo.
+Los originales en JPG están en fuentes/galeria-instagram/ (no se publican).
+risotto, ensalada, tommax y aniversario.webp son de la galería anterior.

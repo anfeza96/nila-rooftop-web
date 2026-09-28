@@ -19,6 +19,8 @@ tsconfig.node.tsbuildinfo
 Videos portada NILA/
 _respaldo previo/
 fotos nuevas/
+# Originales en JPG de la galería (21 MB); el sitio usa las versiones webp.
+fuentes/galeria-instagram/
 
 # Configuración local de Claude Code, salvo los servidores de prueba.
 .claude/*

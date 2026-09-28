@@ -24,6 +24,12 @@ GitHub, así que todo lo de aquí se puede ver ahí.
 2. Desde la raíz del repo: `node herramientas/armar-carta.js`
 3. Probar con el servidor local, hacer commit y push. Vercel publica solo.
 
+## Galería
+
+`galeria.html` muestra un mosaico de 60 fotos (`img/galeria/mini/` y `img/galeria/fotos/`).
+Las filas se generan con `node herramientas/armar-galeria.js galeria.html`; cómo sumar
+fotos está en `img/galeria/LEEME.txt`.
+
 ## Probar el sitio en local
 
 Abrir los `.html` con doble clic (`file://`) da resultados falsos.
@@ -47,5 +53,4 @@ navegador lo bloqueará.
 ## Pendientes conocidos
 
 - **Clover Club** (carta, Coctelería clásica): tiene los mismos ingredientes que el Old Fashioned. Falta la receta real.
-- **Galería**: acepta fotos `img/galeria/01.jpg` … `12.jpg`; hoy no hay ninguna (ver `img/galeria/LEEME.txt`).
 - **`og:url`**: no está en ninguna página; ahora que existe el dominio, se puede agregar `https://nilarooftop.com/…`.
