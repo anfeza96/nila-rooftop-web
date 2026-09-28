@@ -170,7 +170,6 @@ h1,h2,h3,h4{ font-family:var(--f-brand); font-weight:300; margin:0; line-height:
    largo de TODA la página, incluidas las claras. */
 .ribbon{ background:rgba(31,23,16,.72) !important; backdrop-filter:blur(3px); }
 .reserva, .contacto{ background:rgba(31,23,16,.66) !important; backdrop-filter:blur(3px); }
-.amb{ background:rgba(21,15,11,.58) !important; }
 .card{ background:rgba(31,23,16,.62) !important; }
 .card-form{ background:rgba(21,15,11,.70) !important; backdrop-filter:blur(4px); }
 .foot{ background:rgba(21,15,11,.74) !important; }
@@ -368,6 +367,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .shot.ph img{ display:none; }
 .shot.ph img{ display:none; }
 .shot.ph{ background:linear-gradient(150deg,#C98B52,#A0492E 55%,#3A1B12); }
+.amb.ph .amb-img{ display:none; }
 .shot .ph-t{ display:none; position:absolute; inset:0; flex-direction:column; align-items:center; justify-content:center; gap:8px; text-align:center; padding:18px; }
 .shot.ph .ph-t{ display:flex; }
 .shot .ph-t span{ font-family:var(--f-brand); font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:rgba(244,233,218,.8); }
@@ -828,7 +828,7 @@ a.card:hover{ background:var(--ground-3); }
   <div class="wrap ribbon-in">
     <div class="cell"><p class="k">Hoy</p><p class="v" id="c-hoy">—</p></div>
     <div class="cell"><p class="k">Dónde</p><p class="v">Cardeca Business Center</p></div>
-    <div class="cell"><p class="k">Google</p><p class="v"><a href="https://maps.app.goo.gl/pejtRUZ2eF2BZgEW6" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">4,1 ★ <span style="color:var(--faint);font-size:.75em">111 opiniones</span></a></p></div>
+    <div class="cell"><p class="k">Google</p><p class="v"><a href="https://maps.app.goo.gl/pejtRUZ2eF2BZgEW6" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">4,1 ★ <span style="color:var(--faint);font-size:.75em">112 opiniones</span></a></p></div>
     <div class="cell"><p class="k">Reservas</p><p class="v" id="c-tel"><a href="https://wa.me/593984958228" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">+593 98 495 8228</a></p></div>
   </div>
 </div>
@@ -1505,9 +1505,9 @@ function revisaRise(){
    ══════════════════════════════════════════════════════════ */
 (function fotos(){
   let faltan = 0, total = 0;
-  $$('.shot img').forEach(img => {
+  $$('.shot img, .amb-img').forEach(img => {
     total++;
-    const marcar = () => { img.closest('.shot').classList.add('ph'); faltan++; resumen(); };
+    const marcar = () => { img.closest('.shot, .amb').classList.add('ph'); faltan++; resumen(); };
     if (img.complete){ if (!img.naturalWidth) marcar(); }
     else img.addEventListener('error', marcar, {once:true});
   });
