@@ -385,10 +385,14 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   min-height:clamp(280px,32vw,380px); display:flex; align-items:flex-end;
   background:linear-gradient(150deg,#C98B52,#A0492E 55%,#3A1B12);
 }
+/* Cada tarjeta apila sus fotos y el JS las alterna con un fundido. Sin
+   JS se queda la primera (la única que trae src desde el HTML). */
 .amb-img{
   position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0;
-  transition:scale .8s cubic-bezier(.2,.7,.3,1), filter .8s ease;
+  opacity:0;
+  transition:opacity 1.2s ease, scale .8s cubic-bezier(.2,.7,.3,1), filter .8s ease;
 }
+.amb-img.on{ opacity:1; }
 .amb::after{
   content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
   background:linear-gradient(170deg, rgba(21,15,11,.30) 0%, rgba(21,15,11,.70) 55%, rgba(12,8,5,.92) 100%);
@@ -398,6 +402,61 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .amb .n{ font-family:var(--f-brand); font-size:10px; letter-spacing:.3em; text-transform:uppercase; color:var(--gold); margin:0 0 14px; }
 .amb h3{ font-size:clamp(23px,3vw,31px); margin:0 0 12px; color:var(--cream); }
 .amb p{ margin:0; color:rgba(244,233,218,.82); font-size:15px; }
+
+/* Barritas tipo historia de Instagram: cuántas fotos hay y cuál se ve */
+.amb-puntos{ position:absolute; z-index:3; top:14px; left:16px; right:16px; display:none; gap:5px; pointer-events:none; }
+.amb-puntos i{ flex:1; height:2px; border-radius:2px; background:rgba(244,233,218,.3); transition:background .4s; }
+.amb-puntos i.on{ background:var(--gold); }
+.amb-ver{
+  display:none; align-items:center; gap:9px; margin-top:20px; min-height:44px; cursor:pointer;
+  font-family:var(--f-brand); font-size:11px; letter-spacing:.2em; text-transform:uppercase; font-weight:500;
+  background:var(--gold); color:#1B1408; border:0; padding:12px 20px; border-radius:999px;
+  transition:transform .25s cubic-bezier(.2,.8,.2,1);
+}
+.amb-ver svg{ width:15px; height:15px; }
+.amb:hover .amb-ver, .amb-ver:focus-visible{ transform:translateX(5px); }
+.js .amb{ cursor:zoom-in; }
+.js .amb-puntos{ display:flex; }
+.js .amb-ver{ display:inline-flex; }
+.amb.ph .amb-puntos, .amb.ph .amb-ver{ display:none; }
+.js .amb.ph{ cursor:default; }
+
+/* ── Visor de fotos a pantalla completa ── */
+.visor{
+  position:fixed; inset:0; z-index:200; background:rgba(12,8,5,.97);
+  backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+  display:flex; flex-direction:column; align-items:center; gap:14px;
+  padding:calc(70px + env(safe-area-inset-top,0px)) 16px calc(18px + env(safe-area-inset-bottom,0px));
+}
+.visor-tit{
+  position:absolute; top:calc(26px + env(safe-area-inset-top,0px)); left:20px; margin:0;
+  font-family:var(--f-brand); font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:var(--gold);
+}
+.visor-cerrar{
+  position:absolute; top:calc(14px + env(safe-area-inset-top,0px)); right:14px; width:44px; height:44px;
+  border-radius:999px; background:transparent; border:1px solid var(--line); color:var(--text); font-size:22px; line-height:1; cursor:pointer;
+}
+.visor-fig{ margin:0; flex:1; min-height:0; width:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; touch-action:pan-y; }
+.visor-fig img{
+  max-width:min(1400px,100%); max-height:calc(100vh - 250px); max-height:calc(100dvh - 250px);
+  width:auto; height:auto; object-fit:contain; border-radius:3px; user-select:none; -webkit-user-drag:none;
+}
+.visor-fig figcaption{ font-size:13.5px; color:var(--muted); text-align:center; max-width:60ch; }
+.visor-flecha{
+  position:absolute; top:50%; translate:0 -50%; width:46px; height:46px; border-radius:50%;
+  border:1px solid var(--line); background:rgba(21,15,11,.65); color:var(--text); cursor:pointer;
+  display:flex; align-items:center; justify-content:center; transition:background .2s, border-color .2s, color .2s;
+}
+.visor-flecha:hover{ background:var(--gold); border-color:var(--gold); color:#1B1408; }
+.visor-flecha svg{ width:18px; height:18px; }
+.visor-flecha.ant{ left:12px; }
+.visor-flecha.sig{ right:12px; }
+.visor-minis{ display:flex; gap:8px; max-width:100%; overflow-x:auto; padding:4px; scrollbar-width:none; flex:none; }
+.visor-minis::-webkit-scrollbar{ display:none; }
+.visor-minis button{ flex:none; width:76px; height:52px; padding:0; border:0; border-radius:3px; overflow:hidden; cursor:pointer; opacity:.45; background:var(--ground-3); transition:opacity .2s; }
+.visor-minis button:hover{ opacity:.8; }
+.visor-minis button[aria-current]{ opacity:1; outline:2px solid var(--gold); outline-offset:2px; }
+.visor-minis img{ width:100%; height:100%; object-fit:cover; }
 
 .facts{ margin-top:6px; }
 .fact{ display:grid; grid-template-columns:auto 1fr; gap:18px; padding:20px 0; border-top:1px solid var(--line-soft); }
@@ -879,19 +938,28 @@ a.card:hover{ background:var(--ground-3); }
 
     <div class="two rise">
       <div class="amb">
-        <img class="amb-img" src="img/ambiente-terraza.webp" alt="Terraza de NILA ROOFTOP" loading="lazy">
+        <img class="amb-img on" src="img/ambientes/terraza-1.webp" alt="Barra iluminada y salón de la terraza" loading="lazy">
+        <img class="amb-img" data-src="img/ambientes/terraza-2.webp" alt="Mesas junto a los ventanales, con Cuenca de fondo">
+        <img class="amb-img" data-src="img/ambientes/terraza-3.webp" alt="Lounge de la terraza entre palmeras y calefactores">
+        <div class="amb-puntos" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
         <div class="amb-in">
           <p class="n">Ambiente 01</p>
           <h3>Terraza</h3>
           <p>Espacio cerrado, no a cielo abierto — la ciudad se ve completa a través de ventanales de piso a techo. Aquí aparece la magia: show de luces profesional, una barra grande, mesas en lounge y la consola del DJ. Es la zona que primero se llena; si vienes por el atardecer, reserva.</p>
+          <button type="button" class="amb-ver">Ver las 3 fotos <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
         </div>
       </div>
       <div class="amb">
-        <img class="amb-img" src="img/ambiente-interior.webp" alt="Interior de NILA ROOFTOP" loading="lazy">
+        <img class="amb-img on" src="img/ambientes/interior-1.webp" alt="Mesas del interior con vista hacia la terraza" loading="lazy">
+        <img class="amb-img" data-src="img/ambientes/interior-2.webp" alt="Barra interior iluminada, con la ciudad por la ventana">
+        <img class="amb-img" data-src="img/ambientes/interior-3.webp" alt="Salón interior con reservados y luces de colores">
+        <img class="amb-img" data-src="img/ambientes/interior-4.webp" alt="Pista de baile del interior">
+        <div class="amb-puntos" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
         <div class="amb-in">
           <p class="n">Ambiente 02</p>
           <h3>Interior</h3>
           <p>Mesa puesta, luz cálida y música al volumen justo para oírse sin levantar la voz. Para cenar sin prisa, para una mesa larga, o para cuando Cuenca decide llover.</p>
+          <button type="button" class="amb-ver">Ver las 4 fotos <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
         </div>
       </div>
     </div>
@@ -1505,7 +1573,8 @@ function revisaRise(){
    ══════════════════════════════════════════════════════════ */
 (function fotos(){
   let faltan = 0, total = 0;
-  $$('.shot img, .amb-img').forEach(img => {
+  // En Ambientes solo la primera foto trae src; las demás se cargan al rotar
+  $$('.shot img, .amb-img[src]').forEach(img => {
     total++;
     const marcar = () => { img.closest('.shot, .amb').classList.add('ph'); faltan++; resumen(); };
     if (img.complete){ if (!img.naturalWidth) marcar(); }
@@ -1571,6 +1640,141 @@ function revisaRise(){
 
 addEventListener('scroll', revisaRise, { passive:true });
 addEventListener('resize', revisaRise, { passive:true });
+
+/* ══════════════════════════════════════════════════════════
+   5c) Ambientes: fotos que rotan en la tarjeta + visor
+   Cada foto se descarga recién cuando está por mostrarse, así la
+   sección no suma peso a la carga inicial de la página.
+   ══════════════════════════════════════════════════════════ */
+(function ambientes(){
+  const tarjetas = $$('.amb');
+  if (!tarjetas.length) return;
+  const quieto = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const carga = img => { if (!img.getAttribute('src') && img.dataset.src) img.src = img.dataset.src; };
+  const fuente = img => img.getAttribute('src') || img.dataset.src;
+  const FLECHA = d => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="' + d + '"/></svg>';
+
+  tarjetas.forEach((card, n) => {
+    const fotos = $$('.amb-img', card), puntos = $$('.amb-puntos i', card);
+    let i = 0, visible = !('IntersectionObserver' in window), pausa = false;
+
+    const mostrar = k => {
+      i = (k + fotos.length) % fotos.length;
+      carga(fotos[i]);
+      carga(fotos[(i + 1) % fotos.length]);        // la siguiente ya viene en camino
+      fotos.forEach((f, j) => f.classList.toggle('on', j === i));
+      puntos.forEach((p, j) => p.classList.toggle('on', j === i));
+    };
+    card._mostrar = mostrar;
+
+    card.addEventListener('click', () => {
+      if (card.classList.contains('ph')) return;
+      abrirVisor(card, i, $('.amb-ver', card));
+    });
+
+    if (quieto || fotos.length < 2) return;
+    if (!visible){
+      new IntersectionObserver(es => es.forEach(e => {
+        visible = e.isIntersecting;
+        if (visible) carga(fotos[(i + 1) % fotos.length]);
+      }), { threshold:.25 }).observe(card);
+    }
+    card.addEventListener('mouseenter', () => pausa = true);
+    card.addEventListener('mouseleave', () => pausa = false);
+    card.addEventListener('focusin',  () => pausa = true);
+    card.addEventListener('focusout', () => pausa = false);
+
+    // Las dos tarjetas no cambian a la vez: la segunda arranca desfasada
+    setTimeout(() => setInterval(() => {
+      if (visible && !pausa && !document.hidden && !card.classList.contains('ph')) mostrar(i + 1);
+    }, 5500), n * 2750);
+  });
+
+  function abrirVisor(card, desde, origen){
+    const fotos = $$('.amb-img', card);
+    const titulo = $('h3', card).textContent;
+    let k = desde, deslizo = false, x0 = null;
+
+    const v = document.createElement('div');
+    v.className = 'visor';
+    v.setAttribute('role', 'dialog');
+    v.setAttribute('aria-modal', 'true');
+    v.setAttribute('aria-label', 'Fotos del ambiente ' + titulo);
+    v.innerHTML =
+      '<p class="visor-tit" aria-live="polite"></p>' +
+      '<button type="button" class="visor-cerrar" aria-label="Cerrar">&times;</button>' +
+      '<figure class="visor-fig"><img alt=""><figcaption></figcaption></figure>' +
+      '<button type="button" class="visor-flecha ant" aria-label="Foto anterior">' + FLECHA('M15 5l-7 7 7 7') + '</button>' +
+      '<button type="button" class="visor-flecha sig" aria-label="Foto siguiente">' + FLECHA('M9 5l7 7-7 7') + '</button>' +
+      '<div class="visor-minis"></div>';
+    const fig = $('.visor-fig', v), img = $('img', fig), cap = $('figcaption', fig);
+    const tit = $('.visor-tit', v), minis = $('.visor-minis', v);
+
+    fotos.forEach((f, j) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.setAttribute('aria-label', 'Foto ' + (j + 1) + ': ' + f.alt);
+      const m = document.createElement('img');
+      m.alt = ''; m.src = fuente(f);
+      b.appendChild(m);
+      b.addEventListener('click', () => ir(j));
+      minis.appendChild(b);
+    });
+
+    function ir(j){
+      k = (j + fotos.length) % fotos.length;
+      img.src = fuente(fotos[k]);
+      img.alt = fotos[k].alt;
+      cap.textContent = fotos[k].alt;
+      tit.textContent = titulo + ' · ' + (k + 1) + ' / ' + fotos.length;
+      $$('button', minis).forEach((b, j2) => {
+        if (j2 === k){ b.setAttribute('aria-current', 'true'); b.scrollIntoView({ block:'nearest', inline:'nearest' }); }
+        else b.removeAttribute('aria-current');
+      });
+    }
+
+    function cerrar(){
+      v.remove();
+      document.documentElement.style.overflow = '';
+      removeEventListener('keydown', teclas);
+      card._mostrar(k);                           // la tarjeta queda en la última foto vista
+      if (origen) origen.focus({ preventScroll:true });
+    }
+
+    function teclas(e){
+      if (e.key === 'Escape') cerrar();
+      else if (e.key === 'ArrowRight') ir(k + 1);
+      else if (e.key === 'ArrowLeft') ir(k - 1);
+      else if (e.key === 'Tab'){
+        // el foco no se escapa del visor mientras está abierto
+        const bs = $$('button', v), pri = bs[0], ult = bs[bs.length - 1];
+        if (e.shiftKey && document.activeElement === pri){ e.preventDefault(); ult.focus(); }
+        else if (!e.shiftKey && document.activeElement === ult){ e.preventDefault(); pri.focus(); }
+      }
+    }
+
+    $('.visor-cerrar', v).addEventListener('click', cerrar);
+    $('.visor-flecha.ant', v).addEventListener('click', () => ir(k - 1));
+    $('.visor-flecha.sig', v).addEventListener('click', () => ir(k + 1));
+    // Tocar fuera de la foto cierra; deslizar sobre ella cambia de foto
+    v.addEventListener('click', e => {
+      if (deslizo){ deslizo = false; return; }
+      if (e.target === v || e.target === fig) cerrar();
+    });
+    fig.addEventListener('pointerdown', e => { x0 = e.clientX; });
+    fig.addEventListener('pointerup', e => {
+      if (x0 === null) return;
+      const dx = e.clientX - x0; x0 = null;
+      if (Math.abs(dx) > 45){ deslizo = true; ir(k + (dx < 0 ? 1 : -1)); }
+    });
+
+    document.body.appendChild(v);
+    document.documentElement.style.overflow = 'hidden';
+    addEventListener('keydown', teclas);
+    ir(k);
+    $('.visor-cerrar', v).focus();
+  }
+})();
 
 (function lightbox(){
   const zona = $('#gal');
