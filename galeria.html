@@ -329,7 +329,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .fila .marco.activa img, .js .fila .marco.activa img{ scale:1.06; filter:saturate(1.12) brightness(1.05); }
 .marco.activa .pie-foto{ opacity:1; }
 .marco.activa::before{ transform:translateX(130%); }
-@media (max-width:760px){
+/* Cuadrícula para pantallas táctiles (y ventanas muy angostas). Con mouse,
+   aunque la ventana sea angosta, se mantienen las filas con el acordeón. */
+@media (max-width:760px) and (hover:none), (max-width:480px){
   .gal{ display:grid; grid-template-columns:repeat(3,1fr); grid-auto-rows:clamp(110px,31vw,200px); grid-auto-flow:dense; gap:6px; }
   .fila, .fila.baja{ display:contents; }
   .fila .marco{ flex:none; transition:none; }
@@ -881,7 +883,8 @@ mover();
   const filas = $$('.fila');
   if (!filas.length) return;
   const quieto = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const celular = matchMedia('(max-width: 760px)');
+  // Mismo criterio que el CSS: cuadrícula en táctil o en ventanas muy angostas.
+  const celular = matchMedia('(max-width: 760px) and (hover: none), (max-width: 480px)');
   const conMouse = matchMedia('(hover: hover) and (pointer: fine)');
   const PORCION = 0.42;   // parte del ancho de la fila que ocupa la foto abierta
 
