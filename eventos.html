@@ -546,20 +546,16 @@ function marcoFlyer(e, conCinta){
   return cinta + '<div class="flyer' + (e.imagen ? '' : ' sin-foto') + '">' + img + HUECO + '</div>';
 }
 
-function enlaceReserva(e){
-  const msg = '¡Hola ' + NOMBRE + '! Quiero reservar para "' + e.titulo + '" el ' + fechaLarga(e) + '.';
-  return 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(msg);
-}
+/* Regla para TODOS los eventos, presentes y futuros: el botón es siempre
+   "Consultar acceso" y abre WhatsApp con la consulta ya escrita. Cada
+   evento tiene su propia forma de entrar (preventa, tickets en otra
+   plataforma, invitación, lista), así que la casa confirma el acceso
+   por chat en vez de prometer una reserva directa. */
+const BOTON_EVENTO = 'Consultar acceso';
 
 function enlaceConsulta(e){
   const msg = '¡Hola ' + NOMBRE + '! Quiero más información sobre "' + e.titulo + '" el ' + fechaLarga(e) + '.';
   return 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(msg);
-}
-
-// Eventos "Solo por invitación" no aceptan reservas abiertas por WhatsApp;
-// se ofrece un enlace de consulta en vez del botón normal de "Reservar".
-function esInvitacion(e){
-  return /invitaci/i.test(e.entrada || '');
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -588,9 +584,7 @@ function pintar(){
             ? '<div class="gen" style="margin-bottom:20px">' + e.generos.map(g => '<span>' + escapa(g) + '</span>').join('') + '</div>'
             : '') +
           '<div style="display:flex;flex-wrap:wrap;gap:11px">' +
-            (esInvitacion(e)
-              ? '<a class="btn btn-solid" href="' + enlaceConsulta(e) + '" target="_blank" rel="noopener">Consultar acceso</a>'
-              : '<a class="btn btn-solid" href="' + enlaceReserva(e) + '" target="_blank" rel="noopener">Reservar para esta noche</a>') +
+            '<a class="btn btn-solid" href="' + enlaceConsulta(e) + '" target="_blank" rel="noopener">' + BOTON_EVENTO + '</a>' +
             '<a class="btn btn-line" href="https://www.instagram.com/nila.rooftop/" target="_blank" rel="noopener">Ver en Instagram</a>' +
           '</div>' +
         '</div>' +
@@ -606,7 +600,9 @@ function pintar(){
     zonaP.innerHTML =
       '<p class="eyebrow">Agenda</p>' +
       '<h2 class="h2">Y después.</h2>' +
-      '<div class="lista">' + resto.map(tarjeta).join('') + '</div>';
+      // map() pasa el índice como 2º argumento: sin la flecha, tarjeta() lo
+      // leía como "esPasado" y solo el primer evento de la lista tenía botón
+      '<div class="lista">' + resto.map(e => tarjeta(e)).join('') + '</div>';
   } else if (proximos.length){
     zonaP.innerHTML =
       '<div class="vacio"><b>Por ahora solo esa fecha</b>' +
@@ -638,9 +634,7 @@ function tarjeta(e, esPasado){
         (e.generos && e.generos.length
           ? '<div class="gen">' + e.generos.map(g => '<span>' + escapa(g) + '</span>').join('') + '</div>'
           : '') +
-        (esPasado ? '' : esInvitacion(e)
-          ? '<a class="btn btn-line btn-sm" style="margin-top:8px" href="' + enlaceConsulta(e) + '" target="_blank" rel="noopener">Consultar acceso</a>'
-          : '<a class="btn btn-line btn-sm" style="margin-top:8px" href="' + enlaceReserva(e) + '" target="_blank" rel="noopener">Reservar</a>') +
+        (esPasado ? '' : '<a class="btn btn-line btn-sm" style="margin-top:8px" href="' + enlaceConsulta(e) + '" target="_blank" rel="noopener">' + BOTON_EVENTO + '</a>') +
       '</div>' +
     '</div></article>';
 }
