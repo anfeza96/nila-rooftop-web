@@ -74,10 +74,15 @@ const TAMANOS = [6, 6, 7, 5, 6, 6, 7, 6, 6, 5];   // la última fila suma el rec
 if (TAMANOS.reduce((a, b) => a + b) !== fotos.length) throw new Error('las filas no suman ' + fotos.length);
 
 const esc = s => s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
-const figura = ([id, w, forma, pie, alt, cred], primeraFila) => {
-  const carga = primeraFila ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"';
+// Fila 1: carga inmediata. Fila 2: lazy nativo. Desde la 3: data-mini, que el script de la
+// página convierte en src recién cuando la fila está a ~500 px de verse.
+const figura = ([id, w, forma, pie, alt, cred], fila) => {
+  const mini = `img/galeria/mini/${id}.webp`;
+  const carga = fila === 0 ? `src="${mini}" loading="eager" fetchpriority="high"`
+              : fila === 1 ? `src="${mini}" loading="lazy"`
+              : `data-mini="${mini}"`;
   return `        <figure class="marco${forma ? ' ' + forma : ''}" style="--w:${w}" tabindex="0" role="button" aria-label="Ver foto: ${esc(alt)}" data-src="img/galeria/fotos/${id}.webp" data-txt="${esc(pie + cred)}">
-          <img src="img/galeria/mini/${id}.webp" alt="${esc(alt)}" width="480" height="600" ${carga} decoding="async">
+          <img ${carga} alt="${esc(alt)}" width="480" height="600" decoding="async">
           <figcaption class="pie-foto">${esc(pie)}</figcaption>
         </figure>`;
 };
@@ -95,7 +100,7 @@ const filas = TAMANOS.map((t, i) => {
   const grupo = fotos.slice(k, k += t);
   const ultima = i === TAMANOS.length - 1;
   return `      <div class="fila${i % 2 ? ' baja' : ''}">\n` +
-    grupo.map(f => figura(f, i === 0)).join('\n') + (ultima ? '\n' + IG : '') + '\n      </div>';
+    grupo.map(f => figura(f, i)).join('\n') + (ultima ? '\n' + IG : '') + '\n      </div>';
 });
 const bloque = '<div class="gal" id="gal">\n' + filas.join('\n') + '\n    </div>';
 

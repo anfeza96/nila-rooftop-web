@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>NILA ROOFTOP — Aquí todo late distinto</title>
 <meta name="description" content="NILA ROOFTOP — Cocina de autor, coctelería y noches en la terraza. Cardeca Business Center, Cuenca.">
-<link rel="icon" href="img/logo.jpg">
+<link rel="icon" href="img/logo.webp" type="image/webp">
 
 <meta property="og:title" content="NILA ROOFTOP">
 <meta property="og:description" content="Aquí todo late distinto. Cocina de autor, coctelería y noches en la terraza.">
@@ -21,7 +21,7 @@
   "name": "NILA ROOFTOP",
   "slogan": "Aquí todo late distinto",
   "description": "Rooftop en Cuenca con cocina de autor, coctelería y noches con DJ. Terraza e interior en el Cardeca Business Center.",
-  "image": "img/logo.jpg",
+  "image": "img/logo.webp",
   "servesCuisine": ["Cocina de autor", "Andina", "Peruana"],
   "priceRange": "$$",
   "telephone": "+593984958228",
@@ -850,10 +850,10 @@ a.card:hover{ background:var(--ground-3); }
 <header class="hero" id="inicio">
   <div class="hero-bg" aria-hidden="true"><i></i></div>
   <div class="hero-video" aria-hidden="true">
-    <video muted loop playsinline preload="none" poster="video/hero-terraza-poster.webp" disablepictureinpicture tabindex="-1">
+    <video autoplay muted loop playsinline preload="auto" poster="video/hero-terraza-poster.webp" disablepictureinpicture tabindex="-1">
       <source src="video/hero-terraza.mp4" type="video/mp4">
     </video>
-    <video muted loop playsinline preload="none" poster="video/hero-comida-poster.webp" disablepictureinpicture tabindex="-1">
+    <video autoplay muted loop playsinline preload="auto" poster="video/hero-comida-poster.webp" disablepictureinpicture tabindex="-1">
       <source src="video/hero-comida.mp4" type="video/mp4">
     </video>
   </div>
@@ -1019,11 +1019,11 @@ a.card:hover{ background:var(--ground-3); }
 
     <div class="promos-pista rise" id="promos-pista">
       <div class="promo-slide" role="group" aria-label="1 de 8">
-        <img src="img/promos/01-tomahawk.webp" alt="Tomahawk a la parrilla — NILA ROOFTOP" loading="eager">
+        <img src="img/promos/01-tomahawk.webp" alt="Tomahawk a la parrilla — NILA ROOFTOP" loading="lazy" decoding="async">
         <p class="etq">Tomahawk a la parrilla</p>
       </div>
       <div class="promo-slide" role="group" aria-label="2 de 8">
-        <img src="img/promos/02-burger-date.webp" alt="Burger date — NILA ROOFTOP" loading="eager">
+        <img src="img/promos/02-burger-date.webp" alt="Burger date — NILA ROOFTOP" loading="lazy" decoding="async">
         <p class="etq">Burger date</p>
       </div>
       <div class="promo-slide" role="group" aria-label="3 de 8">
@@ -1085,7 +1085,7 @@ a.card:hover{ background:var(--ground-3); }
       <div class="corp-carrusel rise">
         <div class="corp-pista" id="corp-pista">
         <div class="corp-slide" role="group" aria-label="1 de 6">
-          <img src="img/corporativos/01-cheers-grupo.webp" alt="Brindis del equipo Farmasi en Nila Signature Events" loading="eager">
+          <img src="img/corporativos/01-cheers-grupo.webp" alt="Brindis del equipo Farmasi en Nila Signature Events" loading="lazy" decoding="async">
         </div>
         <div class="corp-slide" role="group" aria-label="2 de 6">
           <img src="img/corporativos/03-brindis-microfono.webp" alt="Dinámica con micrófono durante el evento" loading="lazy">
@@ -1967,13 +1967,11 @@ addEventListener('resize', revisaRise, { passive:true });
   if (!cinta.length) return;
 
   if (menos.matches){ cinta.forEach(v => { v.pause(); v.removeAttribute('autoplay'); }); return; }
-  /* Con ahorro de datos se queda el póster: los videos pesan ~2 MB. */
-  if (navigator.connection && navigator.connection.saveData) return;
 
   const arranca = () => cinta.forEach(v => { const p = v.play(); if (p) p.catch(() => {}); });
 
-  /* Los videos (preload="none") recién se piden cuando la página terminó
-     de cargar: así no compiten con el texto y las fotos de la portada.
+  /* Los videos son lo primero que se ve: arrancan de inmediato, sin esperar
+     al resto de la página (autoplay + preload="auto" en el HTML).
      Safari en ahorro de energía y algún Android niegan el arranque hasta
      que hay un gesto. El primero que haga el visitante sirve. */
   const alPrimerGesto = () => {
@@ -1981,13 +1979,9 @@ addEventListener('resize', revisaRise, { passive:true });
     ['touchstart','click','keydown','scroll'].forEach(e =>
       window.removeEventListener(e, alPrimerGesto));
   };
-  const cargada = () => {
-    arranca();
-    ['touchstart','click','keydown','scroll'].forEach(e =>
-      window.addEventListener(e, alPrimerGesto, { once:false, passive:true }));
-  };
-  if (document.readyState === 'complete') cargada();
-  else window.addEventListener('load', cargada, { once:true });
+  arranca();
+  ['touchstart','click','keydown','scroll'].forEach(e =>
+    window.addEventListener(e, alPrimerGesto, { once:false, passive:true }));
 
   /* Pausa fuera de pantalla. Se mide directamente en cada desplazamiento
      porque IntersectionObserver no siempre dispara en vistas previas. */
