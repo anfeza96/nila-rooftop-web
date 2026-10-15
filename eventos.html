@@ -179,6 +179,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .ev .cuando{ font-family:var(--f-brand); font-size:13px; letter-spacing:.06em; color:var(--sand); }
 .ev .desc{ font-size:14px; color:var(--muted); margin:0; }
 .ev .pie{ margin-top:auto; padding-top:14px; display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+.ev .acciones{ display:flex; flex-wrap:wrap; gap:8px; width:100%; margin-top:8px; }
 .ev .entrada{
   font-family:var(--f-brand); font-size:10px; letter-spacing:.18em; text-transform:uppercase;
   background:var(--gold); color:#1B1408; padding:5px 11px;
@@ -421,7 +422,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     "entrada": "Consultar por WhatsApp",
     "generos": ["House", "Reggaetón", "Crossover"],
     "descripcion": "From Río de Janeiro to the City of Four Rivers. Con DJ Tou y DJ Fer Andrade. Its independence season.",
-    "imagen": "img/eventos/tommax.webp"
+    "imagen": "img/eventos/tommax.webp",
+    "compra": "https://bubbl.so/e/POYgVPg?s=2GK4pm8erOZyPKIo9dR9RAfAZSD3"
   },
   {
     "id": "white-affair",
@@ -481,7 +483,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     "entrada": "Tickets en Flame",
     "generos": [],
     "descripcion": "The Sinners Club. Line up: PAPO (México), CEVE, IGNAZ, LULO, PESANTEZ. Curado por ATRIO.",
-    "imagen": "img/eventos/atrio-sinners.webp"
+    "imagen": "img/eventos/atrio-sinners.webp",
+    "compra": "https://www.flme.co/events/atrio-sinners-club"
   },
   {
     "id": "the-cult-vol2",
@@ -491,7 +494,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     "entrada": "Regular $10 · Backstage $15 · meet2go",
     "generos": [],
     "descripcion": "La fiesta oficial de Halloween de la UDA, por Momentum. Disfraces y chiva con barra libre (+$5). Entradas en meet2go, con promotores, Asos y UDAFE.",
-    "imagen": "img/eventos/the-cult.webp"
+    "imagen": "img/eventos/the-cult.webp",
+    "compra": "https://www.meet2go.com/ev/thecultvol2"
   },
   {
     "id": "vicio",
@@ -501,7 +505,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     "entrada": "Consultar por WhatsApp",
     "generos": [],
     "descripcion": "Noche de disfraces. Line up: NITRO, CEVE, BABEL.",
-    "imagen": "img/eventos/vicio.webp"
+    "imagen": "img/eventos/vicio.webp",
+    "compra": "https://bubbl.so/e/sFvNhc4?s=2GK4pm8erOZyPKIo9dR9RAfAZSD3"
   },
   {
     "id": "despecho-rawayana",
@@ -511,17 +516,19 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     "entrada": "Tickets y mesas en Bubbl",
     "generos": ["Reggaetón", "Crossover"],
     "descripcion": "Opening de las fiestas de Cuenca. Live performance de Gustavo Campo and friends en tributo a Rawayana. Y el after en la terraza con DJ Ice.",
-    "imagen": "img/eventos/preli-rawayana.webp"
+    "imagen": "img/eventos/preli-rawayana.webp",
+    "compra": "https://bubbl.so/e/hU9iOy0?s=2GK4pm8erOZyPKIo9dR9RAfAZSD3"
   },
   {
     "id": "spooky-night",
     "titulo": "Spooky Night",
     "fecha": "2026-10-30",
-    "hora": "20:00",
+    "hora": "21:00",
     "entrada": "Preventas en @meet2go",
     "generos": ["Techno", "Acid house"],
     "descripcion": "Fiesta de disfraces con Buraye (Bogotá) en vivo, TV-Pancho y Martin Naranjo ISH.",
-    "imagen": "img/eventos/spooky-night.webp"
+    "imagen": "img/eventos/spooky-night.webp",
+    "compra": "https://www.meet2go.com/ev/spookynight2026"
   },
   {
     "id": "vitas-halloween",
@@ -531,7 +538,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     "entrada": "Entradas a la venta",
     "generos": [],
     "descripcion": "Tercera edición de Vita's Halloween, presentada por Flor de Caña, con @soundsbycoco. Disfraz recomendado.",
-    "imagen": "img/eventos/vitas-halloween.webp"
+    "imagen": "img/eventos/vitas-halloween.webp",
+    "compra": "https://www.meet2go.com/ev/halloweeniii"
   }
 ]
 </script>
@@ -617,12 +625,17 @@ function marcoFlyer(e, conCinta){
   return cinta + '<div class="flyer' + (e.imagen ? '' : ' sin-foto') + '">' + img + HUECO + '</div>';
 }
 
-/* Regla para TODOS los eventos, presentes y futuros: el botón es siempre
-   "Consultar acceso" y abre WhatsApp con la consulta ya escrita. Cada
-   evento tiene su propia forma de entrar (preventa, tickets en otra
-   plataforma, invitación, lista), así que la casa confirma el acceso
-   por chat en vez de prometer una reserva directa. */
+/* Botones de cada evento:
+   - Si trae "compra" (enlace de Bubbl, Meet2Go, Flame...), el botón
+     principal es "Comprar entradas" y abre esa página.
+   - "Consultar acceso" sale siempre y abre WhatsApp con la consulta ya
+     escrita, para invitaciones, listas o dudas. */
 const BOTON_EVENTO = 'Consultar acceso';
+const BOTON_COMPRA = 'Comprar entradas';
+
+function enlaceCompra(e){
+  return typeof e.compra === 'string' && e.compra.startsWith('https://') ? e.compra : '';
+}
 
 function enlaceConsulta(e){
   const msg = '¡Hola ' + NOMBRE + '! Quiero más información sobre "' + e.titulo + '" el ' + fechaLarga(e) + '.';
@@ -655,8 +668,11 @@ function pintar(){
             ? '<div class="gen" style="margin-bottom:20px">' + e.generos.map(g => '<span>' + escapa(g) + '</span>').join('') + '</div>'
             : '') +
           '<div style="display:flex;flex-wrap:wrap;gap:11px">' +
-            '<a class="btn btn-solid" href="' + enlaceConsulta(e) + '" target="_blank" rel="noopener">' + BOTON_EVENTO + '</a>' +
-            '<a class="btn btn-line" href="https://www.instagram.com/nila.rooftop/" target="_blank" rel="noopener">Ver en Instagram</a>' +
+            (enlaceCompra(e)
+              ? '<a class="btn btn-solid" href="' + escapa(enlaceCompra(e)) + '" target="_blank" rel="noopener">' + BOTON_COMPRA + '</a>' +
+                '<a class="btn btn-line" href="' + enlaceConsulta(e) + '" target="_blank" rel="noopener">' + BOTON_EVENTO + '</a>'
+              : '<a class="btn btn-solid" href="' + enlaceConsulta(e) + '" target="_blank" rel="noopener">' + BOTON_EVENTO + '</a>' +
+                '<a class="btn btn-line" href="https://www.instagram.com/nila.rooftop/" target="_blank" rel="noopener">Ver en Instagram</a>') +
           '</div>' +
         '</div>' +
       '</div>';
@@ -705,7 +721,11 @@ function tarjeta(e, esPasado){
         (e.generos && e.generos.length
           ? '<div class="gen">' + e.generos.map(g => '<span>' + escapa(g) + '</span>').join('') + '</div>'
           : '') +
-        (esPasado ? '' : '<a class="btn btn-line btn-sm" style="margin-top:8px" href="' + enlaceConsulta(e) + '" target="_blank" rel="noopener">' + BOTON_EVENTO + '</a>') +
+        (esPasado ? '' :
+          '<div class="acciones">' +
+            (enlaceCompra(e) ? '<a class="btn btn-terra btn-sm" href="' + escapa(enlaceCompra(e)) + '" target="_blank" rel="noopener">' + BOTON_COMPRA + '</a>' : '') +
+            '<a class="btn btn-line btn-sm" href="' + enlaceConsulta(e) + '" target="_blank" rel="noopener">' + BOTON_EVENTO + '</a>' +
+          '</div>') +
       '</div>' +
     '</div></article>';
 }
