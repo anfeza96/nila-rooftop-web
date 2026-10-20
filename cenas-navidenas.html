@@ -167,6 +167,8 @@ main, .foot{ position:relative; z-index:1; }
   color:var(--crema); text-shadow:0 0 40px rgba(255,207,122,.18);
 }
 .portada .guion{ font-size:clamp(46px,7vw,92px); margin:0 0 -.12em; color:var(--oro-claro); text-shadow:0 0 24px rgba(255,207,122,.35); }
+/* NILA con las letras del logotipo, no con la letra script */
+.nila-logo{ display:inline-block; height:.6em; width:auto; margin-left:.14em; vertical-align:baseline; filter:drop-shadow(0 0 14px rgba(255,207,122,.35)); }
 .portada p{ color:var(--suave); max-width:46ch; margin:26px auto 0; font-size:clamp(16px,.5vw + 14.5px,19px); }
 .precio{ display:inline-flex; align-items:baseline; gap:12px; margin-top:30px; padding:12px 26px; border:1px solid var(--linea); border-radius:999px; background:rgba(20,6,10,.45); }
 .precio b{ font-family:var(--f-brand); font-weight:300; font-size:clamp(30px,4vw,40px); color:var(--oro-claro); line-height:1; }
@@ -354,7 +356,7 @@ dialog.visor button{ position:absolute; top:10px; right:10px; width:44px; height
 <!-- ════════ PORTADA ════════ -->
 <header class="portada">
   <div class="wrap">
-    <span class="guion">Navidad en NILA</span>
+    <span class="guion">Navidad en <img class="nila-logo" src="img/navidad/nila-oro.webp" alt="NILA" width="802" height="274"></span>
     <h1>Cenas navideñas</h1>
     <p>Entrada, plato fuerte a elección, postre y una bebida. Después, música en vivo y DJ hasta tarde, con tu mesa reservada toda la noche.</p>
     <div class="precio"><b>$30</b><span>por persona, IVA incluido</span></div>
