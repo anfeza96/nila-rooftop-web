@@ -177,12 +177,6 @@ main, .foot{ position:relative; z-index:1; }
 .tiempos{ display:grid; gap:clamp(56px,8vw,96px); margin-top:clamp(40px,6vw,64px); }
 .tiempo{ display:grid; grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); gap:clamp(28px,5vw,72px); align-items:center; }
 .tiempo:nth-child(even) .foto{ order:2; }
-.tiempo.sin-foto{
-  align-items:start; gap:clamp(22px,4vw,56px); padding:clamp(26px,3.6vw,44px);
-  border:1px solid var(--linea); border-radius:6px; background:linear-gradient(160deg, rgba(61,13,22,.7), rgba(20,6,10,.7));
-}
-.tiempo.sin-foto .bebidas{ margin-top:12px; }
-.tiempo.sin-foto > .btn{ grid-column:1 / -1; justify-self:start; }
 .foto{ position:relative; aspect-ratio:4/5; border-radius:6px; overflow:hidden; background:var(--vino); box-shadow:0 30px 60px -30px rgba(0,0,0,.8); }
 .foto img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:opacity .55s ease, transform .9s ease; }
 .foto img.oculta{ opacity:0; transform:scale(1.03); }
@@ -404,21 +398,19 @@ dialog.visor button{ position:absolute; top:10px; right:10px; width:44px; height
         </div>
       </article>
 
-      <article class="tiempo sin-foto">
-        <!-- Cuando lleguen las fotos de la torta y el pie, esta fila vuelve a llevar foto como las otras dos. -->
+      <article class="tiempo">
+        <div class="foto"><img src="img/navidad/postre.webp" srcset="img/navidad/postre-480.webp 480w, img/navidad/postre-720.webp 720w, img/navidad/postre.webp 900w" sizes="(max-width:820px) min(440px, 90vw), 45vw" alt="Porción de torta red velvet con frutos rojos" width="900" height="1125" loading="lazy" decoding="async"></div>
         <div>
-          <p class="paso">3 · Postre, a elección</p>
-          <h3>Torta mojada de chocolate o pie de limón</h3>
-        </div>
-        <div>
-          <p class="paso">Incluye una bebida</p>
+          <p class="paso">3 · Postre</p>
+          <h3>Torta red velvet</h3>
+          <p>Y para acompañar la cena, una bebida a elección:</p>
           <ul class="bebidas">
             <li>Copa de vino tinto</li>
             <li>Copa de vino blanco</li>
             <li>Gaseosa o jugo natural</li>
           </ul>
+          <button class="btn btn-linea" type="button" id="ver-carta" style="margin-top:26px">Ver la carta navideña</button>
         </div>
-        <button class="btn btn-linea" type="button" id="ver-carta">Ver la carta navideña</button>
       </article>
     </div>
   </div>
@@ -480,6 +472,7 @@ dialog.visor button{ position:absolute; top:10px; right:10px; width:44px; height
         <figure><img src="img/navidad/tiradito.webp" srcset="img/navidad/tiradito-480.webp 480w, img/navidad/tiradito-720.webp 720w, img/navidad/tiradito.webp 900w" sizes="(max-width:800px) 240px, 340px" alt="Tiradito de camarones" width="900" height="1125" loading="lazy" decoding="async"></figure>
         <figure><img src="img/navidad/lomo.webp" srcset="img/navidad/lomo-480.webp 480w, img/navidad/lomo-720.webp 720w, img/navidad/lomo.webp 900w" sizes="(max-width:800px) 240px, 340px" alt="Lomo fino navideño" width="900" height="1125" loading="lazy" decoding="async"></figure>
         <figure><img src="img/navidad/pavo.webp" srcset="img/navidad/pavo-480.webp 480w, img/navidad/pavo-720.webp 720w, img/navidad/pavo.webp 900w" sizes="(max-width:800px) 240px, 340px" alt="Medallones de pavo" width="900" height="1125" loading="lazy" decoding="async"></figure>
+        <figure><img src="img/navidad/postre.webp" srcset="img/navidad/postre-480.webp 480w, img/navidad/postre-720.webp 720w, img/navidad/postre.webp 900w" sizes="(max-width:800px) 240px, 340px" alt="Torta red velvet" width="900" height="1125" loading="lazy" decoding="async"></figure>
       </div>
       <div class="flechas">
         <button type="button" data-pista="pista" data-dir="-1" aria-label="Foto anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M15 5l-7 7 7 7"/></svg></button>
@@ -576,7 +569,7 @@ dialog.visor button{ position:absolute; top:10px; right:10px; width:44px; height
 </main>
 
 <dialog class="visor" id="visor" aria-label="Carta navideña">
-  <img src="img/navidad/menu.webp" alt="Carta del menú navideño de NILA: entrada, plato fuerte a elección, postre y bebida por $30 por persona, IVA incluido" width="900" height="1127" loading="lazy">
+  <img src="img/navidad/menu.webp" alt="Carta del menú navideño de NILA: entrada, plato fuerte a elección, postre y bebida por $30 por persona, IVA incluido" width="900" height="1128" loading="lazy">
   <button type="button" id="cerrar-visor" aria-label="Cerrar">×</button>
 </dialog>
 
