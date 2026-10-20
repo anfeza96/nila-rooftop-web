@@ -30,6 +30,17 @@ GitHub, así que todo lo de aquí se puede ver ahí.
 Las filas se generan con `node herramientas/armar-galeria.js galeria.html`; cómo sumar
 fotos está en `img/galeria/LEEME.txt`.
 
+## Temporada navideña (pestaña "Cenas navideñas")
+
+La página `cenas-navidenas.html` y su pestaña roja en el menú son de temporada.
+
+- `node herramientas/temporada-navidad.js ocultar`: quita la pestaña del menú de todas las páginas, apaga sus estilos (el menú vuelve a ser el de siempre) y hace que `/cenas-navidenas` lleve a la portada.
+- `node herramientas/temporada-navidad.js mostrar`: la vuelve a poner tal cual.
+- `node herramientas/temporada-navidad.js estado`: dice cómo está.
+
+Después de ocultar o mostrar: revisar en local, commit y push. La página y sus fotos (`img/navidad/`) se quedan en el repositorio para el año siguiente.
+Las fotos de `img/navidad/` tienen tres tamaños (480, 720 y 900 px; las de 2025, 400 y 720) y la página deja que el navegador elija.
+
 ## Probar el sitio en local
 
 Abrir los `.html` con doble clic (`file://`) da resultados falsos.

@@ -207,8 +207,10 @@ h1,h2,h3,h4{ font-family:var(--f-brand); font-weight:300; margin:0; line-height:
 .nav-links + .nav-cta{ margin-left:0; }
 /* En estrecho la barra se parte en dos filas y los enlaces se
    deslizan en horizontal: nunca se esconden detrás de un botón.
-   El degradado del borde derecho avisa de que hay más. */
-@media (max-width:900px){
+   El degradado del borde derecho avisa de que hay más.
+   La portada tiene un enlace más que las otras páginas: por debajo de
+   1100 px ya no cabe en una fila, así que se parte desde ahí. */
+@media (max-width:1100px){
   .nav-in{ height:auto; flex-wrap:wrap; padding-block:11px; gap:8px 14px; }
   .nav-logo{ order:1; }
   .nav-cta{ order:2; margin-left:auto; padding:13px 18px; }
@@ -661,7 +663,7 @@ a.card:hover{ background:var(--ground-3); }
   background:var(--gold); border-color:var(--gold); color:#1B1408;
 }
 .nav-links a.aparte[aria-current]{ background:var(--gold); border-color:var(--gold); color:#1B1408; }
-@media (max-width:900px){ .nav-links a.aparte{ padding:13px 15px; margin:0; } }
+@media (max-width:1100px){ .nav-links a.aparte{ padding:13px 15px; margin:0; } }
 
 /* ── Accesos a las otras dos páginas, al cierre ── */
 .puertas{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(14px,2vw,22px); margin-top:8px; }
@@ -817,6 +819,45 @@ a.card:hover{ background:var(--ground-3); }
 .corp-nav .promos-flecha svg{ width:17px; height:17px; }
 .corp-puntos{ margin-top:14px; justify-content:flex-start; }
 </style>
+<!-- Temporada navideña: estilos de la pestaña. Se apagan con  node herramientas/temporada-navidad.js ocultar -->
+<style data-temporada="navidad">
+/* Pestaña de temporada: Cenas navideñas, primera del menú */
+.nav-links a.navidad{
+  position:relative; color:#FFF3DC; border:1px solid #D8B061; border-radius:999px;
+  padding:6px 15px 6px 28px; margin:-6px 0;
+  background:linear-gradient(135deg,#9E111A,#C8202A);
+  animation:navidad-brillo 2.8s ease-in-out infinite;
+}
+.nav-links a.navidad::after{ display:none; }
+.nav-links a.navidad::before{
+  content:""; position:absolute; left:11px; top:50%; width:8px; height:8px; margin-top:-4px; border-radius:50%;
+  background:#FFCF7A; box-shadow:0 0 8px 2px rgba(255,207,122,.8); animation:navidad-chispa 1.6s steps(2,jump-none) infinite;
+}
+.nav-links a.navidad:hover, .nav-links a.navidad:focus-visible{ background:linear-gradient(135deg,#B4161F,#E0343E); color:#fff; }
+@keyframes navidad-brillo{ 0%,100%{ box-shadow:0 0 0 0 rgba(216,48,58,0) } 50%{ box-shadow:0 0 16px 1px rgba(216,48,58,.55) } }
+@keyframes navidad-chispa{ 0%{ opacity:1 } 100%{ opacity:.35 } }
+.nav-links a.navidad{ white-space:nowrap; }
+/* En escritorio los enlaces se acercan un poco para que la fila completa quepa con la pestaña nueva */
+@media (min-width:1281px){ .nav-links{ gap:clamp(12px,1.1vw,18px); } .nav-links a{ letter-spacing:.15em; } }
+/* Con la pestaña de temporada la barra ya no cabe en una fila por debajo
+   de ~1180 px: pasa antes al modo de dos filas que ya se usa en celular. */
+@media (max-width:1280px){
+  .nav-in{ height:auto; flex-wrap:wrap; padding-block:11px; gap:8px 14px; }
+  .nav-logo{ order:1; }
+  .nav-cta{ order:2; margin-left:auto; padding:13px 18px; }
+  .nav-links{
+    order:3; width:100%; margin-left:0; gap:12px;
+    overflow-x:auto; scrollbar-width:none; padding-bottom:1px;
+    -webkit-mask-image:linear-gradient(90deg,#000 86%,transparent);
+            mask-image:linear-gradient(90deg,#000 86%,transparent);
+  }
+  .nav-links::-webkit-scrollbar{ display:none; }
+  .nav-links a{ white-space:nowrap; flex:none; font-size:11px; padding:15px 4px; display:flex; align-items:center; }
+  .nav-links a.aparte{ padding:13px 15px; margin:0; }
+  .nav-links a.navidad{ padding:13px 15px 13px 28px; margin:0; }
+  #inicio,#lugar,#carta,#corporativos,#reserva,#visita,#contacto{ scroll-margin-top:112px; }
+}
+</style>
 </head>
 <body>
 
@@ -833,6 +874,7 @@ a.card:hover{ background:var(--ground-3); }
       <b>NILA</b>
     </a>
     <div class="nav-links">
+      <!--temporada:navidad--><a class="navidad" href="cenas-navidenas.html">Cenas navideñas</a><!--/temporada:navidad-->
       <a href="#lugar">El lugar</a>
       <a href="carta.html">Carta</a>
       <a href="#corporativos">Corporativos</a>
