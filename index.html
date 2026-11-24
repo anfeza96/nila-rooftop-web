@@ -39,7 +39,6 @@
     "https://www.instagram.com/nilarooftop.events/"
   ],
   "openingHoursSpecification": [
-    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Tuesday",  "opens": "17:30", "closes": "23:30" },
     { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Wednesday","Thursday"], "opens": "17:00", "closes": "23:30" },
     { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Friday","Saturday"], "opens": "17:00", "closes": "03:00" }
   ],
@@ -1388,14 +1387,15 @@ const CONFIG = {
   reserva:    { maxPersonas: 12 }
 };
 
-/* Horario confirmado por el propietario (18/09/2026).
+/* Horario confirmado por el propietario (18/09/2026; desde el 24/11/2026
+   ya no abrimos los martes: de miércoles a sábado).
    Formato: [apertura, cierre] en 24h. El cierre puede pasar de medianoche
    (3 = 3:00 am). null = cerrado ese día. Índice 0 = domingo. */
 const HORARIO_CONFIRMADO = true;
 const HORARIO = [
   { dia:"Domingo",   rango:null        },
   { dia:"Lunes",     rango:null        },
-  { dia:"Martes",    rango:[17.5, 23.5] },
+  { dia:"Martes",    rango:null        },
   { dia:"Miércoles", rango:[17,   23.5] },
   { dia:"Jueves",    rango:[17,   23.5] },
   { dia:"Viernes",   rango:[17,    3]   },
@@ -1876,7 +1876,7 @@ addEventListener('resize', revisaRise, { passive:true });
   fecha.min = iso(new Date()); fecha.value = iso(new Date());
 
   // Las horas disponibles salen del horario real por día (HORARIO), no de un
-  // rango fijo — así un martes no ofrece las 17:00 (abre 17:30) y un
+  // rango fijo — así un día cerrado no ofrece horas y un
   // viernes/sábado sí llega hasta la madrugada.
   function poblarHoras(){
     const f = new Date(fecha.value + 'T12:00:00');
